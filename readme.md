@@ -6,7 +6,7 @@
 
 ## 🤝 Equipe
 
-Membros da equipe:
+Esses são os membros da nossa equipe:
 
 <table>
   <tr>
