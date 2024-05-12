@@ -2,14 +2,11 @@
 
 # UaiMarket
 
-![GitHub repo size](https://img.shields.io/github/repo-size/ViniciusVRodrigues/UaiMarket)
-![GitHub language count](https://img.shields.io/github/languages/count/ViniciusVRodrigues/UaiMarket)
-
 > UaiMarket é um sistema completo de gerenciamento de supermercado virtual projetado para simplificar e aprimorar a experiência de compras online. Com uma interface intuitiva e recursos avançados, VirtualMart oferece uma plataforma robusta que atende tanto aos clientes quanto aos proprietários de lojas.
 
-## 🤝 Colaboradores
+## 🤝 Equipe
 
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
+Membros da equipe:
 
 <table>
   <tr>
