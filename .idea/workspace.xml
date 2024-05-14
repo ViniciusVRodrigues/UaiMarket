@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment="teste">
-      <change afterPath="$PROJECT_DIR$/src/Carrinho.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colaborador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EnderecoEntrega.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Estoque.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Mercado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pedido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pessoa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Produto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment="." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,11 +66,20 @@
       <option name="project" value="LOCAL" />
       <updated>1714687390465</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".">
+      <option name="closed" value="true" />
+      <created>1715686095226</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715686095226</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="teste" />
-    <option name="LAST_COMMIT_MESSAGE" value="teste" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
