@@ -1,10 +1,17 @@
 import java.time.LocalDateTime;
+import java.util.Date;
+
 public class Estoque {
     private int qntd;
-    private LocalDateTime dataUltimaAlteracao;
-    public Estoque(int qnts, LocalDateTime dataUltimaAlteracao){
+    private Date dataUltimaAlteracao;
+    public Estoque(int qnts, Date dataUltimaAlteracao){
         this.qntd = qntd;
         this.dataUltimaAlteracao = dataUltimaAlteracao;
+    }
+
+    public Estoque() {
+        this.qntd = 0;
+        this.dataUltimaAlteracao = new Date();
     }
 
     public int getQntd() {
@@ -15,11 +22,11 @@ public class Estoque {
         this.qntd = qntd;
     }
 
-    public LocalDateTime getDataUltimaAlteracao() {
+    public Date getDataUltimaAlteracao() {
         return dataUltimaAlteracao;
     }
 
-    public void setDataUltimaAlteracao(LocalDateTime dataUltimaAlteracao) {
+    public void setDataUltimaAlteracao(Date dataUltimaAlteracao) {
         this.dataUltimaAlteracao = dataUltimaAlteracao;
     }
 }

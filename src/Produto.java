@@ -1,13 +1,15 @@
-public class Produto{
+public class Produto {
     private String nome;
     private Tipo tipo;
     private String marca;
     private float preco;
+    private Estoque estoque;
     public Produto(){
         super();
         this.nome = "xxxx";
         this.marca = "xxxxx";
         this.preco = 00.0f;
+        this.estoque  = new Estoque();
     }
     public Produto(Tipo tipo, String nome, String marca, float preco){
         this.tipo = tipo;
