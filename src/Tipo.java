@@ -1,4 +1,4 @@
-public abstract class Tipo {
+public class Tipo {
     protected String nome;
 
     public Tipo(){
