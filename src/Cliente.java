@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Cliente extends Pessoa{
-    private int cpf;
+    private long cpf;
     private Carrinho carrinho;
     private EnderecoEntrega enderecoEntrega;
     private ArrayList<Pedido> pedidos;
@@ -13,11 +13,11 @@ public class Cliente extends Pessoa{
         this.enderecoEntrega = new EnderecoEntrega();
         this.pedidos =  new ArrayList<>();
     }
-    public Cliente(String nome, String email, String senha, int cpf){
+    public Cliente(String nome, String email, String senha, long cpf){
         super(nome,email,senha);
         this.cpf = cpf;
     }
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
     public ArrayList<Pedido> getPedido() {
