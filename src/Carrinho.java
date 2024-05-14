@@ -4,6 +4,10 @@ public class Carrinho {
     private float valorTotalProduto;
     private ArrayList<Produto> listProdutos;
 
+    public Carrinho(){
+        this.valorTotalProduto = 00.0f;
+        this.listProdutos = new ArrayList<>();
+    }
     public Carrinho(float valorTotalProduto, ArrayList<Produto> listProdutos){
         this.valorTotalProduto = valorTotalProduto;
         this.listProdutos = listProdutos;
