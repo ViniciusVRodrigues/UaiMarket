@@ -1,26 +1,33 @@
 import java.util.ArrayList;
 
 public class Carrinho {
-    private float valorTotalProduto;
-    private ArrayList<Produto> listProdutos;
+    private float valorTotalProdutos;
+    private ArrayList<ProdutoCarrinho> produtos;
 
     public Carrinho(){
-        this.valorTotalProduto = 00.0f;
-        this.listProdutos = new ArrayList<>();
+        this.valorTotalProdutos = 00.0f;
+        this.produtos = new ArrayList<>();
     }
-    public Carrinho(float valorTotalProduto, ArrayList<Produto> listProdutos){
-        this.valorTotalProduto = valorTotalProduto;
-        this.listProdutos = listProdutos;
+    public Carrinho(ArrayList<ProdutoCarrinho> produtos){
+        this.produtos = produtos;
     }
     public float getValorTotalProduto() {
-        return valorTotalProduto;
+        return valorTotalProdutos;
     }
-    public ArrayList<Produto> getListProdutos() {
-        return listProdutos;
+    public ArrayList<ProdutoCarrinho> getProdutos() {
+        return produtos;
     }
 
-    public void addProduto(){
+    public void addProduto(Produto p){
+        ProdutoCarrinho produtoCarrinho = new ProdutoCarrinho(p,1);
+        produtos.add(produtoCarrinho);
+        valorTotalProdutos = 0;
+        for(ProdutoCarrinho pC : produtos)
+            valorTotalProdutos+= pC.getPrecoTotal();
     }
-    public void delProduto(){
+    public void removeProduto(ProdutoCarrinho produtoCarrinho){
+        produtos.remove(produtoCarrinho);
+        for(ProdutoCarrinho pC : produtos)
+            valorTotalProdutos+= pC.getPrecoTotal();
     }
 }
