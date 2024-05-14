@@ -4,6 +4,8 @@
 
 > UaiMarket é um sistema completo de gerenciamento de supermercado virtual projetado para simplificar e aprimorar a experiência de compras online. Com uma interface intuitiva e recursos avançados, VirtualMart oferece uma plataforma robusta que atende tanto aos clientes quanto aos proprietários de lojas.
 
+<img src="imagem.jpeg" alt="Logo UaiMarket">
+
 ## 🤝 Equipe
 
 Esses são os membros da nossa equipe:
