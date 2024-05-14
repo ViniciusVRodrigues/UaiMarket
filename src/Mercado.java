@@ -6,7 +6,7 @@ public class Mercado {
     private ArrayList<Tipo> tipos = new ArrayList<>();
 
     Mercado(){
-        tipos.add()
+        tipos.add(new Tipo("Padaria"));
     }
 
     public ArrayList<Produto> getProdutos() {
