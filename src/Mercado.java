@@ -1,20 +1,36 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Mercado {
-    private ArrayList<Produto> listaprodutos;
-    private ArrayList<Tipo> listaTipos;
+    private ArrayList<Produto> produtos = new ArrayList<>();
+    private ArrayList<Tipo> tipos = new ArrayList<>();
 
-    public ArrayList<Produto> getListaprodutos() {
-        return listaprodutos;
+    Mercado(){
+        tipos.add(new Tipo("Padaria"));
     }
 
-    public ArrayList<Tipo> getListaTipos() {
-        return listaTipos;
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
     }
-    public void buscarProd(){
+
+    public ArrayList<Tipo> getTipos() {
+        return tipos;
     }
-    public void mostrarTipos(){
+    public ArrayList<Produto> buscarProd(String busca){
+        ArrayList<Produto> produtosBusca = produtos;
+        return produtosBusca;
     }
-    public void BuscarProdPorTipo(){
+    public ArrayList<Produto> BuscarProdPorTipo(String busca, Tipo tipo){
+        ArrayList<Produto> produtosBusca = produtos;
+        return produtosBusca;
     }
+
+    public void addProduto(Produto produto){
+        produtos.add(produto);
+    }
+
+    public void addTipo(String nome){
+        tipos.add(new Tipo(nome));
+    }
+
 }
