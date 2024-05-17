@@ -3,19 +3,19 @@ public class Produto {
     private Tipo tipo;
     private String marca;
     private float preco;
-    private Estoque estoque;
+    private Estoque estoque = new Estoque();
     public Produto(){
         super();
         this.nome = "xxxx";
         this.marca = "xxxxx";
         this.preco = 00.0f;
-        this.estoque  = new Estoque();
     }
-    public Produto(Tipo tipo, String nome, String marca, float preco){
+    public Produto(Tipo tipo, String nome, String marca, float preco, int quantidade){
         this.tipo = tipo;
         this.nome = nome;
         this.marca = marca;
         this.preco = preco;
+        this.estoque.setQuantidade(quantidade);
     }
 
     public String getNome() {
