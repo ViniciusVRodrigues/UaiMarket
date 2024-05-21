@@ -9,7 +9,7 @@ public class Mercado {
     private ArrayList<Pedido> pedidos = new ArrayList<>();
 
     Mercado(){
-        tipos.add(new Tipo("Padaria"));
+        cadastrarTipos();
     }
 
     public ArrayList<Produto> getProdutos() {
@@ -68,8 +68,25 @@ public class Mercado {
         produtos.add(produto);
     }
 
-    public void addTipo(String nome){
-        tipos.add(new Tipo(nome));
+    public void cadastrarTipos(){
+        tipos.add(new Tipo("Açougue"));
+        tipos.add(new Tipo("Alimentos sem gluten"));
+        tipos.add(new Tipo("Alimentos sem lactose"));
+        tipos.add(new Tipo("Bebidas"));
+        tipos.add(new Tipo("Bebidas Destiladas"));
+        tipos.add(new Tipo("Congelados"));
+        tipos.add(new Tipo("Enlatados"));
+        tipos.add(new Tipo("Frutas e Verduras"));
+        tipos.add(new Tipo("Frios"));
+        tipos.add(new Tipo("Higiene Pessoal"));
+        tipos.add(new Tipo("Laticínios"));
+        tipos.add(new Tipo("Limpeza"));
+        tipos.add(new Tipo("Massas"));
+        tipos.add(new Tipo("Mercearia"));
+        tipos.add(new Tipo("Padaria"));
+        tipos.add(new Tipo("Peixaria"));
+        tipos.add(new Tipo("Petiscos"));
+        tipos.add(new Tipo("Salgados"));
     }
 
 }
