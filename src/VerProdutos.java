@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class VerProdutos {
 
     private Scanner scanner;
-    private List<String> produtos;
+    private Mercado mercado;
 
-    public VerProdutos() {
+    public VerProdutos(Mercado mercado) {
         this.scanner = new Scanner(System.in);
-       this.produtos = new ArrayList<>();
+        this.mercado = mercado;
     }
 
     public void mostrarMenu() {
@@ -40,6 +40,7 @@ public class VerProdutos {
 
     private void mostrarProdutos() {
         System.out.println("\n--- Produtos disponíveis ---");
+        List<Produto> produtos = mercado.getProdutos();
         for (int i = 0; i < produtos.size(); i++) {
             System.out.println((i + 1) + ". " + produtos.get(i));
         }
@@ -57,6 +58,7 @@ public class VerProdutos {
     private void mostrarMenuProduto(int idProduto) {
         boolean mostrando = true;
         while (mostrando) {
+            List<Produto> produtos = mercado.getProdutos();
             System.out.println("\n--- Produto selecionado: " + produtos.get(idProduto - 1) + " ---");
             System.out.println("1. Atualizar");
             System.out.println("2. Deletar");
@@ -75,7 +77,10 @@ public class VerProdutos {
                     System.out.println("Deletando produto... ");
                     break;
                 case 3:
-                    System.out.println("Adicionando produto...");
+                    Produto produto = new Produto();
+                    if(produto.cadastrarProduto(scanner,mercado.getTipos())==1){
+                        mercado.addProduto(produto);
+                    }
                     break;
                 case 0:
                     mostrando = false;

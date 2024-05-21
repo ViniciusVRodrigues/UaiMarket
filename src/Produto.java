@@ -72,7 +72,10 @@ public class Produto {
     }
 
     private boolean testeSair(String s){
-        if(s.equals("Cancelar")) return true;
+        if(s.equals("Cancelar")){
+            System.out.println("Cancelando...");
+            return true;
+        }
         return false;
     }
 }
