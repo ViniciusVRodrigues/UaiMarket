@@ -16,7 +16,9 @@ public class VerProdutos {
         boolean mostrando = true;
         while (mostrando) {
             System.out.println("\n--- Ver produtos ---");
+
             System.out.println("1. Selecionar");
+            System.out.println("2. Adicionar");
             System.out.println("0. Voltar");
             System.out.println("Escolha uma opção: ");
 
@@ -26,6 +28,12 @@ public class VerProdutos {
             switch (opcao) {
                 case 1:
                     mostrarProdutos();
+                    break;
+                case 2:
+                    Produto produto = new Produto();
+                    if(produto.cadastrarProduto(scanner,mercado.getTipos())==1){
+                        mercado.addProduto(produto);
+                    }
                     break;
                 case 0:
                     mostrando = false;
@@ -62,7 +70,7 @@ public class VerProdutos {
             System.out.println("\n--- Produto selecionado: " + produtos.get(idProduto - 1) + " ---");
             System.out.println("1. Atualizar");
             System.out.println("2. Deletar");
-            System.out.println("3. Adicionar");
+            System.out.println("3. Editar");
             System.out.println("0. Voltar ");
             System.out.println("Digite uma opção: ");
 
@@ -77,11 +85,7 @@ public class VerProdutos {
                     System.out.println("Deletando produto... ");
                     break;
                 case 3:
-                    Produto produto = new Produto();
-                    if(produto.cadastrarProduto(scanner,mercado.getTipos())==1){
-                        mercado.addProduto(produto);
-                    }
-                    break;
+                    System.out.println("Editando produto...");
                 case 0:
                     mostrando = false;
                     break;

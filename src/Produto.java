@@ -18,7 +18,7 @@ public class Produto {
         this.nome = nome;
         this.marca = marca;
         this.preco = preco;
-//        this.estoque.setQuantidade(quantidade);
+        this.estoque.setQntd(quantidade);
     }
 
     public String getNome() {
@@ -36,6 +36,10 @@ public class Produto {
     }
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public String toString() {
+        return "nome=" + nome + ", preco=" + preco + ", tipo=" + tipo + ", quantidade: " + estoque.getQntd();
     }
 
     public int cadastrarProduto(Scanner scanner, List<Tipo> tipos){
