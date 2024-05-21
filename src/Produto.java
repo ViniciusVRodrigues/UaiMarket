@@ -15,7 +15,7 @@ public class Produto {
         this.nome = nome;
         this.marca = marca;
         this.preco = preco;
-        this.estoque.setQuantidade(quantidade);
+//        this.estoque.setQuantidade(quantidade);
     }
 
     public String getNome() {
