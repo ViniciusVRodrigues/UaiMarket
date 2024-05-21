@@ -44,23 +44,27 @@ public class Produto {
     }
 
     public String toString() {
-        return "nome=" + nome + ", preco=" + preco + ", tipo=" + tipo + ", quantidade: " + estoque.getQntd();
+        return "Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
     }
 
     public int cadastrarProduto(Scanner scanner, List<Tipo> tipos) {
         System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
+
         System.out.println("Digite o nome:");
         String input = scanner.nextLine();
         if (testeSair(input)) return 0;
         this.nome = input;
+
         System.out.println("Digite a marca:");
         input = scanner.nextLine();
         if (testeSair(input)) return 0;
         this.marca = input;
+
         System.out.println("Digite o preço:");
         input = scanner.nextLine();
         if (testeSair(input)) return 0;
         this.preco = Float.parseFloat(input);
+
         System.out.println("Digite a quantidade:");
         input = scanner.nextLine();
         if (testeSair(input)) return 0;
@@ -71,11 +75,17 @@ public class Produto {
             Tipo tipo = tipos.get(i);
             System.out.println(i + " - " + tipo.getNome());
         }
+
         System.out.println("Selecione o tipo (Digite o ID):");
         input = scanner.nextLine();
         if (testeSair(input)) return 0;
         int id = Integer.parseInt(input);
-        tipos.get(id);
+        if (id >= 0 && id < tipos.size()) {
+            this.tipo = tipos.get(id);
+        } else {
+            System.out.println("ID de tipo inválido. Cancelando...");
+        }
+
         System.out.println("\nProduto Cadastrado com sucesso!");
         return 1;
     }
