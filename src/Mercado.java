@@ -16,6 +16,10 @@ public class Mercado {
         return produtos;
     }
 
+    public Produto getProduto(int index){
+        return produtos.get(index);
+    }
+
     public ArrayList<Tipo> getTipos() {
         return tipos;
     }

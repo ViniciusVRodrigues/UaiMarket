@@ -7,6 +7,9 @@ public class VerProdutos {
     private Scanner scanner;
     private Mercado mercado;
 
+    private Produto produtoSelecionado;
+    private int idSelecionado;
+
     public VerProdutos(Mercado mercado) {
         this.scanner = new Scanner(System.in);
         this.mercado = mercado;
@@ -53,39 +56,34 @@ public class VerProdutos {
             System.out.println((i + 1) + ". " + produtos.get(i));
         }
         System.out.println("Selecione o ID do produto: ");
-        int idProduto = scanner.nextInt();
+        idSelecionado = scanner.nextInt();
         scanner.nextLine();
 
-        if (idProduto > 0 && idProduto <= produtos.size()) {
-            mostrarMenuProduto(idProduto);
+        if (idSelecionado > 0 && idSelecionado <= produtos.size()) {
+            mostrarMenuProduto();
         } else {
             System.out.println("ID de produto inválido. Tente novamente.");
         }
     }
 
-    private void mostrarMenuProduto(int idProduto) {
+    private void mostrarMenuProduto() {
+        produtoSelecionado = mercado.getProduto(idSelecionado);
         boolean mostrando = true;
         while (mostrando) {
-            List<Produto> produtos = mercado.getProdutos();
-            System.out.println("\n--- Produto selecionado: " + produtos.get(idProduto - 1) + " ---");
+            System.out.println("\n--- Produto selecionado: " + produtoSelecionado.toString() + " ---");
             System.out.println("1. Atualizar");
             System.out.println("2. Deletar");
-            System.out.println("3. Editar");
             System.out.println("0. Voltar ");
             System.out.println("Digite uma opção: ");
-
             int opcao = scanner.nextInt();
             scanner.nextLine();
-
             switch (opcao) {
                 case 1:
-                    System.out.println("Atualizando produto...");
+                    produtoSelecionado.atualizarProduto(scanner);
                     break;
                 case 2:
                     System.out.println("Deletando produto... ");
                     break;
-                case 3:
-                    System.out.println("Editando produto...");
                 case 0:
                     mostrando = false;
                     break;
