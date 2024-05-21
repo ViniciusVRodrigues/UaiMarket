@@ -2,16 +2,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuColaborador {
-
-    private ArrayList<Colaborador> colaboradores;
+    private Mercado mercado;
     private Scanner scanner;
 
-    public MenuColaborador() {
-//        this.colaboradores = new ArrayList<>();
+    private VerProdutos verProdutos;
+
+    public MenuColaborador(Mercado mercado) {
+        this.mercado = mercado;
+        this.verProdutos = new VerProdutos(mercado);
         this.scanner = new Scanner(System.in);
     }
 
-    VerProdutos verProdutos = new VerProdutos();
+
 
     public void mostrarMenu() {
         boolean mostrando = true;

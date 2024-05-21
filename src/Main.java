@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        MenuColaborador menu = new MenuColaborador();
+        Mercado mercado = new Mercado();
+        MenuColaborador menu = new MenuColaborador(mercado);
         menu.mostrarMenu();
     }
 }
