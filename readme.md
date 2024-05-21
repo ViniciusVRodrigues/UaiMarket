@@ -1,5 +1,4 @@
 
-
 # UaiMarket
 
 <img src="imagem.jpeg" alt="Logo UaiMarket">
@@ -39,5 +38,27 @@ Esses são os membros da nossa equipe:
   </tr>
 </table>
 <p align="center">
+<br>
 <img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=B0EBB4&style=for-the-badge"/>
 </p>
+
+## 🔨Funcionalidades do projeto
+### Do Cliente
+- `Funcionalidade 1`: O cliente pode se cadastrar e fazer no sistema
+- `Funcionalidade 2`: O cliente pode criar um carrinho com os produtos que deseja comprar
+- `Funcionalidade 3`: O cliente pode ver qual o valor total do seu carrinho
+- `Funcionalidade 4`: O cliente pode adicionar o seu endereço de entrega
+- `Funcionalidade 5`: O cliente pode realizar a compra dos produtos de seu carrinho
+
+### Do Colaborador
+- `Funcionalidade 1`: O colaborador pode gerenciar produtos
+- `Funcionalidade 2`: O colaborador pode editar estoque
+- `Funcionalidade 3`: O colaborador pode gerenciar funcionarios 
+- `Funcionalidade 4`: O colaborador pode ver pedidos
+
+##  💻 Técnicas e tecnologias utilizadas
+- `Java`
+- `InteliJ IDEA`
+- `Modelo de Orientação a objetos`
+- `Diagrama de classes`
+- `Canvas PBB`
