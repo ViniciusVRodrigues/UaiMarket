@@ -70,7 +70,6 @@ public class Produto {
         if (testeSair(input)) return 0;
         int quantidade = Integer.parseInt(input);
         this.estoque.setQntd(quantidade);
-        scanner.nextLine();
         for (int i = 0; i < tipos.size(); i++) {
             Tipo tipo = tipos.get(i);
             System.out.println(i + " - " + tipo.getNome());

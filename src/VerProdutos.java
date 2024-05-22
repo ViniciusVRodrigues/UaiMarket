@@ -53,7 +53,7 @@ public class VerProdutos {
         System.out.println("\n--- Produtos disponíveis ---");
         List<Produto> produtos = mercado.getProdutos();
         for (int i = 0; i < produtos.size(); i++) {
-            System.out.println((i + 1) + ". " + produtos.get(i));
+            System.out.println((i) + ". " + produtos.get(i));
         }
         System.out.println("Selecione o ID do produto: ");
         idSelecionado = scanner.nextInt();
