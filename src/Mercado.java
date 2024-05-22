@@ -72,6 +72,8 @@ public class Mercado {
         produtos.add(produto);
     }
 
+    public void delProduto(Produto produto) { produtos.remove(produto);}
+
     public void cadastrarTipos(){
         tipos.add(new Tipo("Açougue"));
         tipos.add(new Tipo("Alimentos sem gluten"));

@@ -25,8 +25,7 @@ public class VerProdutos {
             System.out.println("0. Voltar");
             System.out.println("Escolha uma opção: ");
 
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
+            int opcao = getIntInput();
 
             switch (opcao) {
                 case 1:
@@ -49,28 +48,28 @@ public class VerProdutos {
         }
     }
 
+
     private void mostrarProdutos() {
         System.out.println("\n--- Produtos disponíveis ---");
         List<Produto> produtos = mercado.getProdutos();
         for (int i = 0; i < produtos.size(); i++) {
-            System.out.println((i) + ". " + produtos.get(i));
+            System.out.println((i + 1) + ". " + produtos.get(i));
         }
-        System.out.println("Selecione o ID do produto: ");
-        idSelecionado = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Selecione o ID do produto: ");
+        int idSelecionado = getIntInput();
 
         if (idSelecionado > 0 && idSelecionado <= produtos.size()) {
-            mostrarMenuProduto();
+            Produto produtoSelecionado = produtos.get(idSelecionado - 1);
+            mostrarMenuProduto(produtoSelecionado);
         } else {
             System.out.println("ID de produto inválido. Tente novamente.");
         }
     }
 
-    private void mostrarMenuProduto() {
-        produtoSelecionado = mercado.getProduto(idSelecionado);
+    private void mostrarMenuProduto(Produto produtoSelecionado) {
         boolean mostrando = true;
         while (mostrando) {
-            System.out.println("\n--- Produto selecionado: " + produtoSelecionado.toString() + " ---");
+            System.out.println("\n--- Produto selecionado: " + produtoSelecionado.getNome() + " ---");
             System.out.println("1. Atualizar");
             System.out.println("2. Deletar");
             System.out.println("0. Voltar ");
@@ -82,8 +81,9 @@ public class VerProdutos {
                     produtoSelecionado.atualizarProduto(scanner);
                     break;
                 case 2:
-                    System.out.println("Deletando produto... ");
-                    break;
+                    mercado.delProduto(produtoSelecionado);
+                    System.out.println("Produto deletado ");
+                    return;
                 case 0:
                     mostrando = false;
                     break;
@@ -92,6 +92,16 @@ public class VerProdutos {
                     break;
             }
         }
+    }
+
+    private int getIntInput() {
+        while (!scanner.hasNextInt()) {
+            System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+            scanner.next();
+        }
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
     }
 
 }
