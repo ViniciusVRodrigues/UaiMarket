@@ -61,8 +61,58 @@ public class Colaborador extends Pessoa{
         return 1;
     }
 
-    public void atualizarColaborador(Scanner scanner){
-        
+    public void atualizarColaborador(Scanner scanner) {
+        boolean mostrar = true;
+        while (mostrar) {
+            System.out.println("---- ATUALIZAR ----");
+            System.out.println("1 - Atualizar nome");
+            System.out.println("2 - Atualizar email");
+            System.out.println("3 - Atualizar senha");
+            System.out.println("4 - Atualizar codigo");
+            System.out.println("5 - Atualizar cargo");
+            System.out.println("0 - Voltar");
+            int escolha = scanner.nextInt();
+            scanner.nextLine();
+            switch (escolha) {
+                case 1:
+                    System.out.println("\n---- Nome ----");
+                    System.out.println("Nome atual: " + this.nome);
+                    System.out.println("Digite o novo nome:");
+                    nome = scanner.nextLine();
+                    break;
+                case 2:
+                    System.out.println("\n---- Email ----");
+                    System.out.println("Email atual: " + this.email);
+                    System.out.println("Digite o novo email:");
+                    email = scanner.nextLine();
+                    break;
+                case 3:
+                    System.out.println("\n---- Senha ----");
+                    System.out.println("Senha atual: " + this.senha);
+                    System.out.println("Digite a nova senha:");
+                    senha = scanner.nextLine();
+                    break;
+                case 4:
+                    System.out.println("\n---- Código ----");
+                    System.out.println("Código atual: " + this.codigo);
+                    System.out.println("Digite o novo codigo:");
+                    senha = scanner.nextLine();
+                    break;
+                case 5:
+                    System.out.println("\n---- Cargo ----");
+                    System.out.println("Cargo atual: " + this.cargo);
+                    System.out.println("Digite o novo cargo (1=Admin,2=Colaborador):");
+                    cargo = scanner.nextLine().equals("1")? "Admin": "Colaborador";
+                    break;
+                case 0:
+                    System.out.println("Voltando...");
+                    mostrar = false;
+                    break;
+                default:
+                    System.out.println("Valor inválido!");
+                    break;
+            }
+        }
     }
 
     private boolean testeSair(String s) {
