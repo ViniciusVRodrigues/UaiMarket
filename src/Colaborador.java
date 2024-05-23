@@ -72,6 +72,11 @@ public class Colaborador extends Pessoa{
         }
         return false;
     }
+
+    public String toString() {
+        return "Nome=" + nome + ", Email= " + email + ", Código= " + codigo + " ,Cargo= " + cargo;
+    }
+
 }
 
 

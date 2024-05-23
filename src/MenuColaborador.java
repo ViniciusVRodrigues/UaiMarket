@@ -19,7 +19,6 @@ public class MenuColaborador {
     }
 
 
-
     public void mostrarMenu() {
         boolean mostrando = true;
         while (mostrando) {
