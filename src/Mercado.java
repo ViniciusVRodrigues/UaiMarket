@@ -10,6 +10,7 @@ public class Mercado {
 
     Mercado(){
         cadastrarTipos();
+        cadastrarAdmin();
     }
 
     public ArrayList<Produto> getProdutos() {
@@ -73,6 +74,10 @@ public class Mercado {
     }
 
     public void delProduto(Produto produto) { produtos.remove(produto);}
+
+    public void cadastrarAdmin(){
+        colaboradores.add(new Colaborador("Admin","admin","admin",1,"Admin"));
+    }
 
     public void cadastrarTipos(){
         tipos.add(new Tipo("Açougue"));

@@ -7,6 +7,8 @@ public class MenuColaborador {
 
     private VerProdutos verProdutos;
 
+    private Colaborador colaboradorLogado;
+
     public MenuColaborador(Mercado mercado) {
         this.mercado = mercado;
         this.verProdutos = new VerProdutos(mercado);
@@ -33,6 +35,7 @@ public class MenuColaborador {
                     break;
                 case 2:
                     System.out.println("Cadastrando funcionários...");
+
                     break;
                 case 0:
                     mostrando = false;
@@ -42,6 +45,27 @@ public class MenuColaborador {
                     System.out.println("Opção inválida! Tente novamente.");
             }
         }
+    }
+
+    public boolean login(){
+        int tentarLogar = 1;
+        while (tentarLogar==1){
+            System.out.println("\n--- Login Colaborador ---");
+            System.out.println("Digite seu email:");
+            String email = scanner.nextLine();
+            System.out.println("Digite sua senha:");
+            String senha = scanner.nextLine();
+            for (Colaborador colaborador: mercado.getColaboradores()){
+                if(colaborador.logar(email,senha)){
+                    colaboradorLogado = colaborador;
+                    return true;
+                };
+            }
+            System.out.println("\nLogin errado! Tentar novamente?\nSim = 1\nNão = 0");
+            tentarLogar = scanner.nextInt();
+            scanner.nextLine();
+        }
+        return false;
     }
 
 

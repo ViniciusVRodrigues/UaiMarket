@@ -34,6 +34,12 @@ public class Colaborador extends Pessoa{
     }
     public void cadastrarFuncionario(){
     }
+
+    public boolean logar(String email, String senha){
+        if(this.email.equals(email)&&this.senha.equals(senha))
+            return true;
+            return false;
+    }
 }
 
 
