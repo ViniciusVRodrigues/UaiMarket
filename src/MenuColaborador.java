@@ -7,11 +7,14 @@ public class MenuColaborador {
 
     private VerProdutos verProdutos;
 
+    private VerColaboradores verColaboradores;
+
     private Colaborador colaboradorLogado;
 
     public MenuColaborador(Mercado mercado) {
         this.mercado = mercado;
         this.verProdutos = new VerProdutos(mercado);
+        this.verColaboradores = new VerColaboradores(mercado,colaboradorLogado);
         this.scanner = new Scanner(System.in);
     }
 
@@ -22,7 +25,7 @@ public class MenuColaborador {
         while (mostrando) {
             System.out.println("\n--- Menu Colaborador ---");
             System.out.println("1. Ver produtos");
-            System.out.println("2. Cadastrar funcionário");
+            if(colaboradorLogado.getCargo().equals("Admin")) System.out.println("2. Gerenciar funcionários");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -34,8 +37,7 @@ public class MenuColaborador {
                     verProdutos.mostrarMenu();
                     break;
                 case 2:
-                    System.out.println("Cadastrando funcionários...");
-
+                    if(colaboradorLogado.getCargo().equals("Admin")) verColaboradores.mostrarMenu();
                     break;
                 case 0:
                     mostrando = false;

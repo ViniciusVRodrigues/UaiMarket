@@ -75,6 +75,10 @@ public class Mercado {
 
     public void delProduto(Produto produto) { produtos.remove(produto);}
 
+    public void delColaborador(Colaborador colaborador){
+        colaboradores.remove(colaborador);
+    }
+
     public void cadastrarAdmin(){
         colaboradores.add(new Colaborador("Admin","admin","admin",1,"Admin"));
     }
