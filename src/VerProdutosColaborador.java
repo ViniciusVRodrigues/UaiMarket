@@ -52,13 +52,13 @@ public class VerProdutosColaborador {
         System.out.println("\n--- Produtos disponíveis ---");
         List<Produto> produtos = mercado.getProdutos();
         for (int i = 0; i < produtos.size(); i++) {
-            System.out.println((i + 1) + ". " + produtos.get(i));
+            System.out.println(produtos.get(i));
         }
         System.out.print("Selecione o ID do produto: ");
         int idSelecionado = getIntInput();
 
         if (idSelecionado > 0 && idSelecionado <= produtos.size()) {
-            Produto produtoSelecionado = produtos.get(idSelecionado - 1);
+            Produto produtoSelecionado = produtos.get(idSelecionado);
             mostrarMenuProduto(produtoSelecionado);
         } else {
             System.out.println("ID de produto inválido. Tente novamente.");
