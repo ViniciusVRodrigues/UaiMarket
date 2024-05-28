@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
-public class MenuCliente {
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+public class MenuCliente extends JFrame {
 
     private Scanner scanner;
     private Cliente cliente;
@@ -15,7 +19,17 @@ public class MenuCliente {
         mercado.vincularCliente(cliente);
         verProdutosCliente = new VerProdutosCliente(mercado,scanner);
     }
+    public MenuCliente() {
+        setTitle("Menu Cliente");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(new Color(218, 255, 172)); // cor de fundo branca
 
+        JLabel label = new JLabel("Menu Cliente", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 16));
+        add(label);
+    }
     public void mostrarMenu() {
         boolean mostrando = true;
         while (mostrando) {

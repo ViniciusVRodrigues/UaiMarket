@@ -1,72 +1,87 @@
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MenuColaborador {
+public class MenuColaborador extends JFrame {
     private Mercado mercado;
-    private Scanner scanner;
+    private JTextField emailField;
+    private JPasswordField passwordField;
 
     private VerProdutosColaborador verProdutosColaborador;
-
     private VerColaboradores verColaboradores;
-
     private Colaborador colaboradorLogado;
+
 
     public MenuColaborador(Mercado mercado) {
         this.mercado = mercado;
         this.verProdutosColaborador = new VerProdutosColaborador(mercado);
-        this.verColaboradores = new VerColaboradores(mercado,colaboradorLogado);
-        this.scanner = new Scanner(System.in);
-    }
+        this.verColaboradores = new VerColaboradores(mercado, colaboradorLogado);
 
+        setTitle("Menu Colaborador");
+        setSize(350, 225);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(new Color(255, 255, 255)); // cor de fundo branca
+
+        JLabel label = new JLabel("Menu Colaborador", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 16));
+        add(label, BorderLayout.NORTH);
+
+        JPanel loginPanel = new JPanel(new GridLayout(3, 2));
+        loginPanel.setBackground(Color.WHITE);
+
+        JLabel emailLabel = new JLabel("Email:");
+        emailField = new JTextField();
+        JLabel passwordLabel = new JLabel("Senha:");
+        passwordField = new JPasswordField();
+        JButton loginButton = new JButton("Login");
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (login()) {
+                    mostrarMenu();
+                } else {
+                    JOptionPane.showMessageDialog(MenuColaborador.this, "Credenciais inválidas", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        loginPanel.add(emailLabel);
+        loginPanel.add(emailField);
+        loginPanel.add(passwordLabel);
+        loginPanel.add(passwordField);
+        loginPanel.add(loginButton);
+
+        add(loginPanel, BorderLayout.CENTER);
+    }
 
     public void mostrarMenu() {
-        boolean mostrando = true;
-        while (mostrando) {
-            System.out.println("\n--- Menu Colaborador ---");
-            System.out.println("1. Ver produtos");
-            if(colaboradorLogado.getCargo().equals("Admin")) System.out.println("2. Gerenciar funcionários");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (opcao) {
-                case 1:
-                    verProdutosColaborador.mostrarMenu();
-                    break;
-                case 2:
-                    if(colaboradorLogado.getCargo().equals("Admin")) verColaboradores.mostrarMenu();
-                    break;
-                case 0:
-                    mostrando = false;
-                    System.out.println("Saindo");
-                    break;
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
-            }
-        }
+        JOptionPane.showMessageDialog(this, "Menu do Colaborador será exibido aqui");
     }
 
-    public boolean login(){
-        int tentarLogar = 1;
-        while (tentarLogar==1){
-            System.out.println("\n--- Login Colaborador ---");
-            System.out.println("Digite seu email:");
-            String email = scanner.nextLine();
-            System.out.println("Digite sua senha:");
-            String senha = scanner.nextLine();
-            for (Colaborador colaborador: mercado.getColaboradores()){
-                if(colaborador.logar(email,senha)){
-                    colaboradorLogado = colaborador;
-                    return true;
-                };
+    public boolean login() {
+        String email = emailField.getText();
+        String senha = new String(passwordField.getPassword());
+
+        for (Colaborador colaborador : mercado.getColaboradores()) {
+            if (colaborador.logar(email, senha)) {
+                colaboradorLogado = colaborador;
+                return true;
             }
-            System.out.println("\nLogin errado! Tentar novamente?\nSim = 1\nNão = 0");
-            tentarLogar = scanner.nextInt();
-            scanner.nextLine();
         }
         return false;
     }
 
-
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Mercado mercado = new Mercado(); // Substitua pelo seu construtor real, se houver
+                MenuColaborador menuColaborador = new MenuColaborador(mercado);
+                menuColaborador.setVisible(true);
+            }
+        });
+    }
 }
