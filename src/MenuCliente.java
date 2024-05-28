@@ -25,7 +25,7 @@ public class MenuCliente {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Criando conta");
+                    cliente.cadastrarCliente(scanner);
                     break;
                 case 2:
                     System.out.println("Vendo produtos");
@@ -34,7 +34,7 @@ public class MenuCliente {
                     System.out.println("Vendo carrinho");
                     break;
                 case 4:
-                    System.out.println("Vendo dados...");
+                    cliente.exibirDados();
                     break;
                 case 0:
                     mostrando = false;

@@ -42,10 +42,7 @@ public class Colaborador extends Pessoa{
         if (testeSair(input)) return 0;
         this.email = input;
 
-        System.out.println("Digite a senha:");
-        input = scanner.nextLine();
-        if (testeSair(input)) return 0;
-        this.senha = input;
+
 
         System.out.println("Digite a codigo:");
         input = scanner.nextLine();
@@ -57,7 +54,7 @@ public class Colaborador extends Pessoa{
         if (testeSair(input)) return 0;
         this.cargo = input.equals("1") ? "Admin" : "Colaborador";
 
-        System.out.println("\nColaborador Cadastrado com sucesso!");
+        System.out.println("\nColaborador cadastrado com sucesso!");
         return 1;
     }
 
