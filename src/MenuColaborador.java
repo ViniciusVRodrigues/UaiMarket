@@ -36,7 +36,11 @@ public class MenuColaborador {
                     verProdutos.mostrarMenu();
                     break;
                 case 2:
-                    if(colaboradorLogado.getCargo().equals("Admin")) verColaboradores.mostrarMenu();
+                    if(colaboradorLogado.getCargo().equals("Admin")){
+                        verColaboradores.mostrarMenu();
+                    }else{
+                        System.out.println("Opção inválida! Tente novamente.");
+                    }
                     break;
                 case 0:
                     mostrando = false;
