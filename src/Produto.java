@@ -46,6 +46,10 @@ public class Produto {
         return estoque.getQntd();
     }
 
+    public void removerQuantidadeEstoque(int quantidade){
+        estoque.removeQntd(quantidade);
+    }
+
     public void setPreco(float preco) {
         this.preco = preco;
     }
