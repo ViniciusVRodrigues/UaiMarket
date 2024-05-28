@@ -2,6 +2,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Produto {
+
+    private long id;
     private String nome;
     private Tipo tipo;
     private String marca;
@@ -15,12 +17,13 @@ public class Produto {
         this.preco = 00.0f;
     }
 
-    public Produto(Tipo tipo, String nome, String marca, float preco, int quantidade) {
+    public Produto(long id, Tipo tipo, String nome, String marca, float preco, int quantidade) {
         this.tipo = tipo;
         this.nome = nome;
         this.marca = marca;
         this.preco = preco;
         this.estoque.setQntd(quantidade);
+        this.id = id;
     }
 
     public String getNome() {
@@ -39,17 +42,25 @@ public class Produto {
         return tipo;
     }
 
+    public int getQuantidadeEstoque(){
+        return estoque.getQntd();
+    }
+
     public void setPreco(float preco) {
         this.preco = preco;
     }
 
-    public String toString() {
-        return "Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
+    public long getId() {
+        return id;
     }
 
-    public int cadastrarProduto(Scanner scanner, List<Tipo> tipos) {
-        System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
+    public String toString() {
+        return "Id= "+id+", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
+    }
 
+    public int cadastrarProduto(Scanner scanner, List<Tipo> tipos,long id) {
+        System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
+        this.id=id;
         System.out.println("Digite o nome:");
         String input = scanner.nextLine();
         if (testeSair(input)) return 0;

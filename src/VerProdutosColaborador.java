@@ -1,8 +1,7 @@
 import java.util.Scanner;
 import java.util.List;
-import java.util.ArrayList;
 
-public class VerProdutos {
+public class VerProdutosColaborador {
 
     private Scanner scanner;
     private Mercado mercado;
@@ -10,7 +9,7 @@ public class VerProdutos {
     private Produto produtoSelecionado;
     private int idSelecionado;
 
-    public VerProdutos(Mercado mercado) {
+    public VerProdutosColaborador(Mercado mercado) {
         this.scanner = new Scanner(System.in);
         this.mercado = mercado;
     }
@@ -33,7 +32,7 @@ public class VerProdutos {
                     break;
                 case 2:
                     Produto produto = new Produto();
-                    if(produto.cadastrarProduto(scanner,mercado.getTipos())==1){
+                    if(produto.cadastrarProduto(scanner,mercado.getTipos(),mercado.getProdutos().size())==1){
                         mercado.addProduto(produto);
                     }
                     break;

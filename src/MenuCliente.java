@@ -5,9 +5,15 @@ public class MenuCliente {
     private Scanner scanner;
     private Cliente cliente;
 
-    public MenuCliente(Cliente cliente) {
+    private Mercado mercado;
+
+    private VerProdutosCliente verProdutosCliente;
+    public MenuCliente(Mercado mercado, Cliente cliente) {
         this.scanner = new Scanner(System.in);
         this.cliente = cliente;
+        this.mercado = mercado;
+        mercado.vincularCliente(cliente);
+        verProdutosCliente = new VerProdutosCliente(mercado,scanner);
     }
 
     public void mostrarMenu() {
@@ -28,7 +34,7 @@ public class MenuCliente {
                     cliente.cadastrarCliente(scanner);
                     break;
                 case 2:
-                    System.out.println("Vendo produtos");
+                    verProdutosCliente.mostrarMenu();
                     break;
                 case 3:
                     System.out.println("Vendo carrinho");

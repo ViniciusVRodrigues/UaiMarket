@@ -2,7 +2,7 @@ public class ProdutoCarrinho extends  Produto{
     private int quantidade;
     private float precoTotal;
     ProdutoCarrinho(Produto p,int quantidade){
-//        super(p.getTipo(),p.getNome(),p.getMarca(),p.getPreco());
+       super(p.getId(),p.getTipo(),p.getNome(),p.getMarca(),p.getPreco(),p.getQuantidadeEstoque());
         this.quantidade = quantidade;
         precoTotal = quantidade*p.getPreco();
     }

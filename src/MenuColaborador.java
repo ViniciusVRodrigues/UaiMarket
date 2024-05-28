@@ -1,11 +1,10 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuColaborador {
     private Mercado mercado;
     private Scanner scanner;
 
-    private VerProdutos verProdutos;
+    private VerProdutosColaborador verProdutosColaborador;
 
     private VerColaboradores verColaboradores;
 
@@ -13,7 +12,7 @@ public class MenuColaborador {
 
     public MenuColaborador(Mercado mercado) {
         this.mercado = mercado;
-        this.verProdutos = new VerProdutos(mercado);
+        this.verProdutosColaborador = new VerProdutosColaborador(mercado);
         this.verColaboradores = new VerColaboradores(mercado,colaboradorLogado);
         this.scanner = new Scanner(System.in);
     }
@@ -33,7 +32,7 @@ public class MenuColaborador {
 
             switch (opcao) {
                 case 1:
-                    verProdutos.mostrarMenu();
+                    verProdutosColaborador.mostrarMenu();
                     break;
                 case 2:
                     if(colaboradorLogado.getCargo().equals("Admin")) verColaboradores.mostrarMenu();

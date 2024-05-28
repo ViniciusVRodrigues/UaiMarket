@@ -7,6 +7,7 @@ public class Mercado {
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Colaborador> colaboradores = new ArrayList<>();
     private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private Cliente cliente;
 
     Mercado(){
         cadastrarTipos();
@@ -24,6 +25,8 @@ public class Mercado {
     public ArrayList<Tipo> getTipos() {
         return tipos;
     }
+
+
     public ArrayList<Produto> buscarProd(String busca){
         ArrayList<Produto> produtosBusca = produtos;
         return produtosBusca;
@@ -35,6 +38,10 @@ public class Mercado {
 
     public ArrayList<Cliente> getClientes() {
         return clientes;
+    }
+
+    public void vincularCliente(Cliente cliente){
+        this.cliente = cliente;
     }
 
     public void addCliente(Cliente c){

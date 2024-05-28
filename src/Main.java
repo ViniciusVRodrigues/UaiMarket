@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        Mercado mercado = new Mercado();
         boolean mostrando = true;
         while (mostrando) {
             System.out.println("\n**** SELECIONE O MENU DESEJADO ****");
@@ -17,10 +17,10 @@ public class Main {
 
             if (opcao == 1) {
                 Cliente cliente = new Cliente();
-                MenuCliente menu = new MenuCliente(cliente);
+                MenuCliente menu = new MenuCliente(mercado,cliente);
                 menu.mostrarMenu();
             } else if (opcao == 2) {
-                Mercado mercado = new Mercado();
+
                 MenuColaborador menu = new MenuColaborador(mercado);
                 if (menu.login()) {
                     menu.mostrarMenu();
