@@ -18,8 +18,8 @@ public class Carrinho {
         return produtos;
     }
 
-    public void addProduto(Produto p){
-        ProdutoCarrinho produtoCarrinho = new ProdutoCarrinho(p,1);
+    public void addProduto(Produto p,int quantidade){
+        ProdutoCarrinho produtoCarrinho = new ProdutoCarrinho(p,quantidade);
         produtos.add(produtoCarrinho);
         valorTotalProdutos = 0;
         for(ProdutoCarrinho pC : produtos)

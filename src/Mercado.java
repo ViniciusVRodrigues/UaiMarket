@@ -22,6 +22,13 @@ public class Mercado {
         return produtos.get(index);
     }
 
+    public Produto getProdutoById(long id){
+        return produtos.stream()
+                .filter(produto -> produto.getId()==id)
+                .findAny()
+                .orElse(null);
+    }
+
     public ArrayList<Tipo> getTipos() {
         return tipos;
     }
@@ -42,6 +49,10 @@ public class Mercado {
 
     public void vincularCliente(Cliente cliente){
         this.cliente = cliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public void addCliente(Cliente c){
