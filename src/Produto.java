@@ -58,9 +58,9 @@ public class Produto {
         return "Id= "+id+", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
     }
 
-    public int cadastrarProduto(Scanner scanner, List<Tipo> tipos,long id) {
+    public int cadastrarProduto(Scanner scanner, List<Tipo> tipos,long idProduto) {
         System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
-        this.id=id;
+        this.id=idProduto;
         System.out.println("Digite o nome:");
         String input = scanner.nextLine();
         if (testeSair(input)) return 0;
