@@ -34,7 +34,7 @@ public class MenuCliente {
                     System.out.println("Vendo carrinho");
                     break;
                 case 4:
-                    cliente.exibirDados();
+                    cliente.exibirDados(scanner);
                     break;
                 case 0:
                     mostrando = false;
