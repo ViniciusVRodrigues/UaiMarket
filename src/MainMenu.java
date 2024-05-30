@@ -9,12 +9,12 @@ public class MainMenu extends JFrame {
     public MainMenu() {
         mercado = new Mercado();
         setTitle("Seleção de Menu");
-        setSize(500, 450); // Aumentei a altura para acomodar o footer
+        setSize(600, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
 
-        getContentPane().setBackground(new Color(207, 250, 151)); // cor de fundo cinza claro
+        getContentPane().setBackground(new Color(207, 250, 151));
 
         // Cria o rótulo do cabeçalho com HTML
         JLabel headerLabel = new JLabel("<html><font color='#FF5757'>Uai</font><font color='#FF914D'>Market</font></html>", JLabel.CENTER);

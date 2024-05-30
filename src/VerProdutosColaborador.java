@@ -1,7 +1,8 @@
+import javax.swing.*;
 import java.util.Scanner;
 import java.util.List;
 
-public class VerProdutosColaborador {
+public class VerProdutosColaborador extends JFrame {
 
     private Scanner scanner;
     private Mercado mercado;
