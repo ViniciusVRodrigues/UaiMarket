@@ -22,6 +22,10 @@ public class Estoque {
         this.qntd = qntd;
     }
 
+    public void removeQntd(int  qntd){
+        this.qntd -= qntd;
+    }
+
     public Date getDataUltimaAlteracao() {
         return dataUltimaAlteracao;
     }
