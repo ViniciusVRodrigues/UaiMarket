@@ -42,6 +42,10 @@ public class Produto {
         return tipo;
     }
 
+    public Estoque getEstoque() {
+        return estoque;
+    }
+
     public int getQuantidadeEstoque(){
         return estoque.getQntd();
     }

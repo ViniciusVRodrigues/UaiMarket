@@ -1,107 +1,190 @@
 import javax.swing.*;
-import java.util.Scanner;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Scanner;
 
 public class VerProdutosColaborador extends JFrame {
 
-    private Scanner scanner;
     private Mercado mercado;
-
-    private Produto produtoSelecionado;
-    private int idSelecionado;
+    private JTable produtoTable;
+    private DefaultTableModel tableModel;
 
     public VerProdutosColaborador(Mercado mercado) {
-        this.scanner = new Scanner(System.in);
         this.mercado = mercado;
+        setupUI();
     }
 
-    public void mostrarMenu() {
-        boolean mostrando = true;
-        while (mostrando) {
-            System.out.println("\n--- Ver produtos ---");
+    private void setupUI() {
+        setTitle("Ver Produtos");
+        setSize(800, 400);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-            System.out.println("1. Selecionar");
-            System.out.println("2. Adicionar");
-            System.out.println("0. Voltar");
-            System.out.println("Escolha uma opção: ");
+        // Set background color
+        getContentPane().setBackground(new Color(159, 191, 117));
 
-            int opcao = getIntInput();
+        // Table Model
+        tableModel = new DefaultTableModel(new String[]{"ID", "Nome", "Marca", "Preço", "Tipo", "Quantidade"}, 0);
+        produtoTable = new JTable(tableModel);
+        configurarTabela(produtoTable);
+        atualizarTabelaProdutos();
 
-            switch (opcao) {
-                case 1:
-                    mostrarProdutos();
-                    break;
-                case 2:
-                    Produto produto = new Produto();
-                    if(produto.cadastrarProduto(scanner,mercado.getTipos(),mercado.getProdutos().size())==1){
-                        mercado.addProduto(produto);
-                    }
-                    break;
-                case 0:
-                    mostrando = false;
-                    System.out.println("Saindo..");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
-            }
+        // Scroll Pane
+        JScrollPane scrollPane = new JScrollPane(produtoTable);
+        scrollPane.getViewport().setBackground(new Color(245, 245, 245));
+
+        // Buttons
+        JButton selecionarButton = new JButton("Selecionar");
+        configurarBotao(selecionarButton);
+
+        JButton adicionarButton = new JButton("Adicionar");
+        configurarBotao(adicionarButton);
+
+        JButton voltarButton = new JButton("Voltar");
+        configurarBotao(voltarButton);
+
+        // Listeners
+        selecionarButton.addActionListener(e -> mostrarMenuProduto());
+        adicionarButton.addActionListener(e -> adicionarProduto());
+        voltarButton.addActionListener(e -> setVisible(false));
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(159, 191, 117));
+        buttonPanel.add(selecionarButton);
+        buttonPanel.add(adicionarButton);
+        buttonPanel.add(voltarButton);
+
+        // Add components to frame
+        add(scrollPane, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void configurarTabela(JTable table) {
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        table.setRowHeight(30);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        table.getTableHeader().setBackground(new Color(99, 130, 62));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        // Center align columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
+
+        table.setShowGrid(true);
+        table.setGridColor(new Color(207, 250, 151));
     }
 
+    private void configurarBotao(JButton botao) {
+        botao.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        botao.setForeground(Color.BLACK);
+        botao.setPreferredSize(new Dimension(90, 40));
+        botao.setBackground(new Color(99, 130, 62));
+        botao.setFocusPainted(false);
+        botao.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151), 1));
+    }
 
-    private void mostrarProdutos() {
-        System.out.println("\n--- Produtos disponíveis ---");
+    private void atualizarTabelaProdutos() {
+        tableModel.setRowCount(0);  // Clear existing rows
         List<Produto> produtos = mercado.getProdutos();
-        for (int i = 0; i < produtos.size(); i++) {
-            System.out.println(produtos.get(i));
+        for (Produto produto : produtos) {
+            tableModel.addRow(new Object[]{
+                    produto.getId(),
+                    produto.getNome(),
+                    produto.getMarca(),
+                    produto.getPreco(),
+                    produto.getTipo(),
+                    produto.getEstoque().getQntd()
+            });
         }
-        System.out.print("Selecione o ID do produto: ");
-        int idSelecionado = getIntInput();
+    }
 
-        if (idSelecionado > 0 && idSelecionado <= produtos.size()) {
-            Produto produtoSelecionado = produtos.get(idSelecionado);
-            mostrarMenuProduto(produtoSelecionado);
+    private void mostrarMenuProduto() {
+        int selectedRow = produtoTable.getSelectedRow();
+        if (selectedRow != -1) {
+            int id = (int) tableModel.getValueAt(selectedRow, 0);
+            Produto produtoSelecionado = mercado.getProdutoById(id);
+            new ProdutoMenuDialog(this, produtoSelecionado, mercado).setVisible(true);
+            atualizarTabelaProdutos();
         } else {
-            System.out.println("ID de produto inválido. Tente novamente.");
+            JOptionPane.showMessageDialog(this, "Selecione um produto!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void mostrarMenuProduto(Produto produtoSelecionado) {
-        boolean mostrando = true;
-        while (mostrando) {
-            System.out.println("\n--- Produto selecionado: " + produtoSelecionado.getNome() + " ---");
-            System.out.println("1. Atualizar");
-            System.out.println("2. Deletar");
-            System.out.println("0. Voltar ");
-            System.out.println("Digite uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-            switch (opcao) {
-                case 1:
-                    produtoSelecionado.atualizarProduto(scanner);
-                    break;
-                case 2:
-                    mercado.delProduto(produtoSelecionado);
-                    System.out.println("Produto deletado ");
-                    return;
-                case 0:
-                    mostrando = false;
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
-            }
+    private void adicionarProduto() {
+        Produto produto = new Produto();
+        if (produto.cadastrarProduto(new Scanner(System.in), mercado.getTipos(), mercado.getProdutos().size()) == 1) {
+            mercado.addProduto(produto);
+            atualizarTabelaProdutos();
         }
     }
+}
 
-    private int getIntInput() {
-        while (!scanner.hasNextInt()) {
-            System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
-            scanner.next();
-        }
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        return input;
+class ProdutoMenuDialog extends JDialog {
+
+    private Produto produto;
+    private Mercado mercado;
+
+    public ProdutoMenuDialog(JFrame parent, Produto produto, Mercado mercado) {
+        super(parent, "Menu Produto", true);
+        this.produto = produto;
+        this.mercado = mercado;
+        setupUI();
     }
 
+    private void setupUI() {
+        setSize(300, 200);
+        setLocationRelativeTo(getParent());
+        setLayout(new BorderLayout());
+
+        JLabel label = new JLabel("Produto: " + produto.getNome(), SwingConstants.CENTER);
+        label.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        add(label, BorderLayout.NORTH);
+
+        JButton atualizarButton = new JButton("Atualizar");
+        configurarBotao(atualizarButton);
+
+        JButton deletarButton = new JButton("Deletar");
+        configurarBotao(deletarButton);
+
+        JButton voltarButton = new JButton("Voltar");
+        configurarBotao(voltarButton);
+
+        atualizarButton.addActionListener(e -> atualizarProduto());
+        deletarButton.addActionListener(e -> deletarProduto());
+        voltarButton.addActionListener(e -> setVisible(false));
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(159, 191, 117));
+        buttonPanel.add(atualizarButton);
+        buttonPanel.add(deletarButton);
+        buttonPanel.add(voltarButton);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void configurarBotao(JButton botao) {
+        botao.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        botao.setForeground(new Color(255, 255, 255));
+        botao.setBackground(new Color(99, 130, 62));
+        botao.setFocusPainted(false);
+        botao.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151), 1));
+    }
+
+    private void atualizarProduto() {
+        produto.atualizarProduto(new Scanner(System.in));
+        setVisible(false);
+    }
+
+    private void deletarProduto() {
+        mercado.delProduto(produto);
+        setVisible(false);
+    }
 }

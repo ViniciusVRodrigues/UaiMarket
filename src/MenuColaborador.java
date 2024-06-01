@@ -88,7 +88,7 @@ public class MenuColaborador extends JFrame {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JButton verProdutosButton = new JButton("Ver Produtos");
-        verProdutosButton.setFont(new Font("Sans-Serif", Font.BOLD, 16));
+        verProdutosButton.setFont(new Font("Tahoma", Font.BOLD, 16));
         verProdutosButton.setBackground(new Color(218, 255, 172));
         verProdutosButton.addActionListener(new ActionListener() {
             @Override
@@ -98,7 +98,7 @@ public class MenuColaborador extends JFrame {
         });
 
         JButton cadastrarFuncionarioButton = new JButton("Cadastrar Funcionário");
-        cadastrarFuncionarioButton.setFont(new Font("Sans-Serif", Font.BOLD, 16));
+        cadastrarFuncionarioButton.setFont(new Font("Tahoma", Font.BOLD, 16));
         cadastrarFuncionarioButton.setBackground(new Color(218, 255, 172));
         cadastrarFuncionarioButton.addActionListener(new ActionListener() {
             @Override
@@ -108,7 +108,7 @@ public class MenuColaborador extends JFrame {
         });
 
         JButton sairButton = new JButton("Sair");
-        sairButton.setFont(new Font("Sans-Serif", Font.BOLD, 16));
+        sairButton.setFont(new Font("Tahoma", Font.BOLD, 16));
         sairButton.setBackground(new Color(218, 255, 172));
         sairButton.addActionListener(new ActionListener() {
             @Override
