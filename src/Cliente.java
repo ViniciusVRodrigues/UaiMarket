@@ -36,11 +36,35 @@ public class Cliente extends Pessoa{
     public void setCarrinho(Carrinho carrinho) {
         this.carrinho = carrinho;
     }
-    public void criarCarrinho(){
-    }
 
     public void addPedido(Pedido pedido) {
         this.pedidos.add(pedido);
+    }
+
+    public Pedido fazerPedido(Scanner scanner){
+        int frete = 10;
+        if(carrinho.getValorTotalProduto()>=100)
+            frete=0;
+        System.out.println("\n---- Efetuar compra ----");
+        carrinho.printProdutos();
+        System.out.println("Endereço de entrega: "+enderecoEntrega);
+        System.out.println("Frete: R$"+frete+",00");
+        Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho);
+        System.out.println("Valor Total Pedido: R$"+pedido.getValorTotalPedido());
+        System.out.println("\nTem certeza que deseja efetuar compra?");
+        System.out.println("1. Confirmar");
+        System.out.println("0. Voltar");
+        int confirmacao = scanner.nextInt();
+        scanner.nextLine();
+        if(confirmacao==1){
+            return pedido;
+        }
+        return null;
+    }
+
+    public void confirmarPedido(Pedido pedido){
+        pedidos.add(pedido);
+        carrinho = new Carrinho();
     }
 
     public int cadastrarCliente(Scanner scanner){

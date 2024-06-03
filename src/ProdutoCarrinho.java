@@ -15,6 +15,12 @@ public class ProdutoCarrinho extends  Produto{
         return quantidade;
     }
 
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+
+        precoTotal = getPreco()*this.quantidade;
+    }
+
     public void adicionarUm(){
         quantidade++;
         precoTotal = getPreco()*quantidade;
@@ -25,5 +31,9 @@ public class ProdutoCarrinho extends  Produto{
             return;
         quantidade--;
         precoTotal = getPreco() * quantidade;
+    }
+
+    public String toString(){
+        return getNome()+" - "+quantidade+" - R$"+String.format("%.2f", precoTotal);
     }
 }

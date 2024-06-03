@@ -153,7 +153,9 @@ public class VerProdutosCliente {
     }
 
     public void selecionarProduto(){
-        System.out.println("\nDeseja selecionar um produto? (1=Sim/0=Não)");
+        System.out.println("\nDeseja selecionar um produto?");
+        System.out.println("1. Sim");
+        System.out.println("0. Voltar");
         int opcao = scanner.nextInt();
         scanner.nextLine();
         if(opcao==1){

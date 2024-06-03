@@ -12,12 +12,15 @@ public class MenuCliente extends JFrame {
     private Mercado mercado;
 
     private VerProdutosCliente verProdutosCliente;
+
+    private VerCarrinho verCarrinho;
     public MenuCliente(Mercado mercado, Cliente cliente) {
         this.scanner = new Scanner(System.in);
         this.cliente = cliente;
         this.mercado = mercado;
         mercado.vincularCliente(cliente);
         verProdutosCliente = new VerProdutosCliente(mercado,scanner);
+        verCarrinho = new VerCarrinho(mercado,scanner);
     }
     public MenuCliente() {
         setTitle("Menu Cliente");
@@ -51,7 +54,8 @@ public class MenuCliente extends JFrame {
                     verProdutosCliente.mostrarMenu();
                     break;
                 case 3:
-                    System.out.println("Vendo carrinho");
+                    if(verCarrinho.mostrarMenu()==1)
+                        verProdutosCliente.mostrarMenu();
                     break;
                 case 4:
                     cliente.exibirDados(scanner);

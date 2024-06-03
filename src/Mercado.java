@@ -1,5 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Mercado {
@@ -99,6 +101,20 @@ public class Mercado {
 
     public void delColaborador(Colaborador colaborador){
         colaboradores.remove(colaborador);
+    }
+
+    public boolean fazerPedido(Scanner scanner){
+        Pedido pedido = cliente.fazerPedido(scanner);
+        if(pedido==null)
+            return false;
+        List<ProdutoCarrinho> pCList= cliente.getCarrinho().getProdutos();
+        for (ProdutoCarrinho pC : pCList) {
+            Produto produto = getProdutoById(pC.getId());
+            produto.removerQuantidadeEstoque(pC.getQuantidade());
+        }
+        pedidos.add(pedido);
+        cliente.confirmarPedido(pedido);
+        return true;
     }
 
     public void cadastrarAdmin(){
