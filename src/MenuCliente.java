@@ -35,27 +35,33 @@ public class MenuCliente extends JFrame {
     }
     public void mostrarMenu() {
         boolean mostrando = true;
+        int atalho = 0;
         while (mostrando) {
-            System.out.println("\n--- Menu Cliente ---");
-            System.out.println("1. Criar conta");
-            System.out.println("2. Ver produtos");
-            System.out.println("3. Ver carrinho");
-            System.out.println("4. Ver dados");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
+            int opcao = 0;
+            if(atalho==0){
+                System.out.println("\n--- Menu Cliente ---");
+                System.out.println("1. Criar conta");
+                System.out.println("2. Ver produtos");
+                System.out.println("3. Ver carrinho");
+                System.out.println("4. Ver dados");
+                System.out.println("0. Sair");
+                System.out.print("Escolha uma opção: ");
+                opcao = scanner.nextInt();
+                scanner.nextLine();
+            }else{
+                opcao=atalho;
+                atalho=0;
+            }
 
             switch (opcao) {
                 case 1:
                     cliente.cadastrarCliente(scanner);
                     break;
                 case 2:
-                    verProdutosCliente.mostrarMenu();
+                    atalho = verProdutosCliente.mostrarMenu();
                     break;
                 case 3:
-                    if(verCarrinho.mostrarMenu()==1)
-                        verProdutosCliente.mostrarMenu();
+                    atalho = verCarrinho.mostrarMenu();
                     break;
                 case 4:
                     cliente.exibirDados(scanner);

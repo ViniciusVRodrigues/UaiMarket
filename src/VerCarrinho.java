@@ -28,7 +28,7 @@ public class VerCarrinho {
             switch (opcao){
                 case 1:
                     System.out.println("Indo para produtos...");
-                    return 1;
+                    return 2;
                 case 2:
                     System.out.println("Tem certeza que deseja efetuar compra?");
                     System.out.println("1. Confirmar");

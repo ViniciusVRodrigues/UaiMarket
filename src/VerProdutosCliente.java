@@ -14,15 +14,15 @@ public class VerProdutosCliente {
         scanner = s;
     }
 
-    public void mostrarMenu() {
-        boolean mostrando = true;
-        while (mostrando) {
+    public int mostrarMenu() {
+        while (true) {
             System.out.println("\n---- Ver Produtos ----");
             System.out.println("1. Lista de produtos disponíveis");
             System.out.println("2. Lista de produtos por tipo");
             System.out.println("3. Lista de tipos");
             System.out.println("4. Pesquisar produto por nome");
             System.out.println("5. Pesquisar produto por tipo");
+            System.out.println("6. Ver carrinho");
             System.out.println("0. Voltar");
             System.out.println("Digite uma opção: ");
             int opcao = scanner.nextInt();
@@ -43,10 +43,12 @@ public class VerProdutosCliente {
                 case 5:
                     pesquisarProdutoPorTipo();
                     break;
+                case 6:
+                    System.out.println("Indo para o carrinho...");;
+                    return 3;
                 case 0:
-                    mostrando = false;
-                    System.out.println("Saindo..");
-                    break;
+                    System.out.println("Saindo...");
+                    return 0;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
