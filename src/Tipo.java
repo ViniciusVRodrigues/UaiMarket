@@ -1,4 +1,6 @@
-public class Tipo {
+import java.io.Serializable;
+
+public class Tipo  implements Serializable {
     protected String nome;
 
     public Tipo(){

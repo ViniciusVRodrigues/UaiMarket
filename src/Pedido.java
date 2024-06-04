@@ -1,4 +1,6 @@
-public class Pedido {
+import java.io.Serializable;
+
+public class Pedido implements Serializable {
     private float frete;
     private EnderecoEntrega enderecoEntrega;
     private Carrinho carrinho;

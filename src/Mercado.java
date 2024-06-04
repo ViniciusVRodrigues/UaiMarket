@@ -1,10 +1,11 @@
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Mercado {
+public class Mercado implements Serializable{
     private ArrayList<Produto> produtos = new ArrayList<>();
     private ArrayList<Tipo> tipos = new ArrayList<>();
     private ArrayList<Cliente> clientes = new ArrayList<>();
@@ -67,6 +68,7 @@ public class Mercado {
 
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
+        salvarMercado();
     }
 
     public ArrayList<Colaborador> getColaboradores() {
@@ -75,10 +77,12 @@ public class Mercado {
 
     public void addColaborador(Colaborador c){
         colaboradores.add(c);
+        salvarMercado();
     }
 
     public void setColaboradores(ArrayList<Colaborador> colaboradores) {
         this.colaboradores = colaboradores;
+        salvarMercado();
     }
 
     public ArrayList<Pedido> getPedidos() {
@@ -87,20 +91,28 @@ public class Mercado {
 
     public void addPedido(Pedido p) {
         pedidos.add(p);
+        salvarMercado();
     }
 
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
+        salvarMercado();
     }
 
     public void addProduto(Produto produto){
         produtos.add(produto);
+        salvarMercado();
     }
 
-    public void delProduto(Produto produto) { produtos.remove(produto);}
+    public void delProduto(Produto produto) {
+        produtos.remove(produto);
+        salvarMercado();
+    }
 
     public void delColaborador(Colaborador colaborador){
+
         colaboradores.remove(colaborador);
+        salvarMercado();
     }
 
     public boolean fazerPedido(Scanner scanner){
@@ -114,6 +126,7 @@ public class Mercado {
         }
         pedidos.add(pedido);
         cliente.confirmarPedido(pedido);
+        salvarMercado();
         return true;
     }
 
@@ -175,4 +188,37 @@ public class Mercado {
         produtos.add(new Produto(29, tipos.get(11), "Desinfetante", "Lysol", 9.90f, 60));
     }
 
+    public void salvarMercado() {
+        String fileName= "Mercado.txt";
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(this);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro ao salvar!");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar!");
+        }
+    }
+
+    public void carregarMercado() {
+        try {
+            String fileName= "Mercado.txt";
+            FileInputStream fin = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            Mercado mercado= (Mercado) ois.readObject();
+            ois.close();
+            this.produtos = mercado.getProdutos();
+            this.colaboradores = mercado.getColaboradores();
+            this.clientes = mercado.getClientes();
+            this.pedidos = mercado.getPedidos();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar!");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao carregar!");
+        }
+    }
 }

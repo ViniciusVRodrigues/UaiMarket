@@ -1,4 +1,6 @@
-public class ProdutoCarrinho extends  Produto{
+import java.io.Serializable;
+
+public class ProdutoCarrinho extends  Produto implements Serializable {
     private int quantidade;
     private float precoTotal;
     ProdutoCarrinho(Produto p,int quantidade){

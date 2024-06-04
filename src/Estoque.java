@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Estoque {
+public class Estoque  implements Serializable {
     private int qntd;
     private Date dataUltimaAlteracao;
     public Estoque(int qnts, Date dataUltimaAlteracao){

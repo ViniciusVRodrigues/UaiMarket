@@ -1,4 +1,6 @@
-public class EnderecoEntrega {
+import java.io.Serializable;
+
+public class EnderecoEntrega  implements Serializable {
     private String rua;
     private int numero;
     private String bairro;

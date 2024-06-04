@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
-public class Produto {
+public class Produto implements Serializable {
 
     private long id;
     private String nome;

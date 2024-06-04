@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
-public class Colaborador extends Pessoa{
+public class Colaborador extends Pessoa {
     private int codigo;
     private String cargo;
     public Colaborador(){

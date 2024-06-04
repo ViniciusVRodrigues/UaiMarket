@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
     private String cpf;
     private Carrinho carrinho;
     private EnderecoEntrega enderecoEntrega;

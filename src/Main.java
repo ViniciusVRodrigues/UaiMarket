@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         Mercado mercado = new Mercado();
+        mercado.carregarMercado();
         boolean mostrando = true;
         while (mostrando) {
             System.out.println("\n**** SELECIONE O MENU DESEJADO ****");
@@ -27,6 +29,7 @@ public class Main {
                 } else {}
                 System.out.println("\nEncerrando...");
             } else if (opcao == 0) {
+                mercado.salvarMercado();
                 mostrando = false;
                 System.out.println("Saindo...");
                 break;
