@@ -58,7 +58,7 @@ public class Cliente extends Pessoa {
         return null;
     }
 
-    public int cadastrarCliente(Scanner scanner){
+    public int cadastrarCliente(Scanner scanner, Mercado mercado){
         System.out.println("**** Criar conta ( Digite 'Cancelar' para cancelar");
 
         System.out.println("Digite seu nome: ");
@@ -116,9 +116,10 @@ public class Cliente extends Pessoa {
         System.out.println("Digite o cep: ");
         input = scanner.nextLine();
         if (testeSair(input)) return 0;
-        this.enderecoEntrega.setCep(Integer.parseInt(input));
+        this.enderecoEntrega.setCep(input);
 
         System.out.println("\nCliente cadastrado com sucesso!");
+        mercado.cadastrarCliente(this);
         return 1;
     }
 
@@ -227,8 +228,7 @@ public class Cliente extends Pessoa {
                 break;
             case 11:
                 System.out.print("Digite o novo CEP: ");
-                this.enderecoEntrega.setCep(scanner.nextInt());
-                scanner.nextLine();
+                this.enderecoEntrega.setCep(scanner.nextLine());
                 break;
             case 0:
                 mostrando = false;

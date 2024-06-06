@@ -143,6 +143,10 @@ public class Mercado implements Serializable {
         colaboradores.add(new Colaborador("Admin","admin","admin",1,"Admin"));
     }
 
+    public void cadastrarCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
+
     public void cadastrarTipos(){
         tipos.add(new Tipo("Açougue"));
         tipos.add(new Tipo("Alimentos sem gluten"));
