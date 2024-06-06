@@ -120,12 +120,14 @@ class ProdutoCadastroDialog extends JDialog {
                 try {
                     float preco = Float.parseFloat(precoStr);
                     int quantidade = Integer.parseInt(quantidadeStr);
+                    produto.setId(mercado.getProdutos().size());
                     produto.setNome(nome);
                     produto.setMarca(marca);
                     produto.setPreco(preco);
                     produto.setTipo(tipo);
                     produto.getEstoque().setQntd(quantidade);
                     produtoCadastrado = true;
+                    System.out.println(produto);
                     setVisible(false);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(this, "Preço ou quantidade inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
