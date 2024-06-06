@@ -55,7 +55,7 @@ public class MenuCliente extends JFrame {
 
             switch (opcao) {
                 case 1:
-                    cliente.cadastrarCliente(scanner);
+                    cliente.cadastrarCliente(scanner, mercado);
                     break;
                 case 2:
                     atalho = verProdutosCliente.mostrarMenu();

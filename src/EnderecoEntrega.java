@@ -7,7 +7,7 @@ public class EnderecoEntrega  implements Serializable {
     private String complemento;
     private String cidade;
     private String estado;
-    private int cep;
+    private String cep;
 
     public EnderecoEntrega(){
         this.rua = "Rua xxxx";
@@ -16,9 +16,9 @@ public class EnderecoEntrega  implements Serializable {
         this.complemento = "casa x ou ap xx";
         this.cidade = "xxxxx";
         this.estado = "xxxx";
-        this.cep = 00000000;
+        this.cep = "00000000";
     }
-    public EnderecoEntrega(String rua, int numero, String bairro, String complemento, String cidade, String estado, int cep){
+    public EnderecoEntrega(String rua, int numero, String bairro, String complemento, String cidade, String estado, String cep){
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -28,7 +28,7 @@ public class EnderecoEntrega  implements Serializable {
         this.cep = cep;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
     public int getNumero() {
@@ -52,7 +52,7 @@ public class EnderecoEntrega  implements Serializable {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
     public void setCidade(String cidade) {
