@@ -1,4 +1,4 @@
-import java.io.Serializable;
+import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,28 +19,48 @@ public class Produto implements Serializable {
     }
 
     public Produto(long id, Tipo tipo, String nome, String marca, float preco, int quantidade) {
+        this.id = id;
         this.tipo = tipo;
         this.nome = nome;
         this.marca = marca;
         this.preco = preco;
         this.estoque.setQntd(quantidade);
-        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getMarca() {
         return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public float getPreco() {
         return preco;
     }
 
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
     public Tipo getTipo() {
         return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
     public Estoque getEstoque() {
@@ -55,21 +75,15 @@ public class Produto implements Serializable {
         estoque.removeQntd(quantidade);
     }
 
-    public void setPreco(float preco) {
-        this.preco = preco;
-    }
-
-    public long getId() {
-        return id;
-    }
-
+    @Override
     public String toString() {
-        return "Id= "+id+", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
+        return "Id= " + id + ", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
     }
 
-    public int cadastrarProduto(Scanner scanner, List<Tipo> tipos,long idProduto) {
-        System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
-        this.id=idProduto;
+    public int cadastrarProduto(Scanner scanner, List<Tipo> tipos, long idProduto) {
+        System.out.println("---- Adicionar Produto (Digite 'Cancelar' para cancelar) ----");
+        this.id = idProduto;
+
         System.out.println("Digite o nome:");
         String input = scanner.nextLine();
         if (testeSair(input)) return 0;
@@ -103,6 +117,7 @@ public class Produto implements Serializable {
             this.tipo = tipos.get(id);
         } else {
             System.out.println("ID de tipo inválido. Cancelando...");
+            return 0;
         }
 
         System.out.println("\nProduto Cadastrado com sucesso!");
@@ -129,7 +144,7 @@ public class Produto implements Serializable {
                     break;
                 case 2:
                     System.out.println("\n---- Preço ----");
-                    System.out.println("Estoque atual: R$" + this.preco);
+                    System.out.println("Preço atual: R$" + this.preco);
                     System.out.println("Digite o novo preço:");
                     float preco = scanner.nextFloat();
                     scanner.nextLine();
@@ -147,7 +162,7 @@ public class Produto implements Serializable {
     }
 
     private boolean testeSair(String s) {
-        if (s.equals("Cancelar")) {
+        if (s.equalsIgnoreCase("Cancelar")) {
             System.out.println("Cancelando...");
             return true;
         }
