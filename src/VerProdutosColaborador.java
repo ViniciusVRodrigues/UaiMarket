@@ -38,7 +38,7 @@ public class VerProdutosColaborador extends JFrame {
         scrollPane.getViewport().setBackground(new Color(245, 245, 245));
 
         // Buttons
-        JButton selecionarButton = new JButton("Selecionar");
+        JButton selecionarButton = new JButton("Atualizar");
         configurarBotao(selecionarButton);
 
         JButton adicionarButton = new JButton("Adicionar");
@@ -100,7 +100,7 @@ public class VerProdutosColaborador extends JFrame {
                     produto.getNome(),
                     produto.getMarca(),
                     produto.getPreco(),
-                    produto.getTipo(),
+                    produto.getTipo().getNome(),
                     produto.getEstoque().getQntd()
             });
         }
@@ -120,71 +120,20 @@ public class VerProdutosColaborador extends JFrame {
 
     private void adicionarProduto() {
         Produto produto = new Produto();
-        if (produto.cadastrarProduto(new Scanner(System.in), mercado.getTipos(), mercado.getProdutos().size()) == 1) {
+        ProdutoCadastroDialog dialog = new ProdutoCadastroDialog(this, produto, mercado);
+        dialog.setVisible(true);
+        if (dialog.isProdutoCadastrado()) {
             mercado.addProduto(produto);
             atualizarTabelaProdutos();
         }
     }
-}
 
-class ProdutoMenuDialog extends JDialog {
+    public static void main(String[] args) {
+        // Dummy data for testing
+        Mercado mercado = new Mercado();
+        mercado.addProduto(new Produto(1, new Tipo(1, "Bebida"), "Coca-Cola", "Coca-Cola", 5.0f, 10));
+        mercado.addProduto(new Produto(2, new Tipo(2, "Comida"), "Arroz", "Tio João", 20.0f, 5));
 
-    private Produto produto;
-    private Mercado mercado;
-
-    public ProdutoMenuDialog(JFrame parent, Produto produto, Mercado mercado) {
-        super(parent, "Menu Produto", true);
-        this.produto = produto;
-        this.mercado = mercado;
-        setupUI();
-    }
-
-    private void setupUI() {
-        setSize(300, 200);
-        setLocationRelativeTo(getParent());
-        setLayout(new BorderLayout());
-
-        JLabel label = new JLabel("Produto: " + produto.getNome(), SwingConstants.CENTER);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        add(label, BorderLayout.NORTH);
-
-        JButton atualizarButton = new JButton("Atualizar");
-        configurarBotao(atualizarButton);
-
-        JButton deletarButton = new JButton("Deletar");
-        configurarBotao(deletarButton);
-
-        JButton voltarButton = new JButton("Voltar");
-        configurarBotao(voltarButton);
-
-        atualizarButton.addActionListener(e -> atualizarProduto());
-        deletarButton.addActionListener(e -> deletarProduto());
-        voltarButton.addActionListener(e -> setVisible(false));
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(159, 191, 117));
-        buttonPanel.add(atualizarButton);
-        buttonPanel.add(deletarButton);
-        buttonPanel.add(voltarButton);
-
-        add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    private void configurarBotao(JButton botao) {
-        botao.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        botao.setForeground(new Color(255, 255, 255));
-        botao.setBackground(new Color(99, 130, 62));
-        botao.setFocusPainted(false);
-        botao.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151), 1));
-    }
-
-    private void atualizarProduto() {
-        produto.atualizarProduto(new Scanner(System.in));
-        setVisible(false);
-    }
-
-    private void deletarProduto() {
-        mercado.delProduto(produto);
-        setVisible(false);
+        SwingUtilities.invokeLater(() -> new VerProdutosColaborador(mercado).setVisible(true));
     }
 }

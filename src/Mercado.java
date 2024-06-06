@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Mercado implements Serializable{
+public class Mercado implements Serializable {
     private ArrayList<Produto> produtos = new ArrayList<>();
     private ArrayList<Tipo> tipos = new ArrayList<>();
     private ArrayList<Cliente> clientes = new ArrayList<>();
@@ -13,7 +13,12 @@ public class Mercado implements Serializable{
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     private Cliente cliente;
 
-    Mercado(){
+    public Mercado() {
+        produtos = new ArrayList<>();
+        tipos = new ArrayList<>();
+        clientes = new ArrayList<>();
+        colaboradores = new ArrayList<>();
+        pedidos = new ArrayList<>();
         cadastrarTipos();
         cadastrarAdmin();
         cadastrarProdutos();
@@ -116,7 +121,6 @@ public class Mercado implements Serializable{
     }
 
     public void delColaborador(Colaborador colaborador){
-
         colaboradores.remove(colaborador);
         salvarMercado();
     }
