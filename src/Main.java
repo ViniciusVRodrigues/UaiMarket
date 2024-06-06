@@ -6,6 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Mercado mercado = new Mercado();
         mercado.carregarMercado();
+        mercado.salvarMercado();
         boolean mostrando = true;
         while (mostrando) {
             System.out.println("\n**** SELECIONE O MENU DESEJADO ****");

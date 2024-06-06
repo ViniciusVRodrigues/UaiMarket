@@ -15,4 +15,7 @@ public class Tipo  implements Serializable {
     public String toString(){
         return nome;
     }
+    public String toCSVLine(String sep){
+        return nome;
+    }
 }

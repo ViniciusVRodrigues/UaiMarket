@@ -67,6 +67,10 @@ public class Produto implements Serializable {
         return "Id= "+id+", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
     }
 
+    public String toCSVLine(String sep){
+        return id+sep+nome+sep+marca+sep+preco+sep+(tipo != null ? tipo.getNome() : "N/A")+sep+estoque.getQntd();
+    }
+
     public int cadastrarProduto(Scanner scanner, List<Tipo> tipos,long idProduto) {
         System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
         this.id=idProduto;

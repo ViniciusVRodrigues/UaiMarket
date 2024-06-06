@@ -4,6 +4,7 @@ public class Pedido implements Serializable {
     private float frete;
     private EnderecoEntrega enderecoEntrega;
     private Carrinho carrinho;
+    private Cliente cliente;
     private float valorTotalPedido;
 
     public Pedido(){
@@ -12,7 +13,7 @@ public class Pedido implements Serializable {
         this.carrinho= new Carrinho();
         this.valorTotalPedido=0f;
     }
-    public Pedido (float frete, EnderecoEntrega enderecoEntrega, Carrinho carrinho){
+    public Pedido (float frete, EnderecoEntrega enderecoEntrega, Carrinho carrinho,Cliente cliente){
         this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.carrinho = carrinho;
@@ -27,5 +28,13 @@ public class Pedido implements Serializable {
 
     public float getValorTotalPedido() {
         return valorTotalPedido;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public String toCSVLine(String sep){
+        return cliente.getNome()+sep+cliente.getCpf()+sep+cliente.getEmail()+sep+valorTotalPedido;
     }
 }

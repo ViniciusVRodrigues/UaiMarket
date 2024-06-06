@@ -16,6 +16,10 @@ public class Colaborador extends Pessoa {
         this.cargo = cargo;
     }
 
+    public String toCSVLine(String sep){
+        return nome+sep+email+sep+senha+sep+codigo+sep+cargo;
+    }
+
     public int getCodigo() {
         return codigo;
     }

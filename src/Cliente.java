@@ -6,14 +6,12 @@ public class Cliente extends Pessoa {
     private String cpf;
     private Carrinho carrinho;
     private EnderecoEntrega enderecoEntrega;
-    private ArrayList<Pedido> pedidos;
 
     public Cliente(){
         super();
         this.cpf = "00000000000";
         this.carrinho = new Carrinho();
         this.enderecoEntrega = new EnderecoEntrega();
-        this.pedidos =  new ArrayList<>();
     }
     public Cliente(String nome, String email, String senha, String cpf){
         super(nome,email,senha);
@@ -21,9 +19,6 @@ public class Cliente extends Pessoa {
     }
     public String getCpf() {
         return cpf;
-    }
-    public ArrayList<Pedido> getPedido() {
-        return pedidos;
     }
     public EnderecoEntrega getEnderecoEntrega() {
         return enderecoEntrega;
@@ -38,8 +33,8 @@ public class Cliente extends Pessoa {
         this.carrinho = carrinho;
     }
 
-    public void addPedido(Pedido pedido) {
-        this.pedidos.add(pedido);
+    public String toCSVLine(String sep){
+        return nome+sep+email+sep+senha+sep+cpf+sep+enderecoEntrega.getCidade()+sep+enderecoEntrega.getEstado();
     }
 
     public Pedido fazerPedido(Scanner scanner){
@@ -50,7 +45,7 @@ public class Cliente extends Pessoa {
         carrinho.printProdutos();
         System.out.println("Endereço de entrega: "+enderecoEntrega);
         System.out.println("Frete: R$"+frete+",00");
-        Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho);
+        Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho,this);
         System.out.println("Valor Total Pedido: R$"+pedido.getValorTotalPedido());
         System.out.println("\nTem certeza que deseja efetuar compra?");
         System.out.println("1. Confirmar");
@@ -61,11 +56,6 @@ public class Cliente extends Pessoa {
             return pedido;
         }
         return null;
-    }
-
-    public void confirmarPedido(Pedido pedido){
-        pedidos.add(pedido);
-        carrinho = new Carrinho();
     }
 
     public int cadastrarCliente(Scanner scanner){

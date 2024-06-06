@@ -54,6 +54,12 @@ public class Mercado implements Serializable{
         return clientes;
     }
 
+    public List<Pedido> getPedidosCliente(){
+        return  pedidos.stream()
+                .filter(pedido -> pedido.getCliente().equals(cliente))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public void vincularCliente(Cliente cliente){
         this.cliente = cliente;
     }
@@ -125,7 +131,6 @@ public class Mercado implements Serializable{
             produto.removerQuantidadeEstoque(pC.getQuantidade());
         }
         pedidos.add(pedido);
-        cliente.confirmarPedido(pedido);
         salvarMercado();
         return true;
     }
@@ -195,11 +200,13 @@ public class Mercado implements Serializable{
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(this);
             oos.close();
+            salvarListasEmCSV();
         } catch (FileNotFoundException e) {
             System.out.println("Erro ao salvar!");
         } catch (IOException e) {
             System.out.println("Erro ao salvar!");
         }
+
     }
 
     public void carregarMercado() {
@@ -220,5 +227,79 @@ public class Mercado implements Serializable{
         } catch (ClassNotFoundException e) {
             System.out.println("Erro ao carregar!");
         }
+    }
+
+    private final String CSV_SEPARATOR = ";";
+    private void salvarListasEmCSV() {
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("produtos.csv"), "UTF-8"));
+            for (Produto p : produtos) {
+                StringBuffer oneLine = new StringBuffer();
+                oneLine.append(p.toCSVLine(CSV_SEPARATOR));
+                bw.write(oneLine.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tipos.csv"), "UTF-8"));
+            for (Tipo t : tipos) {
+                StringBuffer oneLine = new StringBuffer();
+                oneLine.append(t.toCSVLine(CSV_SEPARATOR));
+                bw.write(oneLine.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("clientes.csv"), "UTF-8"));
+            for (Cliente c : clientes) {
+                StringBuffer oneLine = new StringBuffer();
+                oneLine.append(c.toCSVLine(CSV_SEPARATOR));
+                bw.write(oneLine.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("colaboradores.csv"), "UTF-8"));
+            for (Colaborador c : colaboradores) {
+                StringBuffer oneLine = new StringBuffer();
+                oneLine.append(c.toCSVLine(CSV_SEPARATOR));
+                bw.write(oneLine.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("pedidos.csv"), "UTF-8"));
+            for (Pedido p : pedidos) {
+                StringBuffer oneLine = new StringBuffer();
+                oneLine.append(p.toCSVLine(CSV_SEPARATOR));
+                bw.write(oneLine.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
     }
 }
