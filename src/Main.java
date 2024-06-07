@@ -23,7 +23,6 @@ public class Main {
                 MenuCliente menu = new MenuCliente(mercado,cliente);
                 menu.mostrarMenu();
             } else if (opcao == 2) {
-
                 MenuColaborador menu = new MenuColaborador(mercado);
                 if (menu.login()) {
                     menu.mostrarMenu();

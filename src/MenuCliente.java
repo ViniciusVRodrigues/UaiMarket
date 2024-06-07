@@ -64,7 +64,7 @@ public class MenuCliente extends JFrame {
                     atalho = verCarrinho.mostrarMenu();
                     break;
                 case 4:
-                    cliente.exibirDados(scanner);
+                    cliente.exibirDados(scanner, mercado);
                     break;
                 case 0:
                     mostrando = false;

@@ -63,59 +63,48 @@ public class Cliente extends Pessoa {
 
         System.out.println("Digite seu nome: ");
         String input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.nome = input;
 
         System.out.println("Digite seu email:");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.email = input;
 
         System.out.println("Digite sua senha:");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.senha = input;
 
         System.out.println("Digite seu cpf:");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.cpf = input;
 
         System.out.println("ENDEREÇO DE ENTREGA");
 
         System.out.println("Digite o nome da rua: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setRua(input);
 
         System.out.println("Digite o número: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setNumero(Integer.parseInt(input));
 
         System.out.println("Digite o bairro: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setBairro(input);
 
         System.out.println("Digite o complemento: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setComplemento(input);
 
         System.out.println("Digite a cidade: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setCidade(input);
 
         System.out.println("Digite o estado: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setEstado(input);
 
         System.out.println("Digite o cep: ");
         input = scanner.nextLine();
-        if (testeSair(input)) return 0;
         this.enderecoEntrega.setCep(input);
 
         System.out.println("\nCliente cadastrado com sucesso!");
@@ -123,7 +112,7 @@ public class Cliente extends Pessoa {
         return 1;
     }
 
-    public void exibirDados(Scanner scanner) {
+    public void exibirDados(Scanner scanner, Mercado mercado) {
 
         boolean mostrando = true;
 
@@ -152,7 +141,7 @@ public class Cliente extends Pessoa {
             scanner.nextLine();
 
             if (opcao == 1) {
-                editarDados(scanner);
+                editarDados(scanner, mercado);
             } else if (opcao == 0) {
                 mostrando = false;
             } else {
@@ -162,7 +151,7 @@ public class Cliente extends Pessoa {
 
     }
 
-    public void editarDados(Scanner scanner) {
+    public void editarDados(Scanner scanner, Mercado mercado) {
         boolean mostrando = true;
 
         while (mostrando) {
@@ -188,66 +177,74 @@ public class Cliente extends Pessoa {
             case 1:
                 System.out.print("Digite o novo nome: ");
                 this.nome = scanner.nextLine();
+                mercado.salvarMercado();
                 break;
             case 2:
                 System.out.print("Digite o novo email: ");
                 this.email = scanner.nextLine();
+                mercado.salvarMercado();
                 break;
             case 3:
                 System.out.print("Digite o novo CPF: ");
                 this.cpf = scanner.nextLine();
+                mercado.salvarMercado();
                 break;
             case 4:
                 System.out.print("Digite a nova senha: ");
                 this.senha = scanner.nextLine();
+                mercado.salvarMercado();
                 break;
             case 5:
                 System.out.print("Digite o novo nome da rua: ");
                 this.enderecoEntrega.setRua(scanner.nextLine());
+                mercado.salvarMercado();
                 break;
             case 6:
                 System.out.print("Digite o novo número: ");
                 this.enderecoEntrega.setNumero(scanner.nextInt());
                 scanner.nextLine();
+                mercado.salvarMercado();
                 break;
             case 7:
                 System.out.print("Digite o novo bairro: ");
                 this.enderecoEntrega.setBairro(scanner.nextLine());
+                mercado.salvarMercado();
                 break;
             case 8:
                 System.out.print("Digite o novo complemento: ");
                 this.enderecoEntrega.setComplemento(scanner.nextLine());
+                mercado.salvarMercado();
                 break;
             case 9:
                 System.out.print("Digite a nova cidade: ");
                 this.enderecoEntrega.setCidade(scanner.nextLine());
+                mercado.salvarMercado();
                 break;
             case 10:
                 System.out.print("Digite o novo estado: ");
                 this.enderecoEntrega.setEstado(scanner.nextLine());
+                mercado.salvarMercado();
                 break;
             case 11:
                 System.out.print("Digite o novo CEP: ");
                 this.enderecoEntrega.setCep(scanner.nextLine());
+                mercado.salvarMercado();
                 break;
             case 0:
                 mostrando = false;
                 return;
             default:
                 System.out.println("Opção inválida. Tente novamente.");
-                continue;
         }
-        }
-
-
     }
 
-    private boolean testeSair(String s) {
-        if (s.equals("Cancelar")) {
-            System.out.println("Cancelando...");
-            return true;
-        }
-        return false;
-    }
 
-}
+//        private boolean testeSair(String s) {
+//            if (s.equals("Cancelar")) {
+//                System.out.println("Cancelando...");
+//                return true;
+//            }
+//            return false;
+//        }
+
+}}

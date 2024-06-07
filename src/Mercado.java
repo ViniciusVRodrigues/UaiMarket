@@ -145,6 +145,7 @@ public class Mercado implements Serializable {
 
     public void cadastrarCliente(Cliente cliente) {
         clientes.add(cliente);
+        salvarMercado();
     }
 
     public void cadastrarTipos(){
