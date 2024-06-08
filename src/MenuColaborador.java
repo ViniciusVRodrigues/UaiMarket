@@ -103,7 +103,7 @@ public class MenuColaborador extends JFrame {
         cadastrarFuncionarioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Ação para cadastrar funcionário
+                new CadastroFuncionarioFrame(mercado).setVisible(true);
             }
         });
 
@@ -149,3 +149,4 @@ public class MenuColaborador extends JFrame {
         });
     }
 }
+

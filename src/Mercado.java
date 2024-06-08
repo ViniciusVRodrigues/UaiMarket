@@ -332,4 +332,8 @@ public class Mercado implements Serializable {
         catch (FileNotFoundException e){}
         catch (IOException e){}
     }
+
+    public void adicionarColaborador(Colaborador novoColaborador) {
+        colaboradores.add(new Colaborador("Natalia", "nati@gmail.com" ,"Admin",123,"Administrador"));
+    }
 }
