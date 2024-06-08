@@ -11,6 +11,7 @@ public class Mercado implements Serializable {
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Colaborador> colaboradores = new ArrayList<>();
     private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private Boolean clienteAutenticado = false;
     private Cliente cliente;
 
     public Mercado() {
@@ -22,6 +23,7 @@ public class Mercado implements Serializable {
         cadastrarTipos();
         cadastrarAdmin();
         cadastrarProdutos();
+        carregarMercado();
     }
 
     public ArrayList<Produto> getProdutos() {
@@ -145,7 +147,26 @@ public class Mercado implements Serializable {
 
     public void cadastrarCliente(Cliente cliente) {
         clientes.add(cliente);
+        vincularCliente(cliente);
+        clienteAutenticado = true;
         salvarMercado();
+    }
+
+    public void setClienteAutenticado(Boolean clienteAutenticado) {
+        this.clienteAutenticado = clienteAutenticado;
+    }
+
+    public Boolean getClienteAutenticado() {
+        return clienteAutenticado;
+    }
+
+    public Boolean verificarEmail(String email){
+        for(Cliente cliente : clientes){
+            if(cliente.email.equals(email)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void cadastrarTipos(){
@@ -204,6 +225,7 @@ public class Mercado implements Serializable {
 
     public void salvarMercado() {
         String fileName= "Mercado.txt";
+        clienteAutenticado = false;
         try {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -215,7 +237,6 @@ public class Mercado implements Serializable {
         } catch (IOException e) {
             System.out.println("Erro ao salvar!");
         }
-
     }
 
     public void carregarMercado() {

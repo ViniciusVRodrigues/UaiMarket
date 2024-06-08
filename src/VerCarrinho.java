@@ -30,6 +30,10 @@ public class VerCarrinho {
                     System.out.println("Indo para produtos...");
                     return 2;
                 case 2:
+                    if(!mercado.getClienteAutenticado()){
+                        System.out.println("Cria ou entre em uma conta para efetuar compra!");
+                        break;
+                    }
                     System.out.println("Tem certeza que deseja efetuar compra?");
                     System.out.println("1. Confirmar");
                     System.out.println("0. Voltar");

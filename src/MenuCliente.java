@@ -40,7 +40,13 @@ public class MenuCliente extends JFrame {
             int opcao = 0;
             if(atalho==0){
                 System.out.println("\n--- Menu Cliente ---");
-                System.out.println("1. Criar conta");
+                if(mercado.getClienteAutenticado()==false){
+                    System.out.println("1. Criar/Entrar em uma conta");
+                }else{
+                    System.out.println("Bem vindo, "+mercado.getCliente().nome);
+                }
+
+
                 System.out.println("2. Ver produtos");
                 System.out.println("3. Ver carrinho");
                 System.out.println("4. Ver dados");
@@ -55,7 +61,38 @@ public class MenuCliente extends JFrame {
 
             switch (opcao) {
                 case 1:
-                    cliente.cadastrarCliente(scanner, mercado);
+                    if(mercado.getClienteAutenticado()) break;
+                    System.out.println("\n--- Criar/Entrar em uma conta ---");
+                    System.out.println("1. Criar uma conta");
+                    System.out.println("2. Entrar em sua conta");
+                    System.out.println("0. Sair");
+                    int opcaoCadastro = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (opcaoCadastro){
+                        case 1:
+                            cliente.cadastrarCliente(scanner, mercado);
+                            break;
+                        case 2:
+                            System.out.println("\n--- Entrar em uma conta ---");
+                            System.out.println("Digite seu email: ");
+                            String email = scanner.nextLine();
+                            System.out.println("Digite sua senha: ");
+                            String senha = scanner.nextLine();
+                            for (Cliente cliente1 : mercado.getClientes()) {
+                                if (cliente1.logar(email, senha)) {
+                                    mercado.vincularCliente(cliente1);
+                                    mercado.setClienteAutenticado(true);
+                                    System.out.println("Entrou com sucesso!");
+                                }else {
+                                    System.out.println("Dados incorretos/inválidos!");
+                                }
+                            }
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
+
                     break;
                 case 2:
                     atalho = verProdutosCliente.mostrarMenu();

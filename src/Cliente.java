@@ -64,10 +64,18 @@ public class Cliente extends Pessoa {
         System.out.println("Digite seu nome: ");
         String input = scanner.nextLine();
         this.nome = input;
+        while (true){
+            System.out.println("Digite seu email:");
+            input = scanner.nextLine();
+            this.email = input;
+            if(mercado.verificarEmail(email)){
+                break;
+            }else{
+                System.out.println("Email já utilizado!");
+            }
+        }
 
-        System.out.println("Digite seu email:");
-        input = scanner.nextLine();
-        this.email = input;
+
 
         System.out.println("Digite sua senha:");
         input = scanner.nextLine();
@@ -110,6 +118,10 @@ public class Cliente extends Pessoa {
         System.out.println("\nCliente cadastrado com sucesso!");
         mercado.cadastrarCliente(this);
         return 1;
+    }
+
+    public boolean logar(String email, String senha){
+        return this.email.equals(email) && this.senha.equals(senha);
     }
 
     public void exibirDados(Scanner scanner, Mercado mercado) {
