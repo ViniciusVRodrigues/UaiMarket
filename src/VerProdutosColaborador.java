@@ -109,7 +109,7 @@ public class VerProdutosColaborador extends JFrame {
     private void mostrarMenuProduto() {
         int selectedRow = produtoTable.getSelectedRow();
         if (selectedRow != -1) {
-            int id = (int) tableModel.getValueAt(selectedRow, 0);
+            long id = (long) tableModel.getValueAt(selectedRow, 0);
             Produto produtoSelecionado = mercado.getProdutoById(id);
             new ProdutoMenuDialog(this, produtoSelecionado, mercado).setVisible(true);
             atualizarTabelaProdutos();

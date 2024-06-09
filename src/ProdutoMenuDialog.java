@@ -70,6 +70,7 @@ public class ProdutoMenuDialog extends JDialog {
                     try {
                         int quantidade = Integer.parseInt(quantidadeStr);
                         produto.getEstoque().setQntd(quantidade);
+                        mercado.salvarMercado();
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(this, "Quantidade inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
@@ -81,6 +82,7 @@ public class ProdutoMenuDialog extends JDialog {
                     try {
                         float preco = Float.parseFloat(precoStr);
                         produto.setPreco(preco);
+                        mercado.salvarMercado();
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(this, "Preço inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
