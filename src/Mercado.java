@@ -13,6 +13,7 @@ public class Mercado implements Serializable {
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     private Boolean clienteAutenticado = false;
     private Cliente cliente;
+    private Colaborador colaborador;
 
     public Mercado() {
         produtos = new ArrayList<>();
@@ -28,6 +29,14 @@ public class Mercado implements Serializable {
 
     public ArrayList<Produto> getProdutos() {
         return produtos;
+    }
+
+    public void setColaborador(Colaborador colaborador) {
+        this.colaborador = colaborador;
+    }
+
+    public Colaborador getColaborador() {
+        return colaborador;
     }
 
     public Produto getProduto(int index){

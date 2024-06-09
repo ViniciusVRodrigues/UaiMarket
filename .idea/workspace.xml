@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/src/FuncionarioCadastroDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FuncionarioMenuDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/VerFuncionariosColaborador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Mercado.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/produtos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/produtos.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProdutoMenuDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProdutoMenuDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerProdutosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VerProdutosColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CadastroFuncionarioFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Colaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MenuColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mercado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pessoa.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +63,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -112,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714662063679</updated>
       <workItem from="1717954888987" duration="19000" />
-      <workItem from="1717954912410" duration="1717000" />
+      <workItem from="1717954912410" duration="4327000" />
     </task>
     <task id="LOCAL-00001" summary="teste">
       <option name="closed" value="true" />

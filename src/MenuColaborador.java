@@ -9,13 +9,13 @@ public class MenuColaborador extends JFrame {
     private JPasswordField passwordField;
 
     private VerProdutosColaborador verProdutosColaborador;
-    private VerColaboradores verColaboradores;
+    private VerFuncionariosColaborador verFuncionariosColaborador;
     private Colaborador colaboradorLogado;
 
     public MenuColaborador(Mercado mercado) {
         this.mercado = mercado;
         this.verProdutosColaborador = new VerProdutosColaborador(mercado);
-        this.verColaboradores = new VerColaboradores(mercado, colaboradorLogado);
+        this.verFuncionariosColaborador = new VerFuncionariosColaborador(mercado);
 
         setTitle("Login Colaborador");
         setSize(400, 300);
@@ -97,13 +97,13 @@ public class MenuColaborador extends JFrame {
             }
         });
 
-        JButton cadastrarFuncionarioButton = new JButton("Cadastrar Funcionário");
+        JButton cadastrarFuncionarioButton = new JButton("Ver Funcionários");
         cadastrarFuncionarioButton.setFont(new Font("Tahoma", Font.BOLD, 16));
         cadastrarFuncionarioButton.setBackground(new Color(218, 255, 172));
         cadastrarFuncionarioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CadastroFuncionarioFrame(mercado).setVisible(true);
+                verFuncionariosColaborador.setVisible(true);
             }
         });
 
@@ -131,7 +131,7 @@ public class MenuColaborador extends JFrame {
 
         for (Colaborador colaborador : mercado.getColaboradores()) {
             if (colaborador.logar(email, senha)) {
-                colaboradorLogado = colaborador;
+                mercado.setColaborador(colaborador);
                 return true;
             }
         }

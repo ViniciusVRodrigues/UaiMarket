@@ -47,7 +47,10 @@ public class Colaborador extends Pessoa {
         if (testeSair(input)) return 0;
         this.email = input;
 
-
+        System.out.println("Digite a senha:");
+        input = scanner.nextLine();
+        if (testeSair(input)) return 0;
+        this.senha = input;
 
         System.out.println("Digite a codigo:");
         input = scanner.nextLine();
@@ -115,6 +118,20 @@ public class Colaborador extends Pessoa {
                     break;
             }
         }
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    @Override
+    public void setSenha(String senha) {
+        super.setSenha(senha);
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     private boolean testeSair(String s) {

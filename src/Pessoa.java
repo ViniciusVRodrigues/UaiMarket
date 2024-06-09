@@ -25,6 +25,11 @@ public abstract class Pessoa implements Serializable {
     public String getSenha() {
         return senha;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
