@@ -1,118 +1,93 @@
-import java.util.Scanner;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MenuCliente extends JFrame {
-
-    private Scanner scanner;
-    private Cliente cliente;
-
     private Mercado mercado;
 
-    private VerProdutosCliente verProdutosCliente;
-
-    private VerCarrinho verCarrinho;
-    public MenuCliente(Mercado mercado, Cliente cliente) {
-        this.scanner = new Scanner(System.in);
-        this.cliente = cliente;
+    public MenuCliente(Mercado mercado) {
         this.mercado = mercado;
-        mercado.vincularCliente(cliente);
-        verProdutosCliente = new VerProdutosCliente(mercado,scanner);
-        verCarrinho = new VerCarrinho(mercado,scanner);
-    }
-    public MenuCliente() {
+
         setTitle("Menu Cliente");
-        setSize(300, 200);
+        setSize(500, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(218, 255, 172)); // cor de fundo branca
-
-        JLabel label = new JLabel("Menu Cliente", JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.BOLD, 16));
-        add(label);
-    }
-    public void mostrarMenu() {
-        boolean mostrando = true;
-        int atalho = 0;
-        while (mostrando) {
-            int opcao = 0;
-            if(atalho==0){
-                System.out.println("\n--- Menu Cliente ---");
-                if(mercado.getClienteAutenticado()==false){
-                    System.out.println("1. Criar/Entrar em uma conta");
-                }else{
-                    System.out.println("Bem vindo, "+mercado.getCliente().nome);
-                }
+        getContentPane().setBackground(new Color(159, 191, 117));
 
 
-                System.out.println("2. Ver produtos");
-                System.out.println("3. Ver carrinho");
-                System.out.println("4. Ver dados");
-                System.out.println("0. Sair");
-                System.out.print("Escolha uma opção: ");
-                opcao = scanner.nextInt();
-                scanner.nextLine();
-            }else{
-                opcao=atalho;
-                atalho=0;
+        JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
+        buttonPanel.setBackground(new Color(159, 191, 117));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JButton criarContaButton = new JButton("Criar/Entrar Conta");
+        criarContaButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+        criarContaButton.setBackground(new Color(218, 255, 172));
+        criarContaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implementar funcionalidade para criar ou entrar em uma conta
             }
+        });
 
-            switch (opcao) {
-                case 1:
-                    if(mercado.getClienteAutenticado()) break;
-                    System.out.println("\n--- Criar/Entrar em uma conta ---");
-                    System.out.println("1. Criar uma conta");
-                    System.out.println("2. Entrar em sua conta");
-                    System.out.println("0. Sair");
-                    int opcaoCadastro = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (opcaoCadastro){
-                        case 1:
-                            cliente.cadastrarCliente(scanner, mercado);
-                            break;
-                        case 2:
-                            System.out.println("\n--- Entrar em uma conta ---");
-                            System.out.println("Digite seu email: ");
-                            String email = scanner.nextLine();
-                            System.out.println("Digite sua senha: ");
-                            String senha = scanner.nextLine();
-                            for (Cliente cliente1 : mercado.getClientes()) {
-                                if (cliente1.logar(email, senha)) {
-                                    mercado.vincularCliente(cliente1);
-                                    mercado.setClienteAutenticado(true);
-                                    System.out.println("Entrou com sucesso!");
-                                }else {
-                                    System.out.println("Dados incorretos/inválidos!");
-                                }
-                            }
-                            break;
-                        default:
-                            System.out.println("Opção inválida!");
-                            break;
-                    }
-
-                    break;
-                case 2:
-                    atalho = verProdutosCliente.mostrarMenu();
-                    break;
-                case 3:
-                    atalho = verCarrinho.mostrarMenu();
-                    break;
-                case 4:
-                    cliente.exibirDados(scanner, mercado);
-                    break;
-                case 0:
-                    mostrando = false;
-                    System.out.println("Saindo");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
+        JButton verProdutosButton = new JButton("Ver Produtos");
+        verProdutosButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+        verProdutosButton.setBackground(new Color(218, 255, 172));
+        verProdutosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implementar funcionalidade para ver produtos
             }
-        }
+        });
+
+        JButton verCarrinhoButton = new JButton("Ver Carrinho");
+        verCarrinhoButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+        verCarrinhoButton.setBackground(new Color(218, 255, 172));
+        verCarrinhoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implementar funcionalidade para ver carrinho
+            }
+        });
+
+        JButton verDadosButton = new JButton("Ver Dados");
+        verDadosButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+        verDadosButton.setBackground(new Color(218, 255, 172));
+        verDadosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implementar funcionalidade para ver dados
+            }
+        });
+
+        JButton sairButton = new JButton("Sair");
+        sairButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+        sairButton.setBackground(new Color(218, 255, 172));
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+        buttonPanel.add(criarContaButton);
+        buttonPanel.add(verProdutosButton);
+        buttonPanel.add(verCarrinhoButton);
+        buttonPanel.add(verDadosButton);
+        buttonPanel.add(sairButton);
+
+        add(buttonPanel, BorderLayout.CENTER);
     }
 
-
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Mercado mercado = new Mercado(); // Substitua pelo seu construtor real, se houver
+                MenuCliente menuCliente = new MenuCliente(mercado);
+                menuCliente.setVisible(true);
+            }
+        });
+    }
 }
+

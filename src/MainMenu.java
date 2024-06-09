@@ -35,8 +35,9 @@ public class MainMenu extends JFrame {
         clienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Implemente aqui a ação do botão "Menu Cliente"
-                JOptionPane.showMessageDialog(MainMenu.this, "Ação do botão Menu Cliente");
+                // Abre o MenuCliente
+                MenuCliente menuCliente = new MenuCliente(mercado);
+                menuCliente.setVisible(true);
             }
         });
 
@@ -78,9 +79,7 @@ public class MainMenu extends JFrame {
         button.setForeground(new Color(38, 46, 28));
         button.setBackground(new Color(159, 191, 117));
         button.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-
         button.setPreferredSize(new Dimension(200, 50));
-
         return button;
     }
 

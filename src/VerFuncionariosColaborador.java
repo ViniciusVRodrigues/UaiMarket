@@ -35,7 +35,7 @@ public class VerFuncionariosColaborador extends JFrame {
         scrollPane.getViewport().setBackground(new Color(245, 245, 245));
 
         // Buttons
-        JButton selecionarButton = new JButton("Atualizar");
+        JButton selecionarButton = new JButton("Selecionar");
         configurarBotao(selecionarButton);
 
         JButton adicionarButton = new JButton("Adicionar");

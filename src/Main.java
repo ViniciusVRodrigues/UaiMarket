@@ -20,8 +20,8 @@ public class Main {
 
             if (opcao == 1) {
                 Cliente cliente = new Cliente();
-                MenuCliente menu = new MenuCliente(mercado,cliente);
-                menu.mostrarMenu();
+                MenuCliente menu = new MenuCliente(mercado);
+
             } else if (opcao == 2) {
                 MenuColaborador menu = new MenuColaborador(mercado);
                 if (menu.login()) {
