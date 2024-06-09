@@ -118,7 +118,9 @@ public class MenuColaborador extends JFrame {
         });
 
         buttonPanel.add(verProdutosButton);
-        buttonPanel.add(cadastrarFuncionarioButton);
+        if (mercado.getColaborador().getCargo().equals("Admin"))
+            buttonPanel.add(cadastrarFuncionarioButton);
+
         buttonPanel.add(sairButton);
 
         menuFrame.add(buttonPanel, BorderLayout.CENTER);
