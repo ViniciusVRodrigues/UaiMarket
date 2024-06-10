@@ -116,11 +116,13 @@ public class MenuCliente extends JFrame {
         cliente = new Cliente();
 
         String nome = JOptionPane.showInputDialog("Digite seu nome:");
+        if (nome == null) {return;}
         cliente.setNome(nome);
 
         while (true) {
             String email = JOptionPane.showInputDialog("Digite seu email:");
             if (mercado.verificarEmail(email)) {
+                if (email == null) {return;}
                 cliente.setEmail(email);
                 break;
             } else {
@@ -129,31 +131,40 @@ public class MenuCliente extends JFrame {
         }
 
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
+        if (senha == null) {return;}
         cliente.setSenha(senha);
 
         String cpf = JOptionPane.showInputDialog("Digite seu CPF:");
+        if (cpf == null) {return;}
         cliente.setCpf(cpf);
 
         EnderecoEntrega endereco = new EnderecoEntrega();
         String rua = JOptionPane.showInputDialog("Digite o nome da rua:");
+        if (rua == null) {return;}
         endereco.setRua(rua);
 
         String numero = JOptionPane.showInputDialog("Digite o número:");
+        if (numero == null) {return;}
         endereco.setNumero(Integer.parseInt(numero));
 
         String bairro = JOptionPane.showInputDialog("Digite o bairro:");
+        if (bairro == null) {return;}
         endereco.setBairro(bairro);
 
         String complemento = JOptionPane.showInputDialog("Digite o complemento:");
+        if (complemento == null) {return;}
         endereco.setComplemento(complemento);
 
         String cidade = JOptionPane.showInputDialog("Digite a cidade:");
+        if (cidade == null) {return;}
         endereco.setCidade(cidade);
 
         String estado = JOptionPane.showInputDialog("Digite o estado:");
+        if (estado == null) {return;}
         endereco.setEstado(estado);
 
         String cep = JOptionPane.showInputDialog("Digite o CEP:");
+        if (cep == null) {return;}
         endereco.setCep(cep);
 
         cliente.setEnderecoEntrega(endereco);
