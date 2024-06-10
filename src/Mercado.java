@@ -2,6 +2,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -77,6 +78,7 @@ public class Mercado implements Serializable {
     }
 
     public void vincularCliente(Cliente cliente){
+        this.clienteAutenticado = true;
         this.cliente = cliente;
     }
 
@@ -107,6 +109,12 @@ public class Mercado implements Serializable {
         salvarMercado();
     }
 
+    public Cliente buscarCliente(String email, String senha){
+        return clientes.stream()
+                .filter(cliente -> Objects.equals(cliente.getEmail(), email) && Objects.equals(cliente.getSenha(), senha))
+                .findAny()
+                .orElse(null);
+    }
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
@@ -344,5 +352,9 @@ public class Mercado implements Serializable {
 
     public void adicionarColaborador(Colaborador novoColaborador) {
         colaboradores.add(new Colaborador("Natalia", "nati@gmail.com" ,"Admin",123,"Administrador"));
+    }
+
+    public void adicionarAoCarrinho(Produto produto, int quantidade) {
+        cliente.getCarrinho().addProduto(produto,quantidade);
     }
 }

@@ -1,177 +1,194 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class VerProdutosCliente {
+public class VerProdutosCliente extends JFrame {
     private Mercado mercado;
-
     private Produto produtoSelecionado;
-    private Scanner scanner;
 
-    public VerProdutosCliente(Mercado m, Scanner s) {
-        mercado = m;
-        scanner = s;
+    private JPanel mainPanel;
+    private JTextArea displayArea;
+    private JTextField searchField;
+    private JComboBox<String> tipoComboBox;
+    private JButton listAllButton;
+    private JButton listByTypeButton;
+    private JButton listTypesButton;
+    private JButton searchByNameButton;
+    private JButton searchByTypeButton;
+    private JButton viewCartButton;
+    private JButton addToCartButton; // Novo botão
+    private JButton backButton;
+
+    public VerProdutosCliente(Mercado mercado) {
+        this.mercado = mercado;
+        initializeUI();
     }
 
-    public int mostrarMenu() {
-        while (true) {
-            System.out.println("\n---- Ver Produtos ----");
-            System.out.println("1. Lista de produtos disponíveis");
-            System.out.println("2. Lista de produtos por tipo");
-            System.out.println("3. Lista de tipos");
-            System.out.println("4. Pesquisar produto por nome");
-            System.out.println("5. Pesquisar produto por tipo");
-            System.out.println("6. Ver carrinho");
-            System.out.println("0. Voltar");
-            System.out.println("Digite uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-            switch (opcao) {
-                case 1:
-                    mostrarProdutosDisponiveis();
-                    break;
-                case 2:
-                    mostrarProdutosPorTipo();
-                    break;
-                case 3:
-                    listarTipos();
-                    break;
-                case 4:
-                    pesquisarProdutoPorNome();
-                    break;
-                case 5:
-                    pesquisarProdutoPorTipo();
-                    break;
-                case 6:
-                    System.out.println("Indo para o carrinho...");;
-                    return 3;
-                case 0:
-                    System.out.println("Saindo...");
-                    return 0;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
-            }
-        }
+    private void initializeUI() {
+        setTitle("Ver Produtos Cliente");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(218, 255, 172));
+        getContentPane().add(mainPanel);
+
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        topPanel.setBackground(new Color(218, 255, 172));
+
+        displayArea = new JTextArea();
+        displayArea.setEditable(false);
+        displayArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        displayArea.setBackground(new Color(255, 255, 255));
+        displayArea.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+
+        JScrollPane scrollPane = new JScrollPane(displayArea);
+        topPanel.add(scrollPane, BorderLayout.CENTER);
+
+        mainPanel.add(topPanel, BorderLayout.CENTER);
+
+        JPanel bottomPanel = new JPanel(new GridLayout(4, 2, 10, 10));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        bottomPanel.setBackground(new Color(218, 255, 172));
+
+        listAllButton = createButton("Listar Todos");
+        listByTypeButton = createButton("Listar por Tipo");
+        listTypesButton = createButton("Listar Tipos");
+        searchByNameButton = createButton("Pesquisar por Nome");
+        searchByTypeButton = createButton("Pesquisar por Tipo");
+        viewCartButton = createButton("Ver Carrinho");
+        addToCartButton = createButton("Adicionar ao Carrinho"); // Novo botão
+        backButton = createButton("Voltar");
+
+        bottomPanel.add(listAllButton);
+        bottomPanel.add(listByTypeButton);
+        bottomPanel.add(listTypesButton);
+        bottomPanel.add(searchByNameButton);
+        bottomPanel.add(searchByTypeButton);
+        bottomPanel.add(viewCartButton);
+        bottomPanel.add(addToCartButton); // Adiciona o novo botão
+        bottomPanel.add(backButton);
+
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.setBackground(new Color(218, 255, 172));
+        buttonPanel.add(bottomPanel, BorderLayout.CENTER);
+
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Adiciona Listeners
+        listAllButton.addActionListener(e -> mostrarProdutosDisponiveis());
+        listByTypeButton.addActionListener(e -> mostrarProdutosPorTipo());
+        listTypesButton.addActionListener(e -> listarTipos());
+        searchByNameButton.addActionListener(e -> pesquisarProdutoPorNome());
+        searchByTypeButton.addActionListener(e -> pesquisarProdutoPorTipo());
+        viewCartButton.addActionListener(e -> viewCart());
+        addToCartButton.addActionListener(e -> adicionarAoCarrinho()); // Adiciona listener para o novo botão
+        backButton.addActionListener(e -> dispose());
     }
 
-    public void mostrarProdutosDisponiveis(){
+    private JButton createButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Tahoma", Font.BOLD, 14));
+        button.setForeground(Color.WHITE);
+        button.setBackground(new Color(159, 191, 117));
+        button.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151)));
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setFocusPainted(false);
+        return button;
+    }
+
+    private void mostrarProdutosDisponiveis() {
         List<Produto> produtosDisponiveis = mercado.getProdutos();
-        for (int i = 0; i < produtosDisponiveis.size(); i++) {
-            Produto produto = produtosDisponiveis.get(i);
-            if(produto.getQuantidadeEstoque()>0){
-                System.out.println(produto);
+        StringBuilder sb = new StringBuilder("Produtos Disponíveis:\n");
+        for (Produto produto : produtosDisponiveis) {
+            if (produto.getQuantidadeEstoque() > 0) {
+                sb.append(produto).append("\n");
             }
         }
-        selecionarProduto();
+        displayArea.setText(sb.toString());
     }
-    public void mostrarProdutosPorTipo(){
+
+    private void mostrarProdutosPorTipo() {
         List<Produto> produtosDisponiveis = mercado.getProdutos();
         Map<Tipo, List<Produto>> produtosPorTipo = produtosDisponiveis.stream()
                 .collect(Collectors.groupingBy(Produto::getTipo));
 
-        // Imprimindo os produtos agrupados por tipo
+        StringBuilder sb = new StringBuilder("Produtos por Tipo:\n");
         produtosPorTipo.forEach((tipo, produtos) -> {
-            System.out.println("\n" + tipo.getNome()+":");
-            produtos.forEach(System.out::println);
+            sb.append("\n").append(tipo.getNome()).append(":\n");
+            produtos.forEach(produto -> sb.append(produto).append("\n"));
         });
-        selecionarProduto();
+        displayArea.setText(sb.toString());
     }
-    public void listarTipos(){
+
+    private void listarTipos() {
         List<Tipo> tipos = mercado.getTipos();
-        for (int i = 0; i < tipos.size(); i++) {
-            System.out.println(i+". "+tipos.get(i));
+        StringBuilder sb = new StringBuilder("Tipos de Produtos:\n");
+        for (Tipo tipo : tipos) {
+            sb.append(tipo.getNome()).append("\n");
         }
+        displayArea.setText(sb.toString());
     }
-    public void pesquisarProdutoPorNome(){
-        System.out.println("\nDigite o nome que deseja pesquisar:");
-        String nomePesquisa = scanner.nextLine();
+
+    private void pesquisarProdutoPorNome() {
+        String nomePesquisa = JOptionPane.showInputDialog(this, "Digite o nome que deseja pesquisar:");
         List<Produto> produtosPesquisa = mercado.buscarProd(nomePesquisa);
-        for (int i = 0; i < produtosPesquisa.size(); i++) {
-            Produto produto = produtosPesquisa.get(i);
-            if(produto.getQuantidadeEstoque()>0){
-                System.out.println(produto);
+        StringBuilder sb = new StringBuilder("Resultados da Pesquisa por Nome:\n");
+        for (Produto produto : produtosPesquisa) {
+            if (produto.getQuantidadeEstoque() > 0) {
+                sb.append(produto).append("\n");
             }
         }
-        selecionarProduto();
+        displayArea.setText(sb.toString());
     }
-    public void pesquisarProdutoPorTipo(){
+
+    private void pesquisarProdutoPorTipo() {
         listarTipos();
-        System.out.println("\nDigite o id do tipo que deseja pesquisar:");
-        int idTipo = scanner.nextInt();
-        scanner.nextLine();
+        String idTipoStr = JOptionPane.showInputDialog(this, "Digite o id do tipo que deseja pesquisar:");
+        int idTipo = Integer.parseInt(idTipoStr);
         Tipo tipoBusca = mercado.getTipos().get(idTipo);
-        System.out.println("\nDigite o nome do produto que deseja pesquisar (deixe vazio caso queira todos do tipo):");
-        String nomePesquisa = scanner.nextLine();
-        List<Produto> produtosPesquisa = mercado.buscarProdPorTipo(nomePesquisa,tipoBusca);
-        for (int i = 0; i < produtosPesquisa.size(); i++) {
-            Produto produto = produtosPesquisa.get(i);
-            if(produto.getQuantidadeEstoque()>0){
-                System.out.println(produto);
+        String nomePesquisa = JOptionPane.showInputDialog(this, "Digite o nome do produto que deseja pesquisar (deixe vazio caso queira todos do tipo):");
+        List<Produto> produtosPesquisa = mercado.buscarProdPorTipo(nomePesquisa, tipoBusca);
+        StringBuilder sb = new StringBuilder("Resultados da Pesquisa por Tipo:\n");
+        for (Produto produto : produtosPesquisa) {
+            if (produto.getQuantidadeEstoque() > 0) {
+                sb.append(produto).append("\n");
             }
         }
-        selecionarProduto();
+        displayArea.setText(sb.toString());
     }
 
-    public void opcoesProduto(){
-        System.out.println("\n---- Ver Produto ----");
-        System.out.println(produtoSelecionado);
-        System.out.println("1. Adicionar produto ao carrinho");
-        System.out.println("0. Voltar");
-        System.out.println("Digite uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
-        switch (opcao){
-            case 1:
-                while(true){
-                    int quantEstoque = produtoSelecionado.getQuantidadeEstoque();
-                    System.out.println("Digite a quantidade desejada ("+quantEstoque+" em estoque): ");
-                    System.out.println("0=Voltar");
-                    int quantidade = scanner.nextInt();
-                    scanner.nextLine();
-                    if(quantidade<=0){
-                        System.out.println("Voltando...");
-                        break;
-                    }
-                    if(quantidade>quantEstoque){
-                        System.out.println("Quantidade indisponível no estoque!");
-                        continue;
-                    }
-                    Cliente cliente = mercado.getCliente();
-                    cliente.getCarrinho().addProduto(produtoSelecionado,quantidade);
-                    float totalProdutos = produtoSelecionado.getPreco()*quantidade;
-                    System.out.printf("\nProduto %s no valor de R$%.2f (%d*R$%.2f) adicionado ao carrinho, novo total do carrinho: R$%.2f%n",produtoSelecionado.getNome(),totalProdutos,quantidade,produtoSelecionado.getPreco(),cliente.getCarrinho().getValorTotalProduto());
-                    return;
-                }
-                break;
-            case 0:
-                System.out.println("Voltando...");
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                break;
-        }
+    private void viewCart() {
+        VerCarrinho verCarrinho = new VerCarrinho(mercado);
+        verCarrinho.setVisible(true);
     }
 
-    public void selecionarProduto(){
-        System.out.println("\nDeseja selecionar um produto?");
-        System.out.println("1. Sim");
-        System.out.println("0. Voltar");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
-        if(opcao==1){
-            System.out.println("Digite o id:");
-            long idProduto = scanner.nextLong();
-            scanner.nextLine();
-            produtoSelecionado = mercado.getProdutoById(idProduto);
-            if(produtoSelecionado==null){
-                System.out.println("Produto não encontrado!");
-                return;
-            }
-            opcoesProduto();
+    private void adicionarAoCarrinho() {
+        String nomeProduto = JOptionPane.showInputDialog(this, "Digite o nome do produto que deseja adicionar ao carrinho:");
+        List<Produto> produtosPesquisa = mercado.buscarProd(nomeProduto);
+        if (produtosPesquisa.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Produto não encontrado!");
             return;
         }
-        System.out.println("Ok, retornando!");
+        Produto produto = produtosPesquisa.get(0); // Supondo que o primeiro resultado seja o desejado
+        int quantidade = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite a quantidade que deseja adicionar:"));
+        if (quantidade > 0 && quantidade <= produto.getQuantidadeEstoque()) {
+            mercado.adicionarAoCarrinho(produto, quantidade);
+            JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Quantidade inválida!");
+        }
+    }
+
+    public static void main(String[] args) {
+        Mercado mercado = new Mercado();
+        VerProdutosCliente frame = new VerProdutosCliente(mercado);
+        frame.setVisible(true);
     }
 }
+
+

@@ -259,4 +259,9 @@ public class Cliente extends Pessoa {
 //            return false;
 //        }
 
-}}
+}
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+}

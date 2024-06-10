@@ -1,99 +1,150 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Scanner;
 
-public class VerCarrinho {
+public class VerCarrinho extends JFrame {
     private Mercado mercado;
     private Cliente cliente;
     private Carrinho carrinho;
-    private Scanner scanner;
     private ProdutoCarrinho pCSelecionado;
-    VerCarrinho(Mercado m,Scanner s){
+    private JTextArea carrinhoTextArea;
+
+    public VerCarrinho(Mercado m) {
         this.mercado = m;
         this.cliente = mercado.getCliente();
+
+        if (this.cliente == null){
+            JOptionPane.showMessageDialog(this, "Cliente não autenticado! Por favor, faça login primeiro.", "Erro", JOptionPane.ERROR_MESSAGE);
+            dispose();
+            return;
+        }
+
         this.carrinho = cliente.getCarrinho();
-        this.scanner = s;
+        initializeUI();
     }
 
-    public int mostrarMenu(){
-        while (true){
-            System.out.println("\n----- Ver Carrinho -----");
-            carrinho.printProdutos();
-            System.out.println("1. Continuar Comprando");
-            System.out.println("2. Efetuar Compra");
-            System.out.println("3. Remover Produto");
-            System.out.println("4. Alterar Produto");
-            System.out.println("0. Voltar");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-            switch (opcao){
-                case 1:
-                    System.out.println("Indo para produtos...");
-                    return 2;
-                case 2:
-                    if(!mercado.getClienteAutenticado()){
-                        System.out.println("Cria ou entre em uma conta para efetuar compra!");
-                        break;
-                    }
-                    System.out.println("Tem certeza que deseja efetuar compra?");
-                    System.out.println("1. Confirmar");
-                    System.out.println("0. Voltar");
-                    int confirmacao = scanner.nextInt();
-                    scanner.nextLine();
-                    if(confirmacao==1) {
-                        if(mercado.fazerPedido(scanner)){
-                            return 0;
-                        }
-                    }
-                    break;
-                case 3:
-                    //Removendo produto do carrinho
-                    if(selecionarProduto()){
-                        System.out.println("Tem certeza que deseja remover esse produto?");
-                        System.out.println("1. Confirmar");
-                        System.out.println("0. Voltar");
-                        int resposta = scanner.nextInt();
-                        scanner.nextLine();
-                        if(resposta==1)
-                            carrinho.removeProduto(pCSelecionado);
-                    }
-                    break;
-                case 4:
-                    //Alterando produto no carrinho
-                    if(selecionarProduto()){
-                        System.out.println("Qual a nova quantidade desse produto que seja colocar no carrinho?");
-                        System.out.println("(Quantidade em estoque "+pCSelecionado.getQuantidadeEstoque()+ ")");
-                        System.out.println("0. Voltar");
-                        int novaQuant = scanner.nextInt();
-                        scanner.nextLine();
-                        if(novaQuant<=0)
-                            break;
-                        if(novaQuant>pCSelecionado.getQuantidadeEstoque()){
-                            System.out.println("Quantidade excede o estoque atual! Voltando...");
-                            break;
-                        }
-                        pCSelecionado.setQuantidade(novaQuant);
-                        carrinho.atualizarValorTotalProdutos();
-                        System.out.println("Nova quantidade salva!");
-                    }
-                    break;
-                case 0:
-                    System.out.println("Voltando...");
-                    return 0;
-                default:
-                    System.out.println("Opção inválida!");
-                    break;
+    private void initializeUI() {
+        setTitle("Ver Carrinho");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        carrinhoTextArea = new JTextArea();
+        carrinhoTextArea.setEditable(false);
+        carrinhoTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        carrinhoTextArea.setBackground(new Color(255, 255, 255));
+        carrinhoTextArea.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+
+        JScrollPane scrollPane = new JScrollPane(carrinhoTextArea);
+        updateCarrinhoText();
+
+        JButton continuarComprandoButton = createButton("Continuar Comprando");
+        JButton efetuarCompraButton = createButton("Efetuar Compra");
+        JButton removerProdutoButton = createButton("Remover Produto");
+        JButton alterarProdutoButton = createButton("Alterar Produto");
+
+
+        continuarComprandoButton.addActionListener(e -> dispose());
+        efetuarCompraButton.addActionListener(e -> efetuarCompra());
+        removerProdutoButton.addActionListener(e -> removerProduto());
+        alterarProdutoButton.addActionListener(e -> alterarProduto());
+
+
+        JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        buttonPanel.setBackground(new Color(218, 255, 172));
+
+        buttonPanel.add(continuarComprandoButton);
+        buttonPanel.add(efetuarCompraButton);
+        buttonPanel.add(removerProdutoButton);
+        buttonPanel.add(alterarProdutoButton);
+     
+
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void updateCarrinhoText() {
+        StringBuilder sb = new StringBuilder("Carrinho:\n");
+        List<ProdutoCarrinho> produtos = carrinho.getProdutos();
+        for (int i = 0; i < produtos.size(); i++) {
+            sb.append(i).append(". ").append(produtos.get(i)).append("\n");
+        }
+        carrinhoTextArea.setText(sb.toString());
+    }
+
+    private JButton createButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Tahoma", Font.BOLD, 14));
+        button.setForeground(Color.WHITE);
+        button.setBackground(new Color(159, 191, 117));
+        button.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151)));
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setFocusPainted(false);
+        return button;
+    }
+
+    private void efetuarCompra() {
+        if (!mercado.getClienteAutenticado()) {
+            JOptionPane.showMessageDialog(this, "Cria ou entre em uma conta para efetuar compra!");
+            return;
+        }
+
+        int confirmacao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja efetuar compra?", "Confirmar Compra", JOptionPane.YES_NO_OPTION);
+        if (confirmacao == JOptionPane.YES_OPTION) {
+            if (mercado.fazerPedido(new Scanner(System.in))) {
+                dispose();
             }
         }
     }
-    private boolean selecionarProduto(){
-        System.out.println("Digite o ID do produto que deseja selecionar:");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
-        List<ProdutoCarrinho> pCList = carrinho.getProdutos();
-        if(opcao<0||opcao>=pCList.size())
-            return false;
-        pCSelecionado = pCList.get(opcao);
-        System.out.println("\n"+pCSelecionado);
-        return true;
+
+    private void removerProduto() {
+        if (selecionarProduto()) {
+            int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja remover esse produto?", "Remover Produto", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                carrinho.removeProduto(pCSelecionado);
+                updateCarrinhoText();
+            }
+        }
+    }
+
+    private void alterarProduto() {
+        if (selecionarProduto()) {
+            String novaQuantStr = JOptionPane.showInputDialog(this, "Qual a nova quantidade desse produto que seja colocar no carrinho?\n(Quantidade em estoque " + pCSelecionado.getQuantidadeEstoque() + ")", "Alterar Quantidade", JOptionPane.PLAIN_MESSAGE);
+            if (novaQuantStr != null && !novaQuantStr.isEmpty()) {
+                int novaQuant = Integer.parseInt(novaQuantStr);
+                if (novaQuant > 0 && novaQuant <= pCSelecionado.getQuantidadeEstoque()) {
+                    pCSelecionado.setQuantidade(novaQuant);
+                    carrinho.atualizarValorTotalProdutos();
+                    updateCarrinhoText();
+                    JOptionPane.showMessageDialog(this, "Nova quantidade salva!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Quantidade inválida!");
+                }
+            }
+        }
+    }
+
+    private boolean selecionarProduto() {
+        String opcaoStr = JOptionPane.showInputDialog(this, "Digite o ID do produto que deseja selecionar:", "Selecionar Produto", JOptionPane.PLAIN_MESSAGE);
+        if (opcaoStr != null && !opcaoStr.isEmpty()) {
+            int opcao = Integer.parseInt(opcaoStr);
+            List<ProdutoCarrinho> pCList = carrinho.getProdutos();
+            if (opcao >= 0 && opcao < pCList.size()) {
+                pCSelecionado = pCList.get(opcao);
+                JOptionPane.showMessageDialog(this, "Produto selecionado:\n" + pCSelecionado);
+                return true;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Produto não encontrado!");
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Mercado mercado = new Mercado(); // Inicialize seu objeto Mercado
+        VerCarrinho verCarrinho = new VerCarrinho(mercado);
+        verCarrinho.setVisible(true);
     }
 }
+
