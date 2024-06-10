@@ -241,7 +241,7 @@ public class Mercado implements Serializable {
     }
 
     public void salvarMercado() {
-        String fileName= "model.Mercado.txt";
+        String fileName= "Mercado.txt";
         clienteAutenticado = false;
         try {
             FileOutputStream fos = new FileOutputStream(fileName);
@@ -258,7 +258,7 @@ public class Mercado implements Serializable {
 
     public void carregarMercado() {
         try {
-            String fileName= "model.Mercado.txt";
+            String fileName= "Mercado.txt";
             FileInputStream fin = new FileInputStream(fileName);
             ObjectInputStream ois = new ObjectInputStream(fin);
             Mercado mercado= (Mercado) ois.readObject();

@@ -86,7 +86,7 @@ public class Produto implements Serializable {
 
     @Override
     public String toString() {
-        return "Id= " + id + ", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", model.Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
+        return "Id= " + id + ", Nome= " + nome + ", Marca= " + marca + ", Preço= R$" + preco + ", Tipo= " + (tipo != null ? tipo.getNome() : "N/A") + ", Quantidade= " + estoque.getQntd();
     }
 
     public String toCSVLine(String sep){
@@ -94,7 +94,7 @@ public class Produto implements Serializable {
     }
 
     public int cadastrarProduto(Scanner scanner, List<Tipo> tipos,long idProduto) {
-        System.out.println("---- Adicionar model.Produto(Digite 'Cancelar' para cancelar) ----");
+        System.out.println("---- Adicionar Produto(Digite 'Cancelar' para cancelar) ----");
         this.id=idProduto;
         System.out.println("Digite o nome:");
         String input = scanner.nextLine();
@@ -132,7 +132,7 @@ public class Produto implements Serializable {
             return 0;
         }
 
-        System.out.println("\nmodel.Produto Cadastrado com sucesso!");
+        System.out.println("\nProduto Cadastrado com sucesso!");
         return 1;
     }
 
@@ -148,7 +148,7 @@ public class Produto implements Serializable {
             switch (escolha) {
                 case 1:
                     System.out.println("\n---- model.Estoque ----");
-                    System.out.println("model.Estoque atual: " + estoque.getQntd());
+                    System.out.println("Estoque atual: " + estoque.getQntd());
                     System.out.println("Digite a nova quantidade:");
                     int qtde = scanner.nextInt();
                     scanner.nextLine();

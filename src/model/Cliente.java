@@ -125,7 +125,7 @@ public class Cliente extends Pessoa {
 
         while (mostrando) {
 
-            System.out.println("\n**** Dados do model.Cliente ****");
+            System.out.println("\n**** Dados do Cliente ****");
             System.out.println("Nome: " + this.nome);
             System.out.println("Email: " + this.email);
             System.out.println("Senha: " + this.senha);
