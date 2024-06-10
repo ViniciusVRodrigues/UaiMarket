@@ -262,6 +262,7 @@ public class MenuCliente extends JFrame {
             switch (escolha) {
                 case "Nome":
                     String nome = JOptionPane.showInputDialog(this, "Digite seu nome:", cliente.getNome());
+                    if(nome == null) {return;} // Cancelar edição (não altera o nome)
                     cliente.setNome(nome);
                     break;
 
@@ -269,6 +270,7 @@ public class MenuCliente extends JFrame {
                     String email = cliente.getEmail();
                     while (true) {
                         email = JOptionPane.showInputDialog(this, "Digite seu email:", cliente.getEmail());
+                        if (email == null) {return;} // Cancelar edição (não altera o email)
                         if (mercado.verificarEmail(email)) {
                             cliente.setEmail(email);
                             break;
@@ -280,17 +282,20 @@ public class MenuCliente extends JFrame {
 
                 case "Senha":
                     String senha = JOptionPane.showInputDialog(this, "Digite sua senha:", cliente.getSenha());
+                    if(senha == null) {return;} // Cancelar edição (não altera a senha)
                     cliente.setSenha(senha);
                     break;
 
                 case "CPF":
                     String cpf = JOptionPane.showInputDialog(this, "Digite seu CPF:", cliente.getCpf());
+                    if(cpf == null) {return;} // Cancelar edição (não altera o CPF)
                     cliente.setCpf(cpf);
                     break;
 
                 case "Endereço - Rua":
                     EnderecoEntrega endereco = cliente.getEnderecoEntrega();
                     String rua = JOptionPane.showInputDialog(this, "Digite o nome da rua:", endereco.getRua());
+                    if(rua == null) {return;} // Cancelar edição (não altera a rua)
                     endereco.setRua(rua);
                     cliente.setEnderecoEntrega(endereco);
                     break;
@@ -298,6 +303,7 @@ public class MenuCliente extends JFrame {
                 case "Endereço - Número":
                     endereco = cliente.getEnderecoEntrega();
                     String numero = JOptionPane.showInputDialog(this, "Digite o número:", String.valueOf(endereco.getNumero()));
+                    if(numero == null) {return;} // Cancelar edição (não altera o número)
                     endereco.setNumero(Integer.parseInt(numero));
                     cliente.setEnderecoEntrega(endereco);
                     break;
@@ -305,6 +311,7 @@ public class MenuCliente extends JFrame {
                 case "Endereço - Bairro":
                     endereco = cliente.getEnderecoEntrega();
                     String bairro = JOptionPane.showInputDialog(this, "Digite o bairro:", endereco.getBairro());
+                    if(bairro == null) {return;} // Cancelar edição (não altera o bairro)
                     endereco.setBairro(bairro);
                     cliente.setEnderecoEntrega(endereco);
                     break;
@@ -312,6 +319,7 @@ public class MenuCliente extends JFrame {
                 case "Endereço - Complemento":
                     endereco = cliente.getEnderecoEntrega();
                     String complemento = JOptionPane.showInputDialog(this, "Digite o complemento:", endereco.getComplemento());
+                    if(complemento == null) {return;} // Cancelar edição (não altera o complemento)
                     endereco.setComplemento(complemento);
                     cliente.setEnderecoEntrega(endereco);
                     break;
@@ -319,6 +327,7 @@ public class MenuCliente extends JFrame {
                 case "Endereço - Cidade":
                     endereco = cliente.getEnderecoEntrega();
                     String cidade = JOptionPane.showInputDialog(this, "Digite a cidade:", endereco.getCidade());
+                    if(cidade == null) {return;} // Cancelar edição (não altera a cidade)
                     endereco.setCidade(cidade);
                     cliente.setEnderecoEntrega(endereco);
                     break;
@@ -326,6 +335,7 @@ public class MenuCliente extends JFrame {
                 case "Endereço - Estado":
                     endereco = cliente.getEnderecoEntrega();
                     String estado = JOptionPane.showInputDialog(this, "Digite o estado:", endereco.getEstado());
+                    if(estado == null) {return;} // Cancelar edição (não altera o estado)
                     endereco.setEstado(estado);
                     cliente.setEnderecoEntrega(endereco);
                     break;
@@ -333,6 +343,7 @@ public class MenuCliente extends JFrame {
                 case "Endereço - CEP":
                     endereco = cliente.getEnderecoEntrega();
                     String cep = JOptionPane.showInputDialog(this, "Digite o CEP:", endereco.getCep());
+                    if(cep == null) {return;} // Cancelar edição (não altera o CEP)
                     endereco.setCep(cep);
                     cliente.setEnderecoEntrega(endereco);
                     break;
