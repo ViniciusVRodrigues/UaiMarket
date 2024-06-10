@@ -1,8 +1,9 @@
 package menu;
+
+import exception.IncorrectCredentialsException;
 import model.Cliente;
 import model.EnderecoEntrega;
 import model.Mercado;
-
 import view.VerCarrinho;
 import view.VerProdutosCliente;
 
@@ -103,7 +104,11 @@ public class MenuCliente extends JFrame {
         if (choice == 0) { // Criar Conta
             criarConta();
         } else if (choice == 1) { // Entrar
-            entrarConta();
+            try {
+                entrarConta();
+            } catch (IncorrectCredentialsException e) {
+                JOptionPane.showMessageDialog(this, "Email ou senha incorretos.");
+            }
         }
     }
 
@@ -157,18 +162,20 @@ public class MenuCliente extends JFrame {
         JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
     }
 
-    private void entrarConta() {
+    private void entrarConta() throws IncorrectCredentialsException {
         String email = JOptionPane.showInputDialog("Digite seu email:");
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
 
         Cliente clienteExistente = mercado.buscarCliente(email, senha);
-        if (clienteExistente != null && clienteExistente.logar(email, senha)) {
-            cliente = clienteExistente;
-            mercado.vincularCliente(cliente);
-            JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Email ou senha incorretos.");
+        if (clienteExistente == null) {
+            throw new IncorrectCredentialsException("Senha ou email inválidos!");
         }
+        clienteExistente.logar(email, senha);
+        cliente = clienteExistente;
+        mercado.vincularCliente(cliente);
+        JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
+
+
     }
 
     private void exibirDadosCliente() {

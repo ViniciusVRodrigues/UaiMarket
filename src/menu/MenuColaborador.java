@@ -1,5 +1,6 @@
 package menu;
 
+import exception.IncorrectCredentialsException;
 import view.VerFuncionariosColaborador;
 import view.VerProdutosColaborador;
 
@@ -68,9 +69,11 @@ public class MenuColaborador extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (login()) {
-                    mostrarMenu();
-                } else {
+                try {
+                    if (login()) {
+                        mostrarMenu();
+                    }
+                } catch (IncorrectCredentialsException ex) {
                     JOptionPane.showMessageDialog(MenuColaborador.this, "Credenciais inválidas", "Erro de Login", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -134,7 +137,7 @@ public class MenuColaborador extends JFrame {
         menuFrame.setVisible(true);
     }
 
-    public boolean login() {
+    public boolean login() throws IncorrectCredentialsException {
         String email = emailField.getText();
         String senha = new String(passwordField.getPassword());
 
@@ -144,7 +147,7 @@ public class MenuColaborador extends JFrame {
                 return true;
             }
         }
-        return false;
+        throw new IncorrectCredentialsException("Senha ou email inválidos!");
     }
 
     public static void main(String[] args) {

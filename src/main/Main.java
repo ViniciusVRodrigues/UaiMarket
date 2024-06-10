@@ -1,4 +1,5 @@
 package main;
+import exception.IncorrectCredentialsException;
 import menu.MenuCliente;
 import menu.MenuColaborador;
 import model.Cliente;
@@ -31,9 +32,13 @@ public class Main {
 
             } else if (opcao == 2) {
                 MenuColaborador menu = new MenuColaborador(mercado);
-                if (menu.login()) {
-                    menu.mostrarMenu();
-                } else {}
+                try {
+                    if (menu.login()) {
+                        menu.mostrarMenu();
+                    }
+                } catch (IncorrectCredentialsException e) {
+                    System.out.println(e.getMessage());
+                }
                 System.out.println("\nEncerrando...");
             } else if (opcao == 0) {
                 mercado.salvarMercado();
