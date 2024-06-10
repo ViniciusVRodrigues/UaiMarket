@@ -5,6 +5,7 @@ public class IncorrectCredentialsException extends Exception {
         super();
     }
 
+    // Construtor que recebe uma mensagem de erro
     public IncorrectCredentialsException(String message) {
         super(message);
     }

@@ -7,13 +7,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Mercado implements Serializable {
+    //Criando listas para armanezar todos os dados do programa
     private ArrayList<Produto> produtos = new ArrayList<>();
     private ArrayList<Tipo> tipos = new ArrayList<>();
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Colaborador> colaboradores = new ArrayList<>();
     private ArrayList<Pedido> pedidos = new ArrayList<>();
+
+    //Cliente que atualmente esta usando o mercado
     private Boolean clienteAutenticado = false;
     private Cliente cliente;
+
+    //Colaborador que atualmente esta usando o mercado
     private Colaborador colaborador;
 
     public Mercado() {
@@ -22,9 +27,11 @@ public class Mercado implements Serializable {
         clientes = new ArrayList<>();
         colaboradores = new ArrayList<>();
         pedidos = new ArrayList<>();
+        //Funções para adicionar dados 'padrão' ao sistema
         cadastrarTipos();
         cadastrarAdmin();
         cadastrarProdutos();
+        //Carregando mercado direto de um arquivo
         carregarMercado();
     }
 
@@ -44,6 +51,7 @@ public class Mercado implements Serializable {
         return produtos.get(index);
     }
 
+    //Função para encontrar o produto baseado no recebido por parametro
     public Produto getProdutoById(long id){
         return produtos.stream()
                 .filter(produto -> produto.getId()==id)
@@ -56,11 +64,14 @@ public class Mercado implements Serializable {
     }
 
 
+    //Função para encontrar o tipo baseado no recebido por parametro
     public ArrayList<Produto> buscarProd(String busca) {
         return produtos.stream()
                 .filter(produto -> produto.getNome().toLowerCase().contains(busca.toLowerCase()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+
+    //Função para encontrar o tipo baseado no recebido por parametro
     public ArrayList<Produto> buscarProdPorTipo(String busca, Tipo tipo) {
         return produtos.stream()
                 .filter(produto -> produto.getNome().toLowerCase().contains(busca.toLowerCase()) && produto.getTipo().equals(tipo))
@@ -71,12 +82,14 @@ public class Mercado implements Serializable {
         return clientes;
     }
 
+    //Função que encontra os pedidos do cliente atual
     public List<Pedido> getPedidosCliente(){
         return  pedidos.stream()
                 .filter(pedido -> pedido.getCliente().equals(cliente))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    //Função que vincula o cliente ao mercado
     public void vincularCliente(Cliente cliente){
         this.clienteAutenticado = true;
         this.cliente = cliente;
@@ -99,6 +112,7 @@ public class Mercado implements Serializable {
         return colaboradores;
     }
 
+    //Função para adicionar o colaborador ao mercado
     public void addColaborador(Colaborador c){
         colaboradores.add(c);
         salvarMercado();
@@ -109,6 +123,7 @@ public class Mercado implements Serializable {
         salvarMercado();
     }
 
+    //Encontrando o cliente por email e senha
     public Cliente buscarCliente(String email, String senha){
         return clientes.stream()
                 .filter(cliente -> Objects.equals(cliente.getEmail(), email) && Objects.equals(cliente.getSenha(), senha))
@@ -158,10 +173,12 @@ public class Mercado implements Serializable {
 //        return true;
 //    }
 
+    //Adicionando um admin padrão ao sistema
     public void cadastrarAdmin(){
         colaboradores.add(new Colaborador("Admin","admin","admin",1,"Admin"));
     }
 
+    //Função para adicionar um cliente ao sistema
     public void cadastrarCliente(Cliente cliente) {
         clientes.add(cliente);
         this.cliente = cliente;
@@ -177,6 +194,7 @@ public class Mercado implements Serializable {
         return clienteAutenticado;
     }
 
+    //Função para verificar se o email já esta cadastrado
     public Boolean verificarEmail(String email){
         for(Cliente cliente : clientes){
             if(cliente.email.equals(email)){
@@ -186,6 +204,7 @@ public class Mercado implements Serializable {
         return true;
     }
 
+    //Cadastrando tipos padrões
     public void cadastrarTipos(){
         tipos.add(new Tipo("Açougue"));
         tipos.add(new Tipo("Alimentos sem gluten"));
@@ -207,6 +226,7 @@ public class Mercado implements Serializable {
         tipos.add(new Tipo("Salgados"));
     }
 
+    //Cadastrando produtos padrões
     public void cadastrarProdutos(){
         produtos.add(new Produto(0, tipos.get(3), "Coca Cola", "Coca Cola", 7.50f, 23));
         produtos.add(new Produto(1, tipos.get(0), "Bife de Alcatra", "Açougue do Zé", 39.90f, 10));
@@ -240,13 +260,17 @@ public class Mercado implements Serializable {
         produtos.add(new Produto(29, tipos.get(11), "Desinfetante", "Lysol", 9.90f, 60));
     }
 
+    //Função para salvar o mercado em um arquivo
     public void salvarMercado() {
         String fileName= "Mercado.txt";
+        //Tentando salvar o mercado
         try {
+            //Salvando o mercado
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(this);
             oos.close();
+            //Salvando o mercado em csv
             salvarListasEmCSV();
         } catch (FileNotFoundException e) {
             System.out.println("Erro ao salvar!");
@@ -255,13 +279,16 @@ public class Mercado implements Serializable {
         }
     }
 
+    //Função para carregar o mercado de um arquivo
     public void carregarMercado() {
+        //Tentando carregar o mercado
         try {
             String fileName= "Mercado.txt";
             FileInputStream fin = new FileInputStream(fileName);
             ObjectInputStream ois = new ObjectInputStream(fin);
             Mercado mercado= (Mercado) ois.readObject();
             ois.close();
+            //Carregando as listas
             this.produtos = mercado.getProdutos();
             this.colaboradores = mercado.getColaboradores();
             this.clientes = mercado.getClientes();
@@ -269,6 +296,7 @@ public class Mercado implements Serializable {
         } catch (FileNotFoundException e) {
 
         } catch (IOException e) {
+
             System.out.println("Erro ao carregar!");
         } catch (ClassNotFoundException e) {
             System.out.println("Erro ao carregar!");
@@ -276,7 +304,9 @@ public class Mercado implements Serializable {
     }
 
     private final String CSV_SEPARATOR = ";";
+    //Função para salvar as listas em arquivos csv
     private void salvarListasEmCSV() {
+        //Salvando as listas em arquivos csv
         try {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("produtos.csv"), "UTF-8"));
             for (Produto p : produtos) {
@@ -353,6 +383,7 @@ public class Mercado implements Serializable {
         colaboradores.add(new Colaborador("Natalia", "nati@gmail.com" ,"Admin",123,"Administrador"));
     }
 
+    //Função para adicionar um produto ao carrinho do cliente
     public void adicionarAoCarrinho(Produto produto, int quantidade) {
         cliente.getCarrinho().addProduto(produto,quantidade);
     }
@@ -361,6 +392,7 @@ public class Mercado implements Serializable {
 
     }
 
+    //Função para encontrar o colaborador por email
     public Colaborador getColaboradorByEmail(String email) {
         return colaboradores.stream()
                 .filter(colaborador -> Objects.equals(colaborador.getEmail(), email))
