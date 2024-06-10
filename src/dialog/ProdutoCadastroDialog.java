@@ -21,12 +21,14 @@ public class ProdutoCadastroDialog extends JDialog {
         setupUI();
     }
 
+    //Configurando o layout da tela
     private void setupUI() {
+        // Configurações da janela
         setSize(400, 350);
         setLocationRelativeTo(getParent());
         setLayout(new BorderLayout());
 
-        // Panel for form fields
+        // Painel para o formulário
         JPanel formPanel = new JPanel();
         formPanel.setBackground(new Color(99, 130, 62));
         formPanel.setLayout(new GridBagLayout());
@@ -35,7 +37,7 @@ public class ProdutoCadastroDialog extends JDialog {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Form fields
+        // Campos do formulário
         JLabel nomeLabel = new JLabel("Nome:");
         nomeLabel.setForeground(new Color(207, 250, 151));
         nomeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -61,7 +63,7 @@ public class ProdutoCadastroDialog extends JDialog {
         quantidadeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         JTextField quantidadeField = new JTextField();
 
-        // Add form fields to panel
+        // Adicionando os campos ao formulário
         gbc.gridx = 0;
         gbc.gridy = 0;
         formPanel.add(nomeLabel, gbc);
@@ -92,12 +94,14 @@ public class ProdutoCadastroDialog extends JDialog {
         gbc.gridx = 1;
         formPanel.add(quantidadeField, gbc);
 
-        // Panel for buttons
+        // Painel para os botões
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(159, 191, 117));
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Botões
+        // Botão para salvar o produto
         JButton salvarButton = new JButton("Salvar");
         salvarButton.setFont(new Font("Arial", Font.PLAIN, 12));
         salvarButton.setForeground(new Color(38, 46, 28));
@@ -105,6 +109,7 @@ public class ProdutoCadastroDialog extends JDialog {
         salvarButton.setPreferredSize(new Dimension(90, 40));
         configurarBotao(salvarButton);
 
+        // Botão para cancelar
         JButton cancelarButton = new JButton("Cancelar");
         cancelarButton.setFont(new Font("Arial", Font.PLAIN, 12));
         cancelarButton.setForeground(new Color(38, 46, 28));
@@ -112,17 +117,24 @@ public class ProdutoCadastroDialog extends JDialog {
         cancelarButton.setPreferredSize(new Dimension(90, 40));
         configurarBotao(cancelarButton);
 
+        // Adicionando ação aos botões
+        // Salva o produto
         salvarButton.addActionListener(e -> {
+            // Obtém os valores dos campos
             String nome = nomeField.getText();
             String marca = marcaField.getText();
             String precoStr = precoField.getText();
             String quantidadeStr = quantidadeField.getText();
             Tipo tipo = (Tipo) tipoComboBox.getSelectedItem();
 
+            // Verifica se os campos estão preenchidos
             if (nome.isEmpty() || marca.isEmpty() || precoStr.isEmpty() || quantidadeStr.isEmpty() || tipo == null) {
+                // Exibe uma mensagem de erro
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
+                // Tenta converter o preço e a quantidade para float e int, respectivamente
                 try {
+                    // Cria um novo produto com os valores dos campos
                     float preco = Float.parseFloat(precoStr);
                     int quantidade = Integer.parseInt(quantidadeStr);
                     produto.setId(mercado.getProdutos().size());
@@ -131,25 +143,30 @@ public class ProdutoCadastroDialog extends JDialog {
                     produto.setPreco(preco);
                     produto.setTipo(tipo);
                     produto.getEstoque().setQntd(quantidade);
+                    // Define que o produto foi cadastrado
                     produtoCadastrado = true;
                     System.out.println(produto);
                     setVisible(false);
                 } catch (NumberFormatException ex) {
+                    // Exibe uma mensagem de erro se o preço ou a quantidade não forem números
                     JOptionPane.showMessageDialog(this, "Preço ou quantidade inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
+        // Fecha a janela
         cancelarButton.addActionListener(e -> setVisible(false));
 
+        // Adiciona os botões ao painel
         buttonPanel.add(salvarButton);
         buttonPanel.add(cancelarButton);
 
-        // Add panels to the main dialog
+        // Adiciona os painéis à janela
         add(formPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    // Configuração do botão
     private void configurarBotao(JButton botao) {
         botao.setFont(new Font("Segoe UI", Font.BOLD, 14));
         botao.setForeground(new Color(159, 191, 117));
@@ -158,6 +175,7 @@ public class ProdutoCadastroDialog extends JDialog {
         botao.setBorder(BorderFactory.createLineBorder(new Color(99, 130, 62), 1));
     }
 
+    // Verifica se o produto foi cadastrado
     public boolean isProdutoCadastrado() {
         return produtoCadastrado;
     }

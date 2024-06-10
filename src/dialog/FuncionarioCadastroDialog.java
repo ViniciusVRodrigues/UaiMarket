@@ -1,4 +1,5 @@
 package dialog;
+
 import model.Colaborador;
 import model.Mercado;
 
@@ -19,12 +20,14 @@ public class FuncionarioCadastroDialog extends JDialog {
         setupUI();
     }
 
+    //Configurando o layout da tela
     private void setupUI() {
+        // Configurações da janela
         setSize(400, 350);
         setLocationRelativeTo(getParent());
         setLayout(new BorderLayout());
 
-        // Panel for form fields
+        // Painel para o formulário
         JPanel formPanel = new JPanel();
         formPanel.setBackground(new Color(99, 130, 62));
         formPanel.setLayout(new GridBagLayout());
@@ -33,7 +36,7 @@ public class FuncionarioCadastroDialog extends JDialog {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Form fields
+        // Campos do formulário
         JLabel nomeLabel = new JLabel("Nome:");
         nomeLabel.setForeground(new Color(207, 250, 151));
         nomeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -59,7 +62,7 @@ public class FuncionarioCadastroDialog extends JDialog {
         codigoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         JTextField codigoField = new JTextField(15);
 
-        // Add form fields to panel
+        // Adiciona os campos ao painel
         gbc.gridx = 0;
         gbc.gridy = 0;
         formPanel.add(nomeLabel, gbc);
@@ -90,7 +93,7 @@ public class FuncionarioCadastroDialog extends JDialog {
         gbc.gridx = 1;
         formPanel.add(codigoField, gbc);
 
-        // Panel for buttons
+        // Painel para os botões
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(159, 191, 117));
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -110,16 +113,22 @@ public class FuncionarioCadastroDialog extends JDialog {
         cancelarButton.setPreferredSize(new Dimension(90, 40));
         configurarBotao(cancelarButton);
 
+        //Adicionando ação aos botões
+
+        // Salva o colaborador
         salvarButton.addActionListener(e -> {
+            // Obtém os valores dos campos
             String nome = nomeField.getText();
             String email = emailField.getText();
             String senha = senhaField.getText();
             String cargo = (String) cargoComboBox.getSelectedItem();
             String codigo = codigoField.getText();
 
+            // Verifica se os campos estão preenchidos
             if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || cargo == null || codigo.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
+                // Cria um novo colaborador com os valores dos campos
                 try {
                     colaborador.setNome(nome);
                     colaborador.setEmail(email);
@@ -127,16 +136,20 @@ public class FuncionarioCadastroDialog extends JDialog {
                     colaborador.setCargo(cargo);
                     int cdg = Integer.parseInt(codigo);
                     colaborador.setCodigo(cdg);
+                    // Adiciona o colaborador ao mercado
                     cadastroConcluido = true;
                     setVisible(false);
                 } catch (NumberFormatException ex) {
+                    // Exibe uma mensagem de erro se o código não for um número
                     JOptionPane.showMessageDialog(this, "Código inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
+        // Fecha a janela
         cancelarButton.addActionListener(e -> setVisible(false));
 
+        // Adiciona os botões ao painel
         buttonPanel.add(salvarButton);
         buttonPanel.add(cancelarButton);
 
@@ -144,7 +157,7 @@ public class FuncionarioCadastroDialog extends JDialog {
         add(formPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
-
+// Configuração do botão
     private void configurarBotao(JButton botao) {
         botao.setFont(new Font("Segoe UI", Font.BOLD, 14));
         botao.setForeground(new Color(159, 191, 117));
@@ -152,27 +165,9 @@ public class FuncionarioCadastroDialog extends JDialog {
         botao.setFocusPainted(false);
         botao.setBorder(BorderFactory.createLineBorder(new Color(99, 130, 62), 1));
     }
-
+// Verifica se o colaborador foi cadastrado
     public boolean isColaboradorCadastrado() {
         return cadastroConcluido;
     }
 
-    static class Cargo {
-        private final String text;
-        private final int value;
-
-        public Cargo(String text, int value) {
-            this.text = text;
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return text;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 }
