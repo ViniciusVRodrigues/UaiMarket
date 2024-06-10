@@ -18,7 +18,7 @@ public class VerCarrinho extends JFrame {
         this.cliente = mercado.getCliente();
 
         if (this.cliente == null){
-            JOptionPane.showMessageDialog(this, "Cliente não autenticado! Por favor, faça login primeiro.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Você não fez o login, vá para 'Criar/Entrar Conta'", "Erro", JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }
@@ -28,7 +28,7 @@ public class VerCarrinho extends JFrame {
     }
 
     private void initializeUI() {
-        setTitle("Ver model.Carrinho");
+        setTitle("Ver Carrinho");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

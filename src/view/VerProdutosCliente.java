@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import model.Mercado;
 import model.Produto;
 import model.Tipo;
@@ -169,7 +170,8 @@ public class VerProdutosCliente extends JFrame {
 
     private void viewCart() {
         VerCarrinho verCarrinho = new VerCarrinho(mercado);
-        verCarrinho.setVisible(true);
+        if (mercado.getCliente() != null)
+            verCarrinho.setVisible(true);
     }
 
     private void adicionarAoCarrinho() {

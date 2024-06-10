@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment="." />
+    <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VerCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerCarrinho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,17 +158,5 @@
     <MESSAGE value="teste" />
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/menu/MenuCliente.java</url>
-          <line>18</line>
-          <properties field="verCarrinho" class="menu.MenuCliente" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
