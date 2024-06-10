@@ -5,32 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Carrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Colaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EnderecoEntrega.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/EnderecoEntrega.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Estoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FuncionarioCadastroDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialog/FuncionarioCadastroDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FuncionarioMenuDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialog/FuncionarioMenuDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuColaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mercado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProdutoCadastroDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialog/ProdutoCadastroDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProdutoCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProdutoCarrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProdutoMenuDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialog/ProdutoMenuDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerCarrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerColaboradores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerColaboradores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerFuncionariosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerFuncionariosColaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerProdutosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerProdutosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/MenuColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuColaborador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +113,7 @@
       <workItem from="1718023513608" duration="562000" />
       <workItem from="1718024090457" duration="91000" />
       <workItem from="1718024189009" duration="222000" />
-      <workItem from="1718024420649" duration="536000" />
+      <workItem from="1718024420649" duration="870000" />
     </task>
     <task id="LOCAL-00001" summary="teste">
       <option name="closed" value="true" />

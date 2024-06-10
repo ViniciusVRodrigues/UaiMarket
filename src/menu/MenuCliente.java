@@ -22,7 +22,7 @@ public class MenuCliente extends JFrame {
         this.verProdutosCliente = new VerProdutosCliente(mercado);
         this.verCarrinho = new VerCarrinho(mercado);
 
-        setTitle("Menu model.Cliente");
+        setTitle("Menu Cliente");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -52,7 +52,7 @@ public class MenuCliente extends JFrame {
             }
         });
 
-        JButton verCarrinhoButton = new JButton("Ver model.Carrinho");
+        JButton verCarrinhoButton = new JButton("Ver Carrinho");
         verCarrinhoButton.setFont(new Font("Tahoma", Font.BOLD, 16));
         verCarrinhoButton.setBackground(new Color(218, 255, 172));
         verCarrinhoButton.addActionListener(new ActionListener() {
@@ -154,7 +154,7 @@ public class MenuCliente extends JFrame {
         cliente.setEnderecoEntrega(endereco);
 
         mercado.cadastrarCliente(cliente);
-        JOptionPane.showMessageDialog(this, "model.Cliente cadastrado com sucesso!");
+        JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
     }
 
     private void entrarConta() {
@@ -173,7 +173,7 @@ public class MenuCliente extends JFrame {
 
     private void exibirDadosCliente() {
         JPanel panel = new JPanel(new GridLayout(0, 1));
-        StringBuilder dados = new StringBuilder("Dados do model.Cliente:\n");
+        StringBuilder dados = new StringBuilder("Dados do Cliente:\n");
         dados.append("Nome: ").append(cliente.getNome()).append("\n");
         dados.append("Email: ").append(cliente.getEmail()).append("\n");
         dados.append("Senha: ").append(cliente.getSenha()).append("\n");
@@ -213,7 +213,7 @@ public class MenuCliente extends JFrame {
         panel.add(editarButton);
         panel.add(voltarButton);
 
-        JOptionPane.showMessageDialog(this, panel, "Dados do model.Cliente", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, panel, "Dados do Cliente", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void editarDadosCliente() {
@@ -229,7 +229,7 @@ public class MenuCliente extends JFrame {
             String escolha = (String) JOptionPane.showInputDialog(
                     this,
                     "Qual informação deseja editar?",
-                    "Editar Dados do model.Cliente",
+                    "Editar Dados do Cliente",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     opcoes,

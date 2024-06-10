@@ -32,8 +32,8 @@ public class MainMenu extends JFrame {
         add(headerLabel, gbc);
 
         // Cria os botões
-        JButton clienteButton = createButton("Menu model.Cliente");
-        JButton colaboradorButton = createButton("Menu model.Colaborador");
+        JButton clienteButton = createButton("Menu Cliente");
+        JButton colaboradorButton = createButton("Menu Colaborador");
 
         // Adiciona os listeners aos botões
         clienteButton.addActionListener(new ActionListener() {
