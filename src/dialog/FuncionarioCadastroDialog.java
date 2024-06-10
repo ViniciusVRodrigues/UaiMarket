@@ -12,7 +12,7 @@ public class FuncionarioCadastroDialog extends JDialog {
     private boolean cadastroConcluido;
 
     public FuncionarioCadastroDialog(JFrame parent, Colaborador colaborador, Mercado mercado) {
-        super(parent, "Adicionar Produto", true);
+        super(parent, "Adicionar Funcionario", true);
         this.colaborador = colaborador;
         this.mercado = mercado;
         this.cadastroConcluido = false;
