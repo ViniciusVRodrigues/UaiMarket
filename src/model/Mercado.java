@@ -164,7 +164,7 @@ public class Mercado implements Serializable {
 
     public void cadastrarCliente(Cliente cliente) {
         clientes.add(cliente);
-        vincularCliente(cliente);
+        this.cliente = cliente;
         clienteAutenticado = true;
         salvarMercado();
     }
@@ -242,7 +242,6 @@ public class Mercado implements Serializable {
 
     public void salvarMercado() {
         String fileName= "Mercado.txt";
-        clienteAutenticado = false;
         try {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);

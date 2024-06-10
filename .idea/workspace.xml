@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/exception/IncorrectCredentialsException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/MenuColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Mercado.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mercado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +114,7 @@
       <workItem from="1718023513608" duration="562000" />
       <workItem from="1718024090457" duration="91000" />
       <workItem from="1718024189009" duration="222000" />
-      <workItem from="1718024420649" duration="3147000" />
+      <workItem from="1718024420649" duration="4073000" />
     </task>
     <task id="LOCAL-00001" summary="teste">
       <option name="closed" value="true" />
