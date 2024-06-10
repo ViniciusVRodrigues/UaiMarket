@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 public class MenuCliente extends JFrame {
     private Mercado mercado;
@@ -12,8 +11,8 @@ public class MenuCliente extends JFrame {
 
     public MenuCliente(Mercado mercado) {
         this.mercado = mercado;
-        this.verProdutosCliente = new VerProdutosCliente(mercado); // Scanner para simulação
-        this.verCarrinho = new VerCarrinho(mercado); // Scanner para simulação
+        this.verProdutosCliente = new VerProdutosCliente(mercado);
+        this.verCarrinho = new VerCarrinho(mercado);
 
         setTitle("Menu Cliente");
         setSize(400, 300);
@@ -102,15 +101,14 @@ public class MenuCliente extends JFrame {
 
     private void criarConta() {
         cliente = new Cliente();
-        Scanner scanner = new Scanner(System.in);
 
         String nome = JOptionPane.showInputDialog("Digite seu nome:");
         cliente.setNome(nome);
 
         while (true) {
             String email = JOptionPane.showInputDialog("Digite seu email:");
-            cliente.setEmail(email);
             if (mercado.verificarEmail(email)) {
+                cliente.setEmail(email);
                 break;
             } else {
                 JOptionPane.showMessageDialog(this, "Email já utilizado!");
@@ -156,7 +154,6 @@ public class MenuCliente extends JFrame {
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
 
         Cliente clienteExistente = mercado.buscarCliente(email, senha);
-        System.out.println(clienteExistente);
         if (clienteExistente != null && clienteExistente.logar(email, senha)) {
             cliente = clienteExistente;
             mercado.vincularCliente(cliente);
@@ -167,6 +164,7 @@ public class MenuCliente extends JFrame {
     }
 
     private void exibirDadosCliente() {
+        JPanel panel = new JPanel(new GridLayout(0, 1));
         StringBuilder dados = new StringBuilder("Dados do Cliente:\n");
         dados.append("Nome: ").append(cliente.getNome()).append("\n");
         dados.append("Email: ").append(cliente.getEmail()).append("\n");
@@ -183,7 +181,144 @@ public class MenuCliente extends JFrame {
         dados.append("Estado: ").append(endereco.getEstado()).append("\n");
         dados.append("CEP: ").append(endereco.getCep()).append("\n");
 
-        JOptionPane.showMessageDialog(this, dados.toString(), "Dados do Cliente", JOptionPane.INFORMATION_MESSAGE);
+        JTextArea textArea = new JTextArea(dados.toString());
+        textArea.setEditable(false);
+        panel.add(new JScrollPane(textArea));
+
+        JButton editarButton = new JButton("Editar Dados");
+        editarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editarDadosCliente();
+            }
+        });
+
+        JButton voltarButton = new JButton("Voltar");
+        voltarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Window window = SwingUtilities.getWindowAncestor(panel);
+                window.dispose();
+            }
+        });
+
+        panel.add(editarButton);
+        panel.add(voltarButton);
+
+        JOptionPane.showMessageDialog(this, panel, "Dados do Cliente", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void editarDadosCliente() {
+        String[] opcoes = {
+                "Nome", "Email", "Senha", "CPF",
+                "Endereço - Rua", "Endereço - Número", "Endereço - Bairro",
+                "Endereço - Complemento", "Endereço - Cidade",
+                "Endereço - Estado", "Endereço - CEP", "Finalizar"
+        };
+
+        boolean continuar = true;
+        while (continuar) {
+            String escolha = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Qual informação deseja editar?",
+                    "Editar Dados do Cliente",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opcoes,
+                    opcoes[0]
+            );
+
+            if (escolha == null || escolha.equals("Finalizar")) {
+                continuar = false;
+                break;
+            }
+
+            switch (escolha) {
+                case "Nome":
+                    String nome = JOptionPane.showInputDialog(this, "Digite seu nome:", cliente.getNome());
+                    cliente.setNome(nome);
+                    break;
+
+                case "Email":
+                    String email = cliente.getEmail();
+                    while (true) {
+                        email = JOptionPane.showInputDialog(this, "Digite seu email:", cliente.getEmail());
+                        if (mercado.verificarEmail(email)) {
+                            cliente.setEmail(email);
+                            break;
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Email já utilizado!");
+                        }
+                    }
+                    break;
+
+                case "Senha":
+                    String senha = JOptionPane.showInputDialog(this, "Digite sua senha:", cliente.getSenha());
+                    cliente.setSenha(senha);
+                    break;
+
+                case "CPF":
+                    String cpf = JOptionPane.showInputDialog(this, "Digite seu CPF:", cliente.getCpf());
+                    cliente.setCpf(cpf);
+                    break;
+
+                case "Endereço - Rua":
+                    EnderecoEntrega endereco = cliente.getEnderecoEntrega();
+                    String rua = JOptionPane.showInputDialog(this, "Digite o nome da rua:", endereco.getRua());
+                    endereco.setRua(rua);
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                case "Endereço - Número":
+                    endereco = cliente.getEnderecoEntrega();
+                    String numero = JOptionPane.showInputDialog(this, "Digite o número:", String.valueOf(endereco.getNumero()));
+                    endereco.setNumero(Integer.parseInt(numero));
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                case "Endereço - Bairro":
+                    endereco = cliente.getEnderecoEntrega();
+                    String bairro = JOptionPane.showInputDialog(this, "Digite o bairro:", endereco.getBairro());
+                    endereco.setBairro(bairro);
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                case "Endereço - Complemento":
+                    endereco = cliente.getEnderecoEntrega();
+                    String complemento = JOptionPane.showInputDialog(this, "Digite o complemento:", endereco.getComplemento());
+                    endereco.setComplemento(complemento);
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                case "Endereço - Cidade":
+                    endereco = cliente.getEnderecoEntrega();
+                    String cidade = JOptionPane.showInputDialog(this, "Digite a cidade:", endereco.getCidade());
+                    endereco.setCidade(cidade);
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                case "Endereço - Estado":
+                    endereco = cliente.getEnderecoEntrega();
+                    String estado = JOptionPane.showInputDialog(this, "Digite o estado:", endereco.getEstado());
+                    endereco.setEstado(estado);
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                case "Endereço - CEP":
+                    endereco = cliente.getEnderecoEntrega();
+                    String cep = JOptionPane.showInputDialog(this, "Digite o CEP:", endereco.getCep());
+                    endereco.setCep(cep);
+                    cliente.setEnderecoEntrega(endereco);
+                    break;
+
+                default:
+                    continuar = false;
+                    break;
+            }
+        }
+
+        mercado.salvarMercado();
+        JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!");
     }
 
     public static void main(String[] args) {
@@ -192,7 +327,5 @@ public class MenuCliente extends JFrame {
         menuCliente.setVisible(true);
     }
 }
-
-
 
 

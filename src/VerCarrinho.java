@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class VerCarrinho extends JFrame {
     private Mercado mercado;
@@ -59,7 +58,7 @@ public class VerCarrinho extends JFrame {
         buttonPanel.add(efetuarCompraButton);
         buttonPanel.add(removerProdutoButton);
         buttonPanel.add(alterarProdutoButton);
-     
+
 
         getContentPane().add(scrollPane, BorderLayout.CENTER);
         getContentPane().add(buttonPanel, BorderLayout.SOUTH);
@@ -93,8 +92,12 @@ public class VerCarrinho extends JFrame {
 
         int confirmacao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja efetuar compra?", "Confirmar Compra", JOptionPane.YES_NO_OPTION);
         if (confirmacao == JOptionPane.YES_OPTION) {
-            if (mercado.fazerPedido(new Scanner(System.in))) {
+            Pedido pedido = cliente.fazerPedido(true);
+            if (pedido != null) {
+                JOptionPane.showMessageDialog(this, "Pedido realizado com sucesso! Valor total: R$" + pedido.getValorTotalPedido());
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao realizar o pedido.");
             }
         }
     }
@@ -147,4 +150,5 @@ public class VerCarrinho extends JFrame {
         verCarrinho.setVisible(true);
     }
 }
+
 

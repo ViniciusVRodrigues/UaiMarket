@@ -144,19 +144,19 @@ public class Mercado implements Serializable {
         salvarMercado();
     }
 
-    public boolean fazerPedido(Scanner scanner){
-        Pedido pedido = cliente.fazerPedido(scanner);
-        if(pedido==null)
-            return false;
-        List<ProdutoCarrinho> pCList= cliente.getCarrinho().getProdutos();
-        for (ProdutoCarrinho pC : pCList) {
-            Produto produto = getProdutoById(pC.getId());
-            produto.removerQuantidadeEstoque(pC.getQuantidade());
-        }
-        pedidos.add(pedido);
-        salvarMercado();
-        return true;
-    }
+//    public boolean fazerPedido(Scanner scanner){
+//        Pedido pedido = cliente.fazerPedido(scanner);
+//        if(pedido==null)
+//            return false;
+//        List<ProdutoCarrinho> pCList= cliente.getCarrinho().getProdutos();
+//        for (ProdutoCarrinho pC : pCList) {
+//            Produto produto = getProdutoById(pC.getId());
+//            produto.removerQuantidadeEstoque(pC.getQuantidade());
+//        }
+//        pedidos.add(pedido);
+//        salvarMercado();
+//        return true;
+//    }
 
     public void cadastrarAdmin(){
         colaboradores.add(new Colaborador("Admin","admin","admin",1,"Admin"));
@@ -356,5 +356,16 @@ public class Mercado implements Serializable {
 
     public void adicionarAoCarrinho(Produto produto, int quantidade) {
         cliente.getCarrinho().addProduto(produto,quantidade);
+    }
+
+    public void atualizarCliente(Cliente cliente) {
+
+    }
+
+    public Colaborador getColaboradorByEmail(String email) {
+        return colaboradores.stream()
+                .filter(colaborador -> Objects.equals(colaborador.getEmail(), email))
+                .findAny()
+                .orElse(null);
     }
 }

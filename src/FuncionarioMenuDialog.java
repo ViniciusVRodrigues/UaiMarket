@@ -3,12 +3,12 @@ import java.awt.*;
 
 public class FuncionarioMenuDialog extends JDialog {
 
-    private Produto produto;
+    private Colaborador colaborador;
     private Mercado mercado;
 
-    public FuncionarioMenuDialog(JFrame parent, Produto produto, Mercado mercado) {
-        super(parent, "Menu Produto", true);
-        this.produto = produto;
+    public FuncionarioMenuDialog(JFrame parent, Colaborador colaborador, Mercado mercado) {
+        super(parent, "Menu Funcionario", true);
+        this.colaborador = colaborador;
         this.mercado = mercado;
         setupUI();
     }
@@ -18,7 +18,7 @@ public class FuncionarioMenuDialog extends JDialog {
         setLocationRelativeTo(getParent());
         setLayout(new BorderLayout());
 
-        JLabel label = new JLabel("Produto: " + produto.getNome(), SwingConstants.CENTER);
+        JLabel label = new JLabel("Funcionario: " + colaborador.getNome(), SwingConstants.CENTER);
         label.setFont(new Font("Segoe UI", Font.BOLD, 16));
         add(label, BorderLayout.NORTH);
 
@@ -31,8 +31,8 @@ public class FuncionarioMenuDialog extends JDialog {
         JButton voltarButton = new JButton("Voltar");
         configurarBotao(voltarButton);
 
-        atualizarButton.addActionListener(e -> atualizarProduto());
-        deletarButton.addActionListener(e -> deletarProduto());
+        atualizarButton.addActionListener(e -> atualizarFuncionario());
+        deletarButton.addActionListener(e -> deletarFuncionario());
         voltarButton.addActionListener(e -> setVisible(false));
 
         JPanel buttonPanel = new JPanel();
@@ -52,44 +52,34 @@ public class FuncionarioMenuDialog extends JDialog {
         botao.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151), 1));
     }
 
-    private void atualizarProduto() {
-        String[] options = {"Atualizar estoque", "Atualizar preço"};
-        int option = JOptionPane.showOptionDialog(this, "Escolha uma opção:", "Atualizar Produto",
+    private void atualizarFuncionario() {
+        String[] options = {"Atualizar nome", "Atualizar email"};
+        int option = JOptionPane.showOptionDialog(this, "Escolha uma opção:", "Atualizar Funcionario",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
         switch (option) {
             case 0:
-                String quantidadeStr = JOptionPane.showInputDialog(this, "Digite a nova quantidade:");
-                if (quantidadeStr != null) {
-                    try {
-                        int quantidade = Integer.parseInt(quantidadeStr);
-                        produto.getEstoque().setQntd(quantidade);
-                        mercado.salvarMercado();
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(this, "Quantidade inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+                String nomeStr = JOptionPane.showInputDialog(this, "Digite o novo nome:");
+                if (nomeStr != null) {
+                    colaborador.setNome(nomeStr);
+                    mercado.salvarMercado();
                     }
-                }
                 break;
             case 1:
-                String precoStr = JOptionPane.showInputDialog(this, "Digite o novo preço:");
-                if (precoStr != null) {
-                    try {
-                        float preco = Float.parseFloat(precoStr);
-                        produto.setPreco(preco);
-                        mercado.salvarMercado();
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(this, "Preço inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    }
+                String emailStr = JOptionPane.showInputDialog(this, "Digite o novo email:");
+                if (emailStr != null) {
+                    colaborador.setEmail(emailStr);
+                    mercado.salvarMercado();
                 }
                 break;
         }
         setVisible(false);
     }
 
-    private void deletarProduto() {
-        int confirm = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja deletar o produto?", "Confirmar", JOptionPane.YES_NO_OPTION);
+    private void deletarFuncionario() {
+        int confirm = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja deletar o funcionário?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
-            mercado.delProduto(produto);
+            mercado.delColaborador(colaborador);
             setVisible(false);
         }
     }

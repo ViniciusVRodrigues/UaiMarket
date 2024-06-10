@@ -104,12 +104,12 @@ public class VerFuncionariosColaborador extends JFrame {
     private void mostrarMenuProduto() {
         int selectedRow = tabela.getSelectedRow();
         if (selectedRow != -1) {
-            long id = (long) tableModel.getValueAt(selectedRow, 0);
-            Produto produtoSelecionado = mercado.getProdutoById(id);
-            new ProdutoMenuDialog(this, produtoSelecionado, mercado).setVisible(true);
+            String email = (String) tableModel.getValueAt(selectedRow, 1);
+            Colaborador colaboradorSelecionado = mercado.getColaboradorByEmail(email);
+            new FuncionarioMenuDialog(this, colaboradorSelecionado, mercado).setVisible(true);
             atualizarTabela();
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um produto!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um funcionario!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

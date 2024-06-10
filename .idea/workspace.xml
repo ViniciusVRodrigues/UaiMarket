@@ -9,12 +9,12 @@
       <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Mercado.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/colaboradores.csv" beforeDir="false" afterPath="$PROJECT_DIR$/colaboradores.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/produtos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/produtos.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FuncionarioMenuDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FuncionarioMenuDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mercado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VerCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VerCarrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerProdutosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VerProdutosCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VerFuncionariosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VerFuncionariosColaborador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

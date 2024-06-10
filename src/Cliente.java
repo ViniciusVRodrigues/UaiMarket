@@ -37,26 +37,18 @@ public class Cliente extends Pessoa {
         return nome+sep+email+sep+senha+sep+cpf+sep+enderecoEntrega.getCidade()+sep+enderecoEntrega.getEstado();
     }
 
-    public Pedido fazerPedido(Scanner scanner){
-        int frete = 10;
+    public Pedido fazerPedido(boolean confirmacao){
+        int frete = 0;
         if(carrinho.getValorTotalProduto()>=100)
             frete=0;
-        System.out.println("\n---- Efetuar compra ----");
-        carrinho.printProdutos();
-        System.out.println("Endereço de entrega: "+enderecoEntrega);
-        System.out.println("Frete: R$"+frete+",00");
-        Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho,this);
-        System.out.println("Valor Total Pedido: R$"+pedido.getValorTotalPedido());
-        System.out.println("\nTem certeza que deseja efetuar compra?");
-        System.out.println("1. Confirmar");
-        System.out.println("0. Voltar");
-        int confirmacao = scanner.nextInt();
-        scanner.nextLine();
-        if(confirmacao==1){
+        if(confirmacao){
+            Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho,this);
+            carrinho = new Carrinho();
             return pedido;
         }
         return null;
     }
+
 
     public int cadastrarCliente(Scanner scanner, Mercado mercado){
         System.out.println("**** Criar conta ( Digite 'Cancelar' para cancelar");
