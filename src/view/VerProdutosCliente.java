@@ -32,7 +32,7 @@ public class VerProdutosCliente extends JFrame {
     }
 
     private void initializeUI() {
-        setTitle("Ver Produtos model.Cliente");
+        setTitle("Ver Produtos Cliente");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -61,12 +61,12 @@ public class VerProdutosCliente extends JFrame {
         bottomPanel.setBackground(new Color(218, 255, 172));
 
         listAllButton = createButton("Listar Todos");
-        listByTypeButton = createButton("Listar por model.Tipo");
+        listByTypeButton = createButton("Listar por Tipo");
         listTypesButton = createButton("Listar Tipos");
         searchByNameButton = createButton("Pesquisar por Nome");
-        searchByTypeButton = createButton("Pesquisar por model.Tipo");
-        viewCartButton = createButton("Ver model.Carrinho");
-        addToCartButton = createButton("Adicionar ao model.Carrinho"); // Novo botão
+        searchByTypeButton = createButton("Pesquisar por Tipo");
+        viewCartButton = createButton("Ver Carrinho");
+        addToCartButton = createButton("Adicionar ao Carrinho"); // Novo botão
         backButton = createButton("Voltar");
 
         bottomPanel.add(listAllButton);
@@ -122,7 +122,7 @@ public class VerProdutosCliente extends JFrame {
         Map<Tipo, List<Produto>> produtosPorTipo = produtosDisponiveis.stream()
                 .collect(Collectors.groupingBy(Produto::getTipo));
 
-        StringBuilder sb = new StringBuilder("Produtos por model.Tipo:\n");
+        StringBuilder sb = new StringBuilder("Produtos por Tipo:\n");
         produtosPorTipo.forEach((tipo, produtos) -> {
             sb.append("\n").append(tipo.getNome()).append(":\n");
             produtos.forEach(produto -> sb.append(produto).append("\n"));
@@ -158,7 +158,7 @@ public class VerProdutosCliente extends JFrame {
         Tipo tipoBusca = mercado.getTipos().get(idTipo);
         String nomePesquisa = JOptionPane.showInputDialog(this, "Digite o nome do produto que deseja pesquisar (deixe vazio caso queira todos do tipo):");
         List<Produto> produtosPesquisa = mercado.buscarProdPorTipo(nomePesquisa, tipoBusca);
-        StringBuilder sb = new StringBuilder("Resultados da Pesquisa por model.Tipo:\n");
+        StringBuilder sb = new StringBuilder("Resultados da Pesquisa por Tipo:\n");
         for (Produto produto : produtosPesquisa) {
             if (produto.getQuantidadeEstoque() > 0) {
                 sb.append(produto).append("\n");
@@ -176,14 +176,14 @@ public class VerProdutosCliente extends JFrame {
         String nomeProduto = JOptionPane.showInputDialog(this, "Digite o nome do produto que deseja adicionar ao carrinho:");
         List<Produto> produtosPesquisa = mercado.buscarProd(nomeProduto);
         if (produtosPesquisa.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "model.Produto não encontrado!");
+            JOptionPane.showMessageDialog(this, "Produto não encontrado!");
             return;
         }
         Produto produto = produtosPesquisa.get(0); // Supondo que o primeiro resultado seja o desejado
         int quantidade = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite a quantidade que deseja adicionar:"));
         if (quantidade > 0 && quantidade <= produto.getQuantidadeEstoque()) {
             mercado.adicionarAoCarrinho(produto, quantidade);
-            JOptionPane.showMessageDialog(this, "model.Produto adicionado ao carrinho!");
+            JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho!");
         } else {
             JOptionPane.showMessageDialog(this, "Quantidade inválida!");
         }

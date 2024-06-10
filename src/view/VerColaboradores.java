@@ -76,7 +76,7 @@ public class VerColaboradores {
     private void mostrarMenuColaborador() {
         boolean mostrando = true;
         while (mostrando) {
-            System.out.println("\n--- model.Colaborador selecionado: " + colaboradorSelecionado.getNome() + " ---");
+            System.out.println("\n--- Colaborador selecionado: " + colaboradorSelecionado.getNome() + " ---");
             System.out.println("1. Atualizar");
             System.out.println("2. Deletar");
             System.out.println("0. Voltar ");
@@ -89,7 +89,7 @@ public class VerColaboradores {
                     break;
                 case 2:
                     mercado.delColaborador(colaboradorSelecionado);
-                    System.out.println("model.Colaborador deletado!");
+                    System.out.println("Colaborador deletado!");
                     return;
                 case 0:
                     mostrando = false;

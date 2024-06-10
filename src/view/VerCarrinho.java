@@ -18,7 +18,7 @@ public class VerCarrinho extends JFrame {
         this.cliente = mercado.getCliente();
 
         if (this.cliente == null){
-            JOptionPane.showMessageDialog(this, "model.Cliente não autenticado! Por favor, faça login primeiro.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cliente não autenticado! Por favor, faça login primeiro.", "Erro", JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }
@@ -44,8 +44,8 @@ public class VerCarrinho extends JFrame {
 
         JButton continuarComprandoButton = createButton("Continuar Comprando");
         JButton efetuarCompraButton = createButton("Efetuar Compra");
-        JButton removerProdutoButton = createButton("Remover model.Produto");
-        JButton alterarProdutoButton = createButton("Alterar model.Produto");
+        JButton removerProdutoButton = createButton("Remover Produto");
+        JButton alterarProdutoButton = createButton("Alterar Produto");
 
 
         continuarComprandoButton.addActionListener(e -> dispose());
@@ -69,7 +69,7 @@ public class VerCarrinho extends JFrame {
     }
 
     private void updateCarrinhoText() {
-        StringBuilder sb = new StringBuilder("model.Carrinho:\n");
+        StringBuilder sb = new StringBuilder("Carrinho:\n");
         List<ProdutoCarrinho> produtos = carrinho.getProdutos();
         for (int i = 0; i < produtos.size(); i++) {
             sb.append(i).append(". ").append(produtos.get(i)).append("\n");
@@ -98,7 +98,7 @@ public class VerCarrinho extends JFrame {
         if (confirmacao == JOptionPane.YES_OPTION) {
             Pedido pedido = cliente.fazerPedido(true);
             if (pedido != null) {
-                JOptionPane.showMessageDialog(this, "model.Pedido realizado com sucesso! Valor total: R$" + pedido.getValorTotalPedido());
+                JOptionPane.showMessageDialog(this, "Pedido realizado com sucesso! Valor total: R$" + pedido.getValorTotalPedido());
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao realizar o pedido.");
@@ -108,7 +108,7 @@ public class VerCarrinho extends JFrame {
 
     private void removerProduto() {
         if (selecionarProduto()) {
-            int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja remover esse produto?", "Remover model.Produto", JOptionPane.YES_NO_OPTION);
+            int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja remover esse produto?", "Remover Produto", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 carrinho.removeProduto(pCSelecionado);
                 updateCarrinhoText();
@@ -134,17 +134,17 @@ public class VerCarrinho extends JFrame {
     }
 
     private boolean selecionarProduto() {
-        String opcaoStr = JOptionPane.showInputDialog(this, "Digite o ID do produto que deseja selecionar:", "Selecionar model.Produto", JOptionPane.PLAIN_MESSAGE);
+        String opcaoStr = JOptionPane.showInputDialog(this, "Digite o ID do produto que deseja selecionar:", "Selecionar Produto", JOptionPane.PLAIN_MESSAGE);
         if (opcaoStr != null && !opcaoStr.isEmpty()) {
             int opcao = Integer.parseInt(opcaoStr);
             List<ProdutoCarrinho> pCList = carrinho.getProdutos();
             if (opcao >= 0 && opcao < pCList.size()) {
                 pCSelecionado = pCList.get(opcao);
-                JOptionPane.showMessageDialog(this, "model.Produto selecionado:\n" + pCSelecionado);
+                JOptionPane.showMessageDialog(this, "Produto selecionado:\n" + pCSelecionado);
                 return true;
             }
         }
-        JOptionPane.showMessageDialog(this, "model.Produto não encontrado!");
+        JOptionPane.showMessageDialog(this, "Produto não encontrado!");
         return false;
     }
 
