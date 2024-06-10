@@ -43,15 +43,15 @@ Esses são os membros da nossa equipe:
 </p>
 
 ## 🔨Funcionalidades do projeto
-### Do model.Cliente
+### Do Cliente
 - `Funcionalidade 1`: O cliente pode se cadastrar e fazer no sistema
 - `Funcionalidade 2`: O cliente pode criar um carrinho com os produtos que deseja comprar
 - `Funcionalidade 3`: O cliente pode ver qual o valor total do seu carrinho
 - `Funcionalidade 4`: O cliente pode adicionar o seu endereço de entrega
 - `Funcionalidade 5`: O cliente pode realizar a compra dos produtos de seu carrinho
 
-### Do model.Colaborador
-- `Funcionalidade 1`: O colaborador pode gerenciar produtos
+### Do Colaborador
+- `Funcionalidade 1`: O Admin pode gerenciar produtos
 - `Funcionalidade 2`: O colaborador pode editar estoque
 - `Funcionalidade 3`: O colaborador pode gerenciar funcionarios 
 - `Funcionalidade 4`: O colaborador pode ver pedidos
@@ -62,3 +62,7 @@ Esses são os membros da nossa equipe:
 - `Modelo de Orientação a objetos`
 - `Diagrama de classes`
 - `Canvas PBB`
+
+##Imagens do projeto
+###Menu inicial:
+![image](https://github.com/ViniciusVRodrigues/UaiMarket/assets/162137379/dbcd5ba8-c555-4351-9609-7ef26b51d174)
