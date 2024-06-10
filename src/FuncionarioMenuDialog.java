@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class FuncionarioMenuDialog extends JDialog {
@@ -14,42 +15,50 @@ public class FuncionarioMenuDialog extends JDialog {
     }
 
     private void setupUI() {
-        setSize(300, 200);
+        setSize(400, 250);
         setLocationRelativeTo(getParent());
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10, 10));
+        getContentPane().setBackground(new Color(245, 245, 245));
 
         JLabel label = new JLabel("Funcionario: " + colaborador.getNome(), SwingConstants.CENTER);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        label.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        label.setForeground(new Color(99, 130, 62));
+        label.setBorder(new EmptyBorder(10, 10, 10, 10));
         add(label, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(245, 245, 245));
+        buttonPanel.setLayout(new GridLayout(3, 1, 10, 10));
+        buttonPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         JButton atualizarButton = new JButton("Atualizar");
         configurarBotao(atualizarButton);
+        buttonPanel.add(atualizarButton);
 
         JButton deletarButton = new JButton("Deletar");
         configurarBotao(deletarButton);
+        buttonPanel.add(deletarButton);
 
         JButton voltarButton = new JButton("Voltar");
         configurarBotao(voltarButton);
+        buttonPanel.add(voltarButton);
 
         atualizarButton.addActionListener(e -> atualizarFuncionario());
         deletarButton.addActionListener(e -> deletarFuncionario());
         voltarButton.addActionListener(e -> setVisible(false));
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(159, 191, 117));
-        buttonPanel.add(atualizarButton);
-        buttonPanel.add(deletarButton);
-        buttonPanel.add(voltarButton);
-
-        add(buttonPanel, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.CENTER);
     }
 
     private void configurarBotao(JButton botao) {
-        botao.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        botao.setForeground(Color.BLACK);
+        botao.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        botao.setForeground(Color.WHITE);
         botao.setBackground(new Color(99, 130, 62));
         botao.setFocusPainted(false);
-        botao.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151), 1));
+        botao.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(207, 250, 151), 1),
+                BorderFactory.createEmptyBorder(10, 15, 10, 15)
+        ));
     }
 
     private void atualizarFuncionario() {
@@ -63,7 +72,7 @@ public class FuncionarioMenuDialog extends JDialog {
                 if (nomeStr != null) {
                     colaborador.setNome(nomeStr);
                     mercado.salvarMercado();
-                    }
+                }
                 break;
             case 1:
                 String emailStr = JOptionPane.showInputDialog(this, "Digite o novo email:");
@@ -84,3 +93,4 @@ public class FuncionarioMenuDialog extends JDialog {
         }
     }
 }
+
