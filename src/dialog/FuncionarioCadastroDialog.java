@@ -1,15 +1,18 @@
+package dialog;
+import model.Colaborador;
+import model.Mercado;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.Vector;
 
-class FuncionarioCadastroDialog extends JDialog {
+public class FuncionarioCadastroDialog extends JDialog {
 
     private Colaborador colaborador;
     private Mercado mercado;
     private boolean cadastroConcluido;
 
     public FuncionarioCadastroDialog(JFrame parent, Colaborador colaborador, Mercado mercado) {
-        super(parent, "Adicionar Produto", true);
+        super(parent, "Adicionar model.Produto", true);
         this.colaborador = colaborador;
         this.mercado = mercado;
         this.cadastroConcluido = false;
@@ -49,7 +52,7 @@ class FuncionarioCadastroDialog extends JDialog {
         JLabel cargoLabel = new JLabel("Cargo:");
         cargoLabel.setForeground(new Color(207, 250, 151));
         cargoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        JComboBox<String> cargoComboBox = new JComboBox<>(new String[]{"Admin", "Colaborador"});  // Add options
+        JComboBox<String> cargoComboBox = new JComboBox<>(new String[]{"Admin", "model.Colaborador"});  // Add options
 
         JLabel codigoLabel = new JLabel("Código:");
         codigoLabel.setForeground(new Color(207, 250, 151));

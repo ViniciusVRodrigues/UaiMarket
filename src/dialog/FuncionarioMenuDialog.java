@@ -1,6 +1,11 @@
+package dialog;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import model.Colaborador;
+import model.Mercado;
+
 
 public class FuncionarioMenuDialog extends JDialog {
 

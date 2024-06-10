@@ -1,8 +1,10 @@
+package dialog;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import model.Produto;
+import model.Mercado;
 
 public class ProdutoMenuDialog extends JDialog {
 
@@ -10,7 +12,7 @@ public class ProdutoMenuDialog extends JDialog {
     private Mercado mercado;
 
     public ProdutoMenuDialog(JFrame parent, Produto produto, Mercado mercado) {
-        super(parent, "Menu Produto", true);
+        super(parent, "Menu model.Produto", true);
         this.produto = produto;
         this.mercado = mercado;
         setupUI();
@@ -22,7 +24,7 @@ public class ProdutoMenuDialog extends JDialog {
         setLayout(new BorderLayout(10, 10));
         getContentPane().setBackground(new Color(245, 245, 245));
 
-        JLabel label = new JLabel("Produto: " + produto.getNome(), SwingConstants.CENTER);
+        JLabel label = new JLabel("model.Produto: " + produto.getNome(), SwingConstants.CENTER);
         label.setFont(new Font("Segoe UI", Font.BOLD, 18));
         label.setForeground(new Color(99, 130, 62));
         label.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -64,12 +66,12 @@ public class ProdutoMenuDialog extends JDialog {
     }
 
     private void showUpdateOptions() {
-        JDialog updateDialog = new JDialog(this, "Atualizar Produto", true);
+        JDialog updateDialog = new JDialog(this, "Atualizar model.Produto", true);
         updateDialog.setSize(300, 200);
         updateDialog.setLocationRelativeTo(this);
         updateDialog.setLayout(new GridLayout(3, 1, 10, 10));
 
-        JButton atualizarEstoqueButton = new JButton("Atualizar Estoque");
+        JButton atualizarEstoqueButton = new JButton("Atualizar model.Estoque");
         configurarBotao(atualizarEstoqueButton);
         atualizarEstoqueButton.addActionListener(e -> {
             updateDialog.setVisible(false);
@@ -95,7 +97,7 @@ public class ProdutoMenuDialog extends JDialog {
     }
 
     private void showUpdateEstoqueDialog() {
-        JDialog estoqueDialog = new JDialog(this, "Atualizar Estoque", true);
+        JDialog estoqueDialog = new JDialog(this, "Atualizar model.Estoque", true);
         estoqueDialog.setSize(300, 200);
         estoqueDialog.setLocationRelativeTo(this);
         estoqueDialog.setLayout(new BorderLayout(10, 10));
@@ -119,7 +121,7 @@ public class ProdutoMenuDialog extends JDialog {
                 int quantidade = Integer.parseInt(quantidadeField.getText());
                 produto.getEstoque().setQntd(quantidade);
                 mercado.salvarMercado();
-                JOptionPane.showMessageDialog(this, "Estoque atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "model.Estoque atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 estoqueDialog.setVisible(false);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Quantidade inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -181,7 +183,7 @@ public class ProdutoMenuDialog extends JDialog {
     }
 
     private void showDeleteConfirmation() {
-        JDialog deleteDialog = new JDialog(this, "Deletar Produto", true);
+        JDialog deleteDialog = new JDialog(this, "Deletar model.Produto", true);
         deleteDialog.setSize(300, 150);
         deleteDialog.setLocationRelativeTo(this);
         deleteDialog.setLayout(new BorderLayout(10, 10));

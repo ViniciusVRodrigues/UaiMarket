@@ -1,5 +1,8 @@
+package model;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+
 import java.util.Scanner;
 
 public class Cliente extends Pessoa {
@@ -107,7 +110,7 @@ public class Cliente extends Pessoa {
         input = scanner.nextLine();
         this.enderecoEntrega.setCep(input);
 
-        System.out.println("\nCliente cadastrado com sucesso!");
+        System.out.println("\nmodel.Cliente cadastrado com sucesso!");
         mercado.cadastrarCliente(this);
         return 1;
     }
@@ -122,7 +125,7 @@ public class Cliente extends Pessoa {
 
         while (mostrando) {
 
-            System.out.println("\n**** Dados do Cliente ****");
+            System.out.println("\n**** Dados do model.Cliente ****");
             System.out.println("Nome: " + this.nome);
             System.out.println("Email: " + this.email);
             System.out.println("Senha: " + this.senha);

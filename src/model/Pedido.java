@@ -1,3 +1,4 @@
+package model;
 import java.io.Serializable;
 
 public class Pedido implements Serializable {

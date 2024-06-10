@@ -1,7 +1,14 @@
+package menu;
+
+import view.VerFuncionariosColaborador;
+import view.VerProdutosColaborador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.Colaborador;
+import model.Mercado;
 
 public class MenuColaborador extends JFrame {
     private Mercado mercado;
@@ -17,13 +24,13 @@ public class MenuColaborador extends JFrame {
         this.verProdutosColaborador = new VerProdutosColaborador(mercado);
         this.verFuncionariosColaborador = new VerFuncionariosColaborador(mercado);
 
-        setTitle("Login Colaborador");
+        setTitle("Login model.Colaborador");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(159, 191, 117));
 
-        JLabel label = new JLabel("Login Colaborador", JLabel.CENTER);
+        JLabel label = new JLabel("Login model.Colaborador", JLabel.CENTER);
         label.setFont(new Font("Serif", Font.BOLD, 20));
         label.setForeground(new Color(207, 250, 151));
         add(label, BorderLayout.NORTH);
@@ -76,7 +83,7 @@ public class MenuColaborador extends JFrame {
     }
 
     public void mostrarMenu() {
-        JFrame menuFrame = new JFrame("Menu do Colaborador");
+        JFrame menuFrame = new JFrame("Menu do model.Colaborador");
         menuFrame.setSize(500, 400);
         menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menuFrame.setLocationRelativeTo(null);

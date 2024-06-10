@@ -1,10 +1,10 @@
+package model;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Mercado implements Serializable {
     private ArrayList<Produto> produtos = new ArrayList<>();
@@ -145,12 +145,12 @@ public class Mercado implements Serializable {
     }
 
 //    public boolean fazerPedido(Scanner scanner){
-//        Pedido pedido = cliente.fazerPedido(scanner);
+//        model.Pedido pedido = cliente.fazerPedido(scanner);
 //        if(pedido==null)
 //            return false;
-//        List<ProdutoCarrinho> pCList= cliente.getCarrinho().getProdutos();
-//        for (ProdutoCarrinho pC : pCList) {
-//            Produto produto = getProdutoById(pC.getId());
+//        List<model.ProdutoCarrinho> pCList= cliente.getCarrinho().getProdutos();
+//        for (model.ProdutoCarrinho pC : pCList) {
+//            model.Produto produto = getProdutoById(pC.getId());
 //            produto.removerQuantidadeEstoque(pC.getQuantidade());
 //        }
 //        pedidos.add(pedido);
@@ -241,7 +241,7 @@ public class Mercado implements Serializable {
     }
 
     public void salvarMercado() {
-        String fileName= "Mercado.txt";
+        String fileName= "model.Mercado.txt";
         clienteAutenticado = false;
         try {
             FileOutputStream fos = new FileOutputStream(fileName);
@@ -258,7 +258,7 @@ public class Mercado implements Serializable {
 
     public void carregarMercado() {
         try {
-            String fileName= "Mercado.txt";
+            String fileName= "model.Mercado.txt";
             FileInputStream fin = new FileInputStream(fileName);
             ObjectInputStream ois = new ObjectInputStream(fin);
             Mercado mercado= (Mercado) ois.readObject();

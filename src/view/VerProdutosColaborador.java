@@ -1,22 +1,30 @@
+package view;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
+import model.Mercado;
+import model.Produto;
+import model.Tipo;
+import dialog.ProdutoCadastroDialog;
+import dialog.ProdutoMenuDialog;
 
-public class VerFuncionariosColaborador extends JFrame {
+
+public class VerProdutosColaborador extends JFrame {
 
     private Mercado mercado;
-    private JTable tabela;
+    private JTable produtoTable;
     private DefaultTableModel tableModel;
 
-    public VerFuncionariosColaborador(Mercado mercado) {
+    public VerProdutosColaborador(Mercado mercado) {
         this.mercado = mercado;
         setupUI();
     }
 
     private void setupUI() {
-        setTitle("Ver Funcionários");
+        setTitle("Ver Produtos");
         setSize(800, 400);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -25,13 +33,13 @@ public class VerFuncionariosColaborador extends JFrame {
         getContentPane().setBackground(new Color(159, 191, 117));
 
         // Table Model
-        tableModel = new DefaultTableModel(new String[]{"Nome", "Email", "Código", "Cargo"}, 0);
-        tabela = new JTable(tableModel);
-        configurarTabela(tabela);
-        atualizarTabela();
+        tableModel = new DefaultTableModel(new String[]{"ID", "Nome", "Marca", "Preço", "Tipo", "Quantidade"}, 0);
+        produtoTable = new JTable(tableModel);
+        configurarTabela(produtoTable);
+        atualizarTabelaProdutos();
 
         // Scroll Pane
-        JScrollPane scrollPane = new JScrollPane(tabela);
+        JScrollPane scrollPane = new JScrollPane(produtoTable);
         scrollPane.getViewport().setBackground(new Color(245, 245, 245));
 
         // Buttons
@@ -88,38 +96,40 @@ public class VerFuncionariosColaborador extends JFrame {
         botao.setBorder(BorderFactory.createLineBorder(new Color(207, 250, 151), 1));
     }
 
-    private void atualizarTabela() {
+    private void atualizarTabelaProdutos() {
         tableModel.setRowCount(0);  // Clear existing rows
-        List<Colaborador> colaboradores = mercado.getColaboradores();
-        for (Colaborador c : colaboradores) {
+        List<Produto> produtos = mercado.getProdutos();
+        for (Produto produto : produtos) {
             tableModel.addRow(new Object[]{
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCodigo(),
-                    c.getCargo()
+                    produto.getId(),
+                    produto.getNome(),
+                    produto.getMarca(),
+                    produto.getPreco(),
+                    produto.getTipo().getNome(),
+                    produto.getEstoque().getQntd()
             });
         }
     }
 
     private void mostrarMenuProduto() {
-        int selectedRow = tabela.getSelectedRow();
+        int selectedRow = produtoTable.getSelectedRow();
         if (selectedRow != -1) {
-            String email = (String) tableModel.getValueAt(selectedRow, 1);
-            Colaborador colaboradorSelecionado = mercado.getColaboradorByEmail(email);
-            new FuncionarioMenuDialog(this, colaboradorSelecionado, mercado).setVisible(true);
-            atualizarTabela();
+            long id = (long) tableModel.getValueAt(selectedRow, 0);
+            Produto produtoSelecionado = mercado.getProdutoById(id);
+            new ProdutoMenuDialog(this, produtoSelecionado, mercado).setVisible(true);
+            atualizarTabelaProdutos();
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um funcionario!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um produto!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void adicionarProduto() {
-        Colaborador colaborador = new Colaborador();
-        FuncionarioCadastroDialog dialog = new FuncionarioCadastroDialog(this, colaborador, mercado);
+        Produto produto = new Produto();
+        ProdutoCadastroDialog dialog = new ProdutoCadastroDialog(this, produto, mercado);
         dialog.setVisible(true);
-        if (dialog.isColaboradorCadastrado()) {
-            mercado.addColaborador(colaborador);
-            atualizarTabela();
+        if (dialog.isProdutoCadastrado()) {
+            mercado.addProduto(produto);
+            atualizarTabelaProdutos();
         }
     }
 
@@ -129,6 +139,6 @@ public class VerFuncionariosColaborador extends JFrame {
         mercado.addProduto(new Produto(1, new Tipo(1, "Bebida"), "Coca-Cola", "Coca-Cola", 5.0f, 10));
         mercado.addProduto(new Produto(2, new Tipo(2, "Comida"), "Arroz", "Tio João", 20.0f, 5));
 
-        SwingUtilities.invokeLater(() -> new VerFuncionariosColaborador(mercado).setVisible(true));
+        SwingUtilities.invokeLater(() -> new VerProdutosColaborador(mercado).setVisible(true));
     }
 }

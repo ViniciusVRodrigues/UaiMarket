@@ -1,3 +1,10 @@
+package main;
+import menu.MenuCliente;
+import menu.MenuColaborador;
+import model.Cliente;
+import model.Mercado;
+
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -10,8 +17,8 @@ public class Main {
         boolean mostrando = true;
         while (mostrando) {
             System.out.println("\n**** SELECIONE O MENU DESEJADO ****");
-            System.out.println("1. Menu Cliente");
-            System.out.println("2. Menu Colaborador");
+            System.out.println("1. Menu model.Cliente");
+            System.out.println("2. Menu model.Colaborador");
             System.out.println("0. Sair");
             System.out.println("Digite a opção: ");
 

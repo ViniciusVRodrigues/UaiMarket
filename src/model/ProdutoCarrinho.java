@@ -1,4 +1,10 @@
+package model;
+
 import java.io.Serializable;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class ProdutoCarrinho extends  Produto implements Serializable {
     private int quantidade;

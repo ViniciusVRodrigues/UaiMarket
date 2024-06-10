@@ -1,5 +1,6 @@
+package model;
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Colaborador extends Pessoa {
@@ -35,7 +36,7 @@ public class Colaborador extends Pessoa {
     }
 
     public int cadastrarFuncionario(Scanner scanner) {
-        System.out.println("---- Adicionar Colaborador(Digite 'Cancelar' para cancelar) ----");
+        System.out.println("---- Adicionar model.Colaborador(Digite 'Cancelar' para cancelar) ----");
 
         System.out.println("Digite o nome:");
         String input = scanner.nextLine();
@@ -57,12 +58,12 @@ public class Colaborador extends Pessoa {
         if (testeSair(input)) return 0;
         this.codigo = Integer.parseInt(input);
 
-        System.out.println("Digite a cargo (1=Admin,2=Colaborador):");
+        System.out.println("Digite a cargo (1=Admin,2=model.Colaborador):");
         input = scanner.nextLine();
         if (testeSair(input)) return 0;
-        this.cargo = input.equals("1") ? "Admin" : "Colaborador";
+        this.cargo = input.equals("1") ? "Admin" : "model.Colaborador";
 
-        System.out.println("\nColaborador cadastrado com sucesso!");
+        System.out.println("\nmodel.Colaborador cadastrado com sucesso!");
         return 1;
     }
 
@@ -106,8 +107,8 @@ public class Colaborador extends Pessoa {
                 case 5:
                     System.out.println("\n---- Cargo ----");
                     System.out.println("Cargo atual: " + this.cargo);
-                    System.out.println("Digite o novo cargo (1=Admin,2=Colaborador):");
-                    cargo = scanner.nextLine().equals("1")? "Admin": "Colaborador";
+                    System.out.println("Digite o novo cargo (1=Admin,2=model.Colaborador):");
+                    cargo = scanner.nextLine().equals("1")? "Admin": "model.Colaborador";
                     break;
                 case 0:
                     System.out.println("Voltando...");

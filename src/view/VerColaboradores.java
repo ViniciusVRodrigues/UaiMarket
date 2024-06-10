@@ -1,5 +1,11 @@
+package view;
+
+import model.Mercado;
+
 import java.util.List;
 import java.util.Scanner;
+import model.Colaborador;
+
 
 public class VerColaboradores {
 
@@ -10,7 +16,7 @@ public class VerColaboradores {
     private Colaborador colaboradorLogado;
     private int idSelecionado;
 
-    public VerColaboradores(Mercado mercado,Colaborador colaboradorLogado) {
+    public VerColaboradores(Mercado mercado, Colaborador colaboradorLogado) {
         this.scanner = new Scanner(System.in);
         this.mercado = mercado;
         this.colaboradorLogado = colaboradorLogado;
@@ -70,7 +76,7 @@ public class VerColaboradores {
     private void mostrarMenuColaborador() {
         boolean mostrando = true;
         while (mostrando) {
-            System.out.println("\n--- Colaborador selecionado: " + colaboradorSelecionado.getNome() + " ---");
+            System.out.println("\n--- model.Colaborador selecionado: " + colaboradorSelecionado.getNome() + " ---");
             System.out.println("1. Atualizar");
             System.out.println("2. Deletar");
             System.out.println("0. Voltar ");
@@ -83,7 +89,7 @@ public class VerColaboradores {
                     break;
                 case 2:
                     mercado.delColaborador(colaboradorSelecionado);
-                    System.out.println("Colaborador deletado!");
+                    System.out.println("model.Colaborador deletado!");
                     return;
                 case 0:
                     mostrando = false;

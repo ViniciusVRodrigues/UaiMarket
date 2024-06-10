@@ -1,6 +1,5 @@
+package model;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class Estoque  implements Serializable {

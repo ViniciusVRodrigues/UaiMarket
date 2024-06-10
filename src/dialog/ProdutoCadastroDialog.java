@@ -1,15 +1,20 @@
+package dialog;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
+import model.Produto;
+import model.Mercado;
+import model.Tipo;
 
-class ProdutoCadastroDialog extends JDialog {
+public class ProdutoCadastroDialog extends JDialog {
 
     private Produto produto;
     private Mercado mercado;
     private boolean produtoCadastrado;
 
+
     public ProdutoCadastroDialog(JFrame parent, Produto produto, Mercado mercado) {
-        super(parent, "Adicionar Produto", true);
+        super(parent, "Adicionar model.Produto", true);
         this.produto = produto;
         this.mercado = mercado;
         this.produtoCadastrado = false;
@@ -46,7 +51,7 @@ class ProdutoCadastroDialog extends JDialog {
         precoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         JTextField precoField = new JTextField();
 
-        JLabel tipoLabel = new JLabel("Tipo:");
+        JLabel tipoLabel = new JLabel("model.Tipo:");
         tipoLabel.setForeground(new Color(207, 250, 151));
         tipoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         JComboBox<Tipo> tipoComboBox = new JComboBox<>(mercado.getTipos().toArray(new Tipo[0]));

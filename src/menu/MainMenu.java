@@ -1,3 +1,7 @@
+package menu;
+import model.Mercado;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -28,14 +32,14 @@ public class MainMenu extends JFrame {
         add(headerLabel, gbc);
 
         // Cria os botões
-        JButton clienteButton = createButton("Menu Cliente");
-        JButton colaboradorButton = createButton("Menu Colaborador");
+        JButton clienteButton = createButton("Menu model.Cliente");
+        JButton colaboradorButton = createButton("Menu model.Colaborador");
 
         // Adiciona os listeners aos botões
         clienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre o MenuCliente
+                // Abre o menu.MenuCliente
                 MenuCliente menuCliente = new MenuCliente(mercado);
                 menuCliente.setVisible(true);
             }
@@ -44,7 +48,7 @@ public class MainMenu extends JFrame {
         colaboradorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre o MenuColaborador
+                // Abre o menu.MenuColaborador
                 MenuColaborador menuColaborador = new MenuColaborador(mercado);
                 menuColaborador.setVisible(true);
             }

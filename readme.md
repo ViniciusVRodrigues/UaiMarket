@@ -43,14 +43,14 @@ Esses são os membros da nossa equipe:
 </p>
 
 ## 🔨Funcionalidades do projeto
-### Do Cliente
+### Do model.Cliente
 - `Funcionalidade 1`: O cliente pode se cadastrar e fazer no sistema
 - `Funcionalidade 2`: O cliente pode criar um carrinho com os produtos que deseja comprar
 - `Funcionalidade 3`: O cliente pode ver qual o valor total do seu carrinho
 - `Funcionalidade 4`: O cliente pode adicionar o seu endereço de entrega
 - `Funcionalidade 5`: O cliente pode realizar a compra dos produtos de seu carrinho
 
-### Do Colaborador
+### Do model.Colaborador
 - `Funcionalidade 1`: O colaborador pode gerenciar produtos
 - `Funcionalidade 2`: O colaborador pode editar estoque
 - `Funcionalidade 3`: O colaborador pode gerenciar funcionarios 
