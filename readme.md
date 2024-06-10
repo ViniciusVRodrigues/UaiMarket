@@ -63,6 +63,19 @@ Esses são os membros da nossa equipe:
 - `Diagrama de classes`
 - `Canvas PBB`
 
-##Imagens do projeto
-###Menu inicial:
-![image](https://github.com/ViniciusVRodrigues/UaiMarket/assets/162137379/dbcd5ba8-c555-4351-9609-7ef26b51d174)
+## Imagens do projeto
+### Menu inicial:
+![image](https://github.com/ViniciusVRodrigues/UaiMarket/assets/162137379/0823b92b-836e-4a78-b965-d975068c9bd0)
+
+### Menu Admin
+![image](https://github.com/ViniciusVRodrigues/UaiMarket/assets/162137379/4c896789-19d1-4aa3-8dcf-45d7dabb184e)
+
+### Ver Produtos
+![image](https://github.com/ViniciusVRodrigues/UaiMarket/assets/162137379/0402a366-b706-47a4-a44c-2cfb97fe71be)
+
+### Ver Funcionarios
+![image](https://github.com/ViniciusVRodrigues/UaiMarket/assets/162137379/6a2a1555-561f-4fe6-9655-770a71d5c3b3)
+
+
+
+
