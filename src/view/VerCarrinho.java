@@ -29,7 +29,7 @@ public class VerCarrinho extends JFrame {
 
     private void initializeUI() {
         setTitle("Ver Carrinho");
-        setSize(800, 600);
+        setSize(800, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -47,14 +47,13 @@ public class VerCarrinho extends JFrame {
         JButton removerProdutoButton = createButton("Remover Produto");
         JButton alterarProdutoButton = createButton("Alterar Produto");
 
-
         continuarComprandoButton.addActionListener(e -> dispose());
         efetuarCompraButton.addActionListener(e -> efetuarCompra());
         removerProdutoButton.addActionListener(e -> removerProduto());
         alterarProdutoButton.addActionListener(e -> alterarProduto());
 
 
-        JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 10, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.setBackground(new Color(218, 255, 172));
 

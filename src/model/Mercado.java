@@ -72,9 +72,9 @@ public class Mercado implements Serializable {
     }
 
     //Função para encontrar o tipo baseado no recebido por parametro
-    public ArrayList<Produto> buscarProdPorTipo(String busca, Tipo tipo) {
+    public ArrayList<Produto> buscarProdPorTipo(Tipo tipo) {
         return produtos.stream()
-                .filter(produto -> produto.getNome().toLowerCase().contains(busca.toLowerCase()) && produto.getTipo().equals(tipo))
+                .filter(produto -> produto.getTipo().equals(tipo))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
