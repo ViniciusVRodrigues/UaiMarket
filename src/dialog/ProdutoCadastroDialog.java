@@ -14,7 +14,7 @@ public class ProdutoCadastroDialog extends JDialog {
 
 
     public ProdutoCadastroDialog(JFrame parent, Produto produto, Mercado mercado) {
-        super(parent, "Adicionar model.Produto", true);
+        super(parent, "Adicionar Produto", true);
         this.produto = produto;
         this.mercado = mercado;
         this.produtoCadastrado = false;

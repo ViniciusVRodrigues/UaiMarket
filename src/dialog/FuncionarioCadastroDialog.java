@@ -12,7 +12,7 @@ public class FuncionarioCadastroDialog extends JDialog {
     private boolean cadastroConcluido;
 
     public FuncionarioCadastroDialog(JFrame parent, Colaborador colaborador, Mercado mercado) {
-        super(parent, "Adicionar model.Produto", true);
+        super(parent, "Adicionar Produto", true);
         this.colaborador = colaborador;
         this.mercado = mercado;
         this.cadastroConcluido = false;
@@ -52,7 +52,7 @@ public class FuncionarioCadastroDialog extends JDialog {
         JLabel cargoLabel = new JLabel("Cargo:");
         cargoLabel.setForeground(new Color(207, 250, 151));
         cargoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        JComboBox<String> cargoComboBox = new JComboBox<>(new String[]{"Admin", "model.Colaborador"});  // Add options
+        JComboBox<String> cargoComboBox = new JComboBox<>(new String[]{"Admin", "Colaborador"});  // Add options
 
         JLabel codigoLabel = new JLabel("Código:");
         codigoLabel.setForeground(new Color(207, 250, 151));
