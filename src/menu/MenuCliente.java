@@ -100,7 +100,7 @@ public class MenuCliente extends JFrame {
 
     private void criarOuEntrarConta() {
         JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setTitle("Criar/Entrar Conta");
         frame.setSize(300, 150);
         frame.setLocationRelativeTo(null); // Centraliza a janela
@@ -129,7 +129,7 @@ public class MenuCliente extends JFrame {
                     entrarConta();
                     frame.dispose(); // Fecha a janela após entrar na conta
                 } catch (IncorrectCredentialsException ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
 
             }
@@ -146,6 +146,7 @@ public class MenuCliente extends JFrame {
     private void criarConta() {
         // Criação da janela
         JFrame criarContaFrame = new JFrame("Criar Conta");
+        criarContaFrame.setSize(400, 600);
         criarContaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         criarContaFrame.setLocationRelativeTo(null);
 
@@ -162,7 +163,7 @@ public class MenuCliente extends JFrame {
         JTextField estadoField = new JTextField(20);
         JTextField cepField = new JTextField(20);
 
-        JPanel mainPanel = new JPanel(new GridLayout(12, 1));
+        // Painel principal para os campos
         JPanel mainPanel = new JPanel(new GridLayout(12, 2, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         mainPanel.setBackground(new Color(159, 191, 117));
