@@ -127,10 +127,11 @@ public class MenuCliente extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     entrarConta();
+                    frame.dispose(); // Fecha a janela após entrar na conta
                 } catch (IncorrectCredentialsException ex) {
                     throw new RuntimeException(ex);
                 }
-                frame.dispose(); // Fecha a janela após entrar na conta
+
             }
         });
 
@@ -143,6 +144,12 @@ public class MenuCliente extends JFrame {
 
 
     private void criarConta() {
+        // Criação da janela
+        JFrame criarContaFrame = new JFrame("Criar Conta");
+        criarContaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        criarContaFrame.setLocationRelativeTo(null);
+
+        // Campos para os dados do cliente
         JTextField nomeField = new JTextField(20);
         JTextField emailField = new JTextField(20);
         JPasswordField senhaField = new JPasswordField(20);
@@ -156,7 +163,9 @@ public class MenuCliente extends JFrame {
         JTextField cepField = new JTextField(20);
 
         JPanel mainPanel = new JPanel(new GridLayout(12, 1));
+        JPanel mainPanel = new JPanel(new GridLayout(12, 2, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        mainPanel.setBackground(new Color(159, 191, 117));
 
         mainPanel.add(new JLabel("Nome:"));
         mainPanel.add(nomeField);
@@ -181,10 +190,16 @@ public class MenuCliente extends JFrame {
         mainPanel.add(new JLabel("CEP:"));
         mainPanel.add(cepField);
 
+        // Botão para cadastrar o cliente
         JButton cadastrarButton = new JButton("Cadastrar");
+        cadastrarButton.setBackground(new Color(218, 255, 172));
         cadastrarButton.addActionListener(e -> {
             String nome = nomeField.getText();
             String email = emailField.getText();
+            if(!mercado.verificarEmail(email)){
+                JOptionPane.showMessageDialog(criarContaFrame, "Email já utilizado!");
+                return;
+            }
             String senha = new String(senhaField.getPassword());
             String cpf = cpfField.getText();
             String rua = ruaField.getText();
@@ -203,9 +218,9 @@ public class MenuCliente extends JFrame {
 
             EnderecoEntrega endereco = new EnderecoEntrega();
             endereco.setRua(rua);
-            try{
-            endereco.setNumero(Integer.parseInt(numero));
-            }catch (NumberFormatException ex){
+            try {
+                endereco.setNumero(Integer.parseInt(numero));
+            } catch (NumberFormatException ex) {
                 endereco.setNumero(0);
             }
             endereco.setBairro(bairro);
@@ -218,12 +233,19 @@ public class MenuCliente extends JFrame {
             this.cliente = cliente;
             mercado.cadastrarCliente(cliente);
 
-            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(criarContaFrame, "Cliente cadastrado com sucesso!");
+            criarContaFrame.dispose();
         });
+
+        // Adicionar o botão ao painel principal
+        mainPanel.add(new JLabel()); // Placeholder para alinhamento
         mainPanel.add(cadastrarButton);
 
-        JOptionPane.showMessageDialog(this, mainPanel);
+        // Adicionar o painel principal ao frame
+        criarContaFrame.add(mainPanel);
+        criarContaFrame.setVisible(true);
     }
+
 
 
     private void entrarConta() throws IncorrectCredentialsException {
