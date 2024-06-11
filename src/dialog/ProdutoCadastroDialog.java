@@ -53,7 +53,7 @@ public class ProdutoCadastroDialog extends JDialog {
         precoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         JTextField precoField = new JTextField();
 
-        JLabel tipoLabel = new JLabel("model.Tipo:");
+        JLabel tipoLabel = new JLabel("Tipo:");
         tipoLabel.setForeground(new Color(207, 250, 151));
         tipoLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         JComboBox<Tipo> tipoComboBox = new JComboBox<>(mercado.getTipos().toArray(new Tipo[0]));
@@ -132,7 +132,7 @@ public class ProdutoCadastroDialog extends JDialog {
                 // Exibe uma mensagem de erro
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
-                // Tenta converter o preço e a quantidade para float e int, respectivamente
+
                 try {
                     // Cria um novo produto com os valores dos campos
                     float preco = Float.parseFloat(precoStr);
@@ -148,7 +148,7 @@ public class ProdutoCadastroDialog extends JDialog {
                     System.out.println(produto);
                     setVisible(false);
                 } catch (NumberFormatException ex) {
-                    // Exibe uma mensagem de erro se o preço ou a quantidade não forem números
+
                     JOptionPane.showMessageDialog(this, "Preço ou quantidade inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
