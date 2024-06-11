@@ -97,6 +97,7 @@ public class VerCarrinho extends JFrame {
         if (confirmacao == JOptionPane.YES_OPTION) {
             Pedido pedido = cliente.fazerPedido(true);
             if (pedido != null) {
+                mercado.addPedido(pedido);
                 JOptionPane.showMessageDialog(this, "Pedido realizado com sucesso! Valor total: R$" + pedido.getValorTotalPedido());
                 dispose();
             } else {

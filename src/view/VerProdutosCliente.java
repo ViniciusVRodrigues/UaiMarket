@@ -391,8 +391,9 @@ public class VerProdutosCliente extends JFrame {
                 // Obtendo o tipo correspondente ao ID
                 Tipo tipoBusca = mercado.getTipos().get(idTipo);
                 // Obtendo os produtos correspondentes ao tipo
-                System.out.println();
+
                 List<Produto> produtosPesquisa = mercado.buscarProdPorTipo(tipoBusca);
+                System.out.println(produtosPesquisa.size());
                 // Construindo a mensagem com os resultados da pesquisa
                 StringBuilder sb = new StringBuilder("Resultados da Pesquisa por Tipo:\n");
                 for (Produto produto : produtosPesquisa) {

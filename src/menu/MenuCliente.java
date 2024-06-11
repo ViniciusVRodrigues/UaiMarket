@@ -203,7 +203,11 @@ public class MenuCliente extends JFrame {
 
             EnderecoEntrega endereco = new EnderecoEntrega();
             endereco.setRua(rua);
+            try{
             endereco.setNumero(Integer.parseInt(numero));
+            }catch (NumberFormatException ex){
+                endereco.setNumero(0);
+            }
             endereco.setBairro(bairro);
             endereco.setComplemento(complemento);
             endereco.setCidade(cidade);
@@ -211,7 +215,7 @@ public class MenuCliente extends JFrame {
             endereco.setCep(cep);
 
             cliente.setEnderecoEntrega(endereco);
-
+            this.cliente = cliente;
             mercado.cadastrarCliente(cliente);
 
             JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");

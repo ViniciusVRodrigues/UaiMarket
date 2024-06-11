@@ -18,6 +18,7 @@ public class Pedido implements Serializable {
         this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.carrinho = carrinho;
+        this.cliente = cliente;
         calcTotal();
     }
     public float getFrete() {
@@ -33,6 +34,10 @@ public class Pedido implements Serializable {
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public Carrinho getCarrinho() {
+        return carrinho;
     }
 
     public String toCSVLine(String sep){

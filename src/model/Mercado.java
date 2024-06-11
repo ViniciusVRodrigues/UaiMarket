@@ -66,15 +66,16 @@ public class Mercado implements Serializable {
 
     //Função para encontrar o tipo baseado no recebido por parametro
     public ArrayList<Produto> buscarProd(String busca) {
+        //Retornando os produtos que tem estoque
         return produtos.stream()
-                .filter(produto -> produto.getNome().toLowerCase().contains(busca.toLowerCase()))
+                .filter(produto -> produto.getNome().toLowerCase().contains(busca.toLowerCase()) && produto.getEstoque().getQntd()>0)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     //Função para encontrar o tipo baseado no recebido por parametro
     public ArrayList<Produto> buscarProdPorTipo(Tipo tipo) {
         return produtos.stream()
-                .filter(produto -> produto.getTipo().equals(tipo))
+                .filter(produto -> produto.getTipo().getNome().equals(tipo.getNome()) && produto.getEstoque().getQntd()>0)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -135,6 +136,11 @@ public class Mercado implements Serializable {
     }
 
     public void addPedido(Pedido p) {
+        Carrinho carrinho = p.getCarrinho();
+        for (ProdutoCarrinho pc : carrinho.getProdutos()) {
+            Produto produto = getProdutoById(pc.getId());
+            produto.removerQuantidadeEstoque(pc.getQuantidade());
+        }
         pedidos.add(p);
         salvarMercado();
     }
@@ -181,8 +187,7 @@ public class Mercado implements Serializable {
     //Função para adicionar um cliente ao sistema
     public void cadastrarCliente(Cliente cliente) {
         clientes.add(cliente);
-        this.cliente = cliente;
-        clienteAutenticado = true;
+        vincularCliente(cliente);
         salvarMercado();
     }
 

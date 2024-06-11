@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Mercado.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/colaboradores.csv" beforeDir="false" afterPath="$PROJECT_DIR$/colaboradores.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pedidos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pedidos.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/produtos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/produtos.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menu/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mercado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pedido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/VerCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerCarrinho.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" afterDir="false" />
     </list>
@@ -98,6 +99,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -113,6 +122,7 @@
       <workItem from="1718024189009" duration="222000" />
       <workItem from="1718024420649" duration="4073000" />
       <workItem from="1718035379675" duration="381000" />
+      <workItem from="1718064886798" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="teste">
       <option name="closed" value="true" />
