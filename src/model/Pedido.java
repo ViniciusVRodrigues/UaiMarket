@@ -1,4 +1,6 @@
 package model;
+import payment.InterfacePagamento;
+
 import java.io.Serializable;
 
 public class Pedido implements Serializable {
@@ -7,6 +9,7 @@ public class Pedido implements Serializable {
     private Carrinho carrinho;
     private Cliente cliente;
     private float valorTotalPedido;
+    private InterfacePagamento pagamento;
 
     public Pedido(){
         this.frete = 00.0F;
@@ -14,16 +17,20 @@ public class Pedido implements Serializable {
         this.carrinho= new Carrinho();
         this.valorTotalPedido=0f;
     }
-    public Pedido (float frete, EnderecoEntrega enderecoEntrega, Carrinho carrinho,Cliente cliente){
+    public Pedido (float frete, EnderecoEntrega enderecoEntrega, Carrinho carrinho,Cliente cliente ,InterfacePagamento pagamento){
         this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.carrinho = carrinho;
         this.cliente = cliente;
         calcTotal();
+        this.pagamento = pagamento;
+        pagamento.pagar(valorTotalPedido);
     }
+
     public float getFrete() {
         return frete;
     }
+
     public void calcTotal(){
         valorTotalPedido= carrinho.getValorTotalProduto()+frete;
     }

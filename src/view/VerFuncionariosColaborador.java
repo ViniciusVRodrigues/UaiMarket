@@ -19,8 +19,8 @@ public class VerFuncionariosColaborador extends JFrame {
     private JTable tabela;
     private DefaultTableModel tableModel;
 
-    public VerFuncionariosColaborador(Mercado mercado) {
-        this.mercado = mercado;
+    public VerFuncionariosColaborador() {
+        this.mercado = Mercado.getInstance();
         setupUI();
     }
 
@@ -134,10 +134,10 @@ public class VerFuncionariosColaborador extends JFrame {
 
     public static void main(String[] args) {
         // Dummy data for testing
-        Mercado mercado = new Mercado();
+        Mercado mercado = Mercado.getInstance();
         mercado.addProduto(new Produto(1, new Tipo(1, "Bebida"), "Coca-Cola", "Coca-Cola", 5.0f, 10));
         mercado.addProduto(new Produto(2, new Tipo(2, "Comida"), "Arroz", "Tio João", 20.0f, 5));
 
-        SwingUtilities.invokeLater(() -> new VerFuncionariosColaborador(mercado).setVisible(true));
+        SwingUtilities.invokeLater(() -> new VerFuncionariosColaborador().setVisible(true));
     }
 }

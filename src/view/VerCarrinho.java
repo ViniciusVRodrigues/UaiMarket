@@ -13,8 +13,8 @@ public class VerCarrinho extends JFrame {
     private ProdutoCarrinho pCSelecionado;
     private JTextArea carrinhoTextArea;
 
-    public VerCarrinho(Mercado m) {
-        this.mercado = m;
+    public VerCarrinho() {
+        this.mercado = Mercado.getInstance();
         this.cliente = mercado.getCliente();
 
         if (this.cliente == null){
@@ -149,8 +149,7 @@ public class VerCarrinho extends JFrame {
     }
 
     public static void main(String[] args) {
-        Mercado mercado = new Mercado(); // Inicialize seu objeto model.Mercado
-        VerCarrinho verCarrinho = new VerCarrinho(mercado);
+        VerCarrinho verCarrinho = new VerCarrinho();
         verCarrinho.setVisible(true);
     }
 }

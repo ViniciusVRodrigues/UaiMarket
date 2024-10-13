@@ -19,9 +19,9 @@ public class MenuCliente extends JFrame {
     private VerProdutosCliente verProdutosCliente;
     private VerCarrinho verCarrinho;
 
-    public MenuCliente(Mercado mercado) {
-        this.mercado = mercado;
-        this.verProdutosCliente = new VerProdutosCliente(mercado);
+    public MenuCliente() {
+        this.mercado = Mercado.getInstance();
+        this.verProdutosCliente = new VerProdutosCliente();
 
 
         setTitle("Menu Cliente");
@@ -60,7 +60,7 @@ public class MenuCliente extends JFrame {
         verCarrinhoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                verCarrinho = new VerCarrinho(mercado);
+                verCarrinho = new VerCarrinho();
                 if (mercado.getCliente() != null)
                     verCarrinho.setVisible(true);
             }
@@ -585,8 +585,7 @@ public class MenuCliente extends JFrame {
 
 
     public static void main(String[] args) {
-        Mercado mercado = new Mercado(); // Inicialize seu objeto model.Mercado
-        MenuCliente menuCliente = new MenuCliente(mercado);
+        MenuCliente menuCliente = new MenuCliente();
         menuCliente.setVisible(true);
     }
 }

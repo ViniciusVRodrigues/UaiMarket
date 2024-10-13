@@ -11,7 +11,7 @@ public class MainMenu extends JFrame {
 
     private Mercado mercado;
     public MainMenu() {
-        mercado = new Mercado();
+        mercado = Mercado.getInstance();
         setTitle("Seleção de Menu");
         setSize(600, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +40,7 @@ public class MainMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Abre o menu.MenuCliente
-                MenuCliente menuCliente = new MenuCliente(mercado);
+                MenuCliente menuCliente = new MenuCliente();
                 menuCliente.setVisible(true);
             }
         });
@@ -49,7 +49,7 @@ public class MainMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Abre o menu.MenuColaborador
-                MenuColaborador menuColaborador = new MenuColaborador(mercado);
+                MenuColaborador menuColaborador = new MenuColaborador();
                 menuColaborador.setVisible(true);
             }
         });

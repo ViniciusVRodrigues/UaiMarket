@@ -18,8 +18,8 @@ public class VerProdutosColaborador extends JFrame {
     private JTable produtoTable;
     private DefaultTableModel tableModel;
 
-    public VerProdutosColaborador(Mercado mercado) {
-        this.mercado = mercado;
+    public VerProdutosColaborador() {
+        this.mercado = Mercado.getInstance();
         setupUI();
     }
 
@@ -135,10 +135,10 @@ public class VerProdutosColaborador extends JFrame {
 
     public static void main(String[] args) {
         // Dummy data for testing
-        Mercado mercado = new Mercado();
+        Mercado mercado = Mercado.getInstance();
         mercado.addProduto(new Produto(1, new Tipo(1, "Bebida"), "Coca-Cola", "Coca-Cola", 5.0f, 10));
         mercado.addProduto(new Produto(2, new Tipo(2, "Comida"), "Arroz", "Tio João", 20.0f, 5));
 
-        SwingUtilities.invokeLater(() -> new VerProdutosColaborador(mercado).setVisible(true));
+        SwingUtilities.invokeLater(() -> new VerProdutosColaborador().setVisible(true));
     }
 }

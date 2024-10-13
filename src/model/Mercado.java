@@ -18,10 +18,12 @@ public class Mercado implements Serializable {
     private Boolean clienteAutenticado = false;
     private Cliente cliente;
 
+    private static Mercado instance;
+
     //Colaborador que atualmente esta usando o mercado
     private Colaborador colaborador;
 
-    public Mercado() {
+    private Mercado() {
         produtos = new ArrayList<>();
         tipos = new ArrayList<>();
         clientes = new ArrayList<>();
@@ -33,6 +35,16 @@ public class Mercado implements Serializable {
         cadastrarProdutos();
         //Carregando mercado direto de um arquivo
         carregarMercado();
+        //Salvando o mercado
+        salvarMercado();
+    }
+
+    //Singleton
+    public static Mercado getInstance() {
+        if (instance == null) {
+            instance = new Mercado();
+        }
+        return instance;
     }
 
     public ArrayList<Produto> getProdutos() {

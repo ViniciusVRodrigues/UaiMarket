@@ -29,8 +29,8 @@ public class VerProdutosCliente extends JFrame {
     private JButton addToCartButton; // Novo botão
     private JButton backButton;
 
-    public VerProdutosCliente(Mercado mercado) {
-        this.mercado = mercado;
+    public VerProdutosCliente() {
+        this.mercado = Mercado.getInstance();
         initializeUI();
     }
 
@@ -420,7 +420,7 @@ public class VerProdutosCliente extends JFrame {
 
 
     private void viewCart() {
-        VerCarrinho verCarrinho = new VerCarrinho(mercado);
+        VerCarrinho verCarrinho = new VerCarrinho();
         if (mercado.getCliente() != null)
             verCarrinho.setVisible(true);
     }
@@ -531,8 +531,7 @@ public class VerProdutosCliente extends JFrame {
 
 
     public static void main(String[] args) {
-        Mercado mercado = new Mercado();
-        VerProdutosCliente frame = new VerProdutosCliente(mercado);
+        VerProdutosCliente frame = new VerProdutosCliente();
         frame.setVisible(true);
     }
 }

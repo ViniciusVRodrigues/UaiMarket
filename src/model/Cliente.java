@@ -1,4 +1,6 @@
 package model;
+import payment.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -45,7 +47,21 @@ public class Cliente extends Pessoa {
         if(carrinho.getValorTotalProduto()>=100)
             frete=0;
         if(confirmacao){
-            Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho,this);
+            //Sorteando um dos tres tipos de pagamento
+            int tipoPagamento = (int) (Math.random() * 3);
+            InterfacePagamento pagamento = null;
+            switch (tipoPagamento){
+                case 0:
+                    pagamento = new CartaoCredito();
+                    break;
+                case 1:
+                    pagamento = new Boleto();
+                    break;
+                case 2:
+                    pagamento = new Pix();
+                    break;
+            }
+            Pedido pedido = new Pedido(frete,enderecoEntrega,carrinho,this,pagamento);
             carrinho = new Carrinho();
             return pedido;
         }

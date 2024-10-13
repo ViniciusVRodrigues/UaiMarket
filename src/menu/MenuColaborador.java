@@ -20,10 +20,10 @@ public class MenuColaborador extends JFrame {
     private VerFuncionariosColaborador verFuncionariosColaborador;
     private Colaborador colaboradorLogado;
 
-    public MenuColaborador(Mercado mercado) {
-        this.mercado = mercado;
-        this.verProdutosColaborador = new VerProdutosColaborador(mercado);
-        this.verFuncionariosColaborador = new VerFuncionariosColaborador(mercado);
+    public MenuColaborador() {
+        this.mercado = Mercado.getInstance();
+        this.verProdutosColaborador = new VerProdutosColaborador();
+        this.verFuncionariosColaborador = new VerFuncionariosColaborador();
 
         setTitle("Login Colaborador");
         setSize(400, 300);
@@ -154,8 +154,7 @@ public class MenuColaborador extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Mercado mercado = new Mercado(); // Substitua pelo seu construtor real, se houver
-                MenuColaborador menuColaborador = new MenuColaborador(mercado);
+                MenuColaborador menuColaborador = new MenuColaborador();
                 menuColaborador.setVisible(true);
             }
         });

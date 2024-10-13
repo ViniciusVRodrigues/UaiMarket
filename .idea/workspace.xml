@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/src/payment/Boleto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/payment/CartaoCredito.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/payment/InterfacePagamento.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/payment/Pix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Mercado.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pedidos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pedidos.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/produtos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/produtos.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menu/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/MenuColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mercado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VerCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerCarrinho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VerFuncionariosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerFuncionariosColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VerProdutosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosColaborador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +35,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -98,8 +111,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
       </set>
     </attachedChunks>
   </component>
@@ -121,6 +134,7 @@
       <workItem from="1718064886798" duration="522000" />
       <workItem from="1718072572568" duration="1100000" />
       <workItem from="1718073713915" duration="648000" />
+      <workItem from="1728838079360" duration="5286000" />
     </task>
     <task id="LOCAL-00001" summary="teste">
       <option name="closed" value="true" />

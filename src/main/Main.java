@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
-        Mercado mercado = new Mercado();
+        Mercado mercado = Mercado.getInstance();
         mercado.carregarMercado();
         mercado.salvarMercado();
         boolean mostrando = true;
@@ -28,10 +28,10 @@ public class Main {
 
             if (opcao == 1) {
                 Cliente cliente = new Cliente();
-                MenuCliente menu = new MenuCliente(mercado);
+                MenuCliente menu = new MenuCliente();
 
             } else if (opcao == 2) {
-                MenuColaborador menu = new MenuColaborador(mercado);
+                MenuColaborador menu = new MenuColaborador();
                 try {
                     if (menu.login()) {
                         menu.mostrarMenu();
