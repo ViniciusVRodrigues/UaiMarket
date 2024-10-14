@@ -10,6 +10,7 @@ import model.Produto;
 import model.Tipo;
 import dialog.ProdutoCadastroDialog;
 import dialog.ProdutoMenuDialog;
+import notification.ControleEstoqueNotificador;
 
 
 public class VerProdutosColaborador extends JFrame {
@@ -17,9 +18,11 @@ public class VerProdutosColaborador extends JFrame {
     private Mercado mercado;
     private JTable produtoTable;
     private DefaultTableModel tableModel;
+    private ControleEstoqueNotificador controleEstoqueNotificador;
 
     public VerProdutosColaborador() {
         this.mercado = Mercado.getInstance();
+        this.controleEstoqueNotificador = ControleEstoqueNotificador.getInstance();
         setupUI();
     }
 
@@ -130,6 +133,7 @@ public class VerProdutosColaborador extends JFrame {
         if (dialog.isProdutoCadastrado()) {
             mercado.addProduto(produto);
             atualizarTabelaProdutos();
+            controleEstoqueNotificador.notificar("Produto adicionado: " + produto.getNome());
         }
     }
 

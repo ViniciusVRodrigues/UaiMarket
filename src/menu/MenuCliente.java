@@ -4,6 +4,7 @@ import exception.IncorrectCredentialsException;
 import model.Cliente;
 import model.EnderecoEntrega;
 import model.Mercado;
+import validation.AdaptadorValidadorExterno;
 import view.VerCarrinho;
 import view.VerProdutosCliente;
 
@@ -250,12 +251,17 @@ public class MenuCliente extends JFrame {
 
 
     private void entrarConta() throws IncorrectCredentialsException {
+        AdaptadorValidadorExterno validadorCodigoLogin = new AdaptadorValidadorExterno();
         String email = JOptionPane.showInputDialog("Digite seu email:");
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
+        String codigo = JOptionPane.showInputDialog("Digite o seguinte código '"+validadorCodigoLogin.gerarCodigo()+"':");
 
         Cliente clienteExistente = mercado.buscarCliente(email, senha);
         if (clienteExistente == null) {
             throw new IncorrectCredentialsException("Senha ou email inválidos!");
+        }
+        if(!validadorCodigoLogin.validarCodigo(codigo)){
+            throw new IncorrectCredentialsException("Código inválido!");
         }
         clienteExistente.logar(email, senha);
         cliente = clienteExistente;

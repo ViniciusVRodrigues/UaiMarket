@@ -5,23 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e6162e-c4f8-479b-a05a-6b18246f1179" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/payment/Boleto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/payment/CartaoCredito.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/payment/InterfacePagamento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/payment/Pix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/notification/ControleEstoqueNotificador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/notification/InterfaceNotificacao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validation/AdaptadorValidadorExterno.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validation/ValidadorDeUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validation/ValidadorExterno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mercado.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Mercado.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialog/ProdutoMenuDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialog/ProdutoMenuDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menu/MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/MenuColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuColaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Mercado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mercado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/VerCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerCarrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/VerFuncionariosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerFuncionariosColaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Colaborador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/VerProdutosColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VerProdutosColaborador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +126,7 @@
       <workItem from="1718064886798" duration="522000" />
       <workItem from="1718072572568" duration="1100000" />
       <workItem from="1718073713915" duration="648000" />
-      <workItem from="1728838079360" duration="5286000" />
+      <workItem from="1728838079360" duration="8052000" />
     </task>
     <task id="LOCAL-00001" summary="teste">
       <option name="closed" value="true" />

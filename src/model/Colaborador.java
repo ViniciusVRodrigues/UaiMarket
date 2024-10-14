@@ -1,9 +1,11 @@
 package model;
+import notification.InterfaceNotificacao;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Colaborador extends Pessoa {
+public class Colaborador extends Pessoa implements InterfaceNotificacao {
     private int codigo;
     private String cargo;
     public Colaborador(){
@@ -133,6 +135,10 @@ public class Colaborador extends Pessoa {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public void update(String mensagem) {
+        System.out.println("Notificação para "+nome+": " + mensagem);
     }
 
     private boolean testeSair(String s) {

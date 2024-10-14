@@ -5,17 +5,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import model.Produto;
 import model.Mercado;
+import notification.ControleEstoqueNotificador;
 
 public class ProdutoMenuDialog extends JDialog {
 
     private Produto produto;
     private Mercado mercado;
+    private ControleEstoqueNotificador controleEstoqueNotificador;
 
     public ProdutoMenuDialog(JFrame parent, Produto produto, Mercado mercado) {
         super(parent, "Menu Produto", true);
         this.produto = produto;
         this.mercado = mercado;
         setupUI();
+        this.controleEstoqueNotificador = ControleEstoqueNotificador.getInstance();
     }
 
     //Configurando o layout da tela
@@ -142,6 +145,7 @@ public class ProdutoMenuDialog extends JDialog {
                 int quantidade = Integer.parseInt(quantidadeField.getText());
                 produto.getEstoque().setQntd(quantidade);
                 mercado.salvarMercado();
+                controleEstoqueNotificador.notificar("Estoque de "+produto.getNome()+" atualizado para " + quantidade + " unidades.");
                 JOptionPane.showMessageDialog(this, "Estoque atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 estoqueDialog.setVisible(false);
             } catch (NumberFormatException ex) {
@@ -196,6 +200,7 @@ public class ProdutoMenuDialog extends JDialog {
                 // Atualiza o preço do produto
                 produto.setPreco(preco);
                 mercado.salvarMercado();
+                controleEstoqueNotificador.notificar("Preço de "+produto.getNome()+" atualizado para R$ " + preco);
                 JOptionPane.showMessageDialog(this, "Preço atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 precoDialog.setVisible(false);
             } catch (NumberFormatException ex) {
@@ -242,6 +247,7 @@ public class ProdutoMenuDialog extends JDialog {
         configurarBotao(deletarButton);
         deletarButton.addActionListener(e -> {
             // Remove o produto do mercado
+            controleEstoqueNotificador.notificar("Produto "+produto.getNome()+" deletado.");
             mercado.delProduto(produto);
             deleteDialog.setVisible(false);
             setVisible(false);
