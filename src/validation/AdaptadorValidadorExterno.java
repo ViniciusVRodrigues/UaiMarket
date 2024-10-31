@@ -1,5 +1,5 @@
 package validation;
-
+//utilizado no adapter
 public class AdaptadorValidadorExterno implements ValidadorDeUsuario {
     private ValidadorExterno validadorExterno;
 

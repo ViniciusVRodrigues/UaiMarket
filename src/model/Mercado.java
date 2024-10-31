@@ -40,6 +40,7 @@ public class Mercado implements Serializable {
     }
 
     //Singleton
+    //metodo para pegar a instancia da classe mercado
     public static Mercado getInstance() {
         if (instance == null) {
             instance = new Mercado();

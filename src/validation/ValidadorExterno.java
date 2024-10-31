@@ -1,5 +1,5 @@
 package validation;
-
+//utilizado no adapter
 public class ValidadorExterno {
     private String codigo;
     public String gerarCodigo(){
